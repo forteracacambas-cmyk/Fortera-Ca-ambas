@@ -1,0 +1,6 @@
+{
+  "name": "Fortera Caçambas",
+  "description": "Aluguel de caçambas de entulho com atendimento nacional. Sua obra avança. O entulho sai. Orçamento ágil para obras, reformas e demolições.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
