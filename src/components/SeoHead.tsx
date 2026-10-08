@@ -62,9 +62,21 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: SITE_CONFIG.brandName,
+    name: 'FORTERA CAÇAMBAS',
+    legalName: SITE_CONFIG.legalName,
+    taxID: SITE_CONFIG.cnpj,
     email: SITE_CONFIG.email,
+    telephone: '+55-11-95759-5840',
     description: SITE_CONFIG.subtitle,
+    logo: SITE_CONFIG.logo,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Axui, 146',
+      addressLocality: 'São Paulo',
+      addressRegion: 'SP',
+      postalCode: '03617-040',
+      addressCountry: 'BR',
+    },
     ...(canonicalUrl ? { url: canonicalUrl } : {}),
   };
 

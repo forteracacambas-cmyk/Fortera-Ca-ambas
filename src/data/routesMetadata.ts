@@ -1,5 +1,6 @@
 import { CITIES_DATA } from './citiesData';
 import { PRACTICAL_GUIDES } from './guidesData';
+import { SERVICES_DATA } from './servicesData';
 
 export interface RouteMeta {
   path: string;
@@ -35,7 +36,7 @@ export function getAllRoutes(): RouteMeta[] {
     {
       path: '/preco-aluguel-cacamba/',
       title: 'Preço de Aluguel de Caçamba: Fatores e Como Funciona | Fortera',
-      description: 'Entenda os fatores que determinam o preço do aluguel de caçamba de entulho: volume, tipo de resíduo, logística e condições confirmadas no orçamento.',
+      description: 'Entenda os fatores que determinam o preço do aluguel de caçamba de entulho: volume, tipo de resíduo, prazo semanal de 7 dias e condições no orçamento.',
       changefreq: 'monthly',
       priority: 0.9,
     },
@@ -49,7 +50,7 @@ export function getAllRoutes(): RouteMeta[] {
     {
       path: '/orcamento/',
       title: 'Solicitar Orçamento de Caçamba de Entulho | Fortera Caçambas',
-      description: 'Solicite cotação ágil para aluguel de caçamba em qualquer cidade do Brasil. Escolha tamanho (3, 4 ou 5 m³), tipo de material e receba atendimento dedicado.',
+      description: 'Solicite cotação ágil para aluguel de caçamba em qualquer cidade do Brasil. Escolha tamanho (3, 4 ou 5 m³), prazo (semanal 7 dias ou diárias) e material.',
       changefreq: 'weekly',
       priority: 1.0,
     },
@@ -68,15 +69,33 @@ export function getAllRoutes(): RouteMeta[] {
       priority: 0.5,
     },
     {
+      path: '/servicos/',
+      title: 'Serviços de Aluguel de Caçamba para Obras e Reformas | Fortera',
+      description: 'Soluções de locação de caçambas estacionárias para reformas residenciais, canteiros de obras civis e pequenas demolições em todo o Brasil.',
+      changefreq: 'weekly',
+      priority: 0.9,
+    },
+    {
       path: '/guias/',
       title: 'Guias Práticos sobre Aluguel de Caçamba de Entulho | Fortera',
-      description: 'Aprenda a escolher o tamanho de caçamba sob orientação, conheça materiais aceitos e regras de preparação da vaga para o poliguindaste.',
+      description: 'Aprenda a escolher o tamanho de caçamba, conheça o prazo semanal de 7 dias vs diárias, materiais aceitos e preparação da vaga para o poliguindaste.',
       changefreq: 'weekly',
       priority: 0.8,
     },
   ];
 
-  // Adiciona os guias práticos
+  // Serviços especializados
+  SERVICES_DATA.forEach(s => {
+    routes.push({
+      path: `/servicos/${s.slug}/`,
+      title: `${s.title} | Fortera Caçambas`,
+      description: s.metaDescription,
+      changefreq: 'weekly',
+      priority: 0.9,
+    });
+  });
+
+  // Guias práticos
   PRACTICAL_GUIDES.forEach(g => {
     routes.push({
       path: `/guias/${g.slug}/`,
@@ -87,7 +106,7 @@ export function getAllRoutes(): RouteMeta[] {
     });
   });
 
-  // Adiciona as 6 páginas locais
+  // Páginas locais
   CITIES_DATA.forEach(c => {
     routes.push({
       path: `/aluguel-de-cacamba/${c.stateSlug}/${c.slug}/`,

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 150" role="img" aria-labelledby="title">
+  <title id="title">Fortera Caçambas</title>
+  <path fill="#FFC52D" d="M10 28h136l-22 94H34z"/>
+  <path fill="#10263D" d="M38 47h84l-5 19H63l-4 15h50l-5 18H55l-5 20H29z"/>
+  <path fill="#10263D" d="M6 20h144v12H6z"/>
+  <text x="174" y="86" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="900" letter-spacing="-2" fill="#10263D">FORTERA</text>
+  <text x="178" y="121" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="700" letter-spacing="8" fill="#10263D">CAÇAMBAS</text>
+</svg>

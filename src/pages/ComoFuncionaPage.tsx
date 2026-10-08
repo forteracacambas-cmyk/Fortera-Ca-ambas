@@ -1,6 +1,7 @@
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
+import { SITE_IMAGES, getWhatsAppGenericLink } from '../config/siteConfig';
 
 export const ComoFuncionaPage: React.FC = () => {
   const steps = [
@@ -93,6 +94,46 @@ export const ComoFuncionaPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Seção Visual de Entrega com Imagem do Poliguindaste */}
+      <section className="py-16 bg-slate-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div className="lg:col-span-6 space-y-4">
+              <span className="text-xs font-black uppercase tracking-wider text-[#FFC52D] bg-[#1A3856] px-3 py-1 rounded inline-block">
+                Equipamento e Manobra
+              </span>
+              <h2 className="text-3xl font-black text-white">
+                Logística de Precisão com Poliguindaste
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Nossos operadores realizam manobras controladas para posicionar as caçambas estacionárias rente ao meio-fio ou dentro da área de serviço do seu canteiro. A descida suave preserva o calçamento e previne avarias.
+              </p>
+              <div className="pt-2 text-xs text-slate-400">
+                Prazos: <strong>7 dias (semanal destaque)</strong>, 3 dias, 2 dias ou 1 dia (diária rápida para descarte no mesmo dia).
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-700 bg-slate-950">
+                <img
+                  src={SITE_IMAGES.delivery.src}
+                  alt={SITE_IMAGES.delivery.alt}
+                  width={SITE_IMAGES.delivery.width}
+                  height={SITE_IMAGES.delivery.height}
+                  loading="lazy"
+                  className="w-full h-auto object-cover aspect-16/9"
+                />
+                <div className="p-3 bg-slate-950 text-slate-400 text-xs">
+                  <span>Operação com caminhão poliguindaste e posicionamento de caçamba estacionária</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Dúvidas Frequentes sobre a Operação */}
       <section className="py-16 bg-white border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -134,12 +175,23 @@ export const ComoFuncionaPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-3">
+            <a
+              href={getWhatsAppGenericLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white font-black text-base px-8 py-4 rounded-xl shadow-lg transition-transform active:scale-95 focus-visible-ring"
+            >
+              <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.149.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.588-5.771-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.074-2.222-.559-1.826-.757-3.003-2.617-3.094-2.738-.091-.121-.741-.986-.741-1.88 0-.895.469-1.336.636-1.517.167-.182.365-.228.486-.228.122 0 .243.002.349.007.112.005.263-.042.411.316.152.365.517 1.262.563 1.354.045.091.076.198.015.319-.06.121-.091.198-.182.304-.091.106-.192.236-.274.317-.091.091-.186.19-.08.372.106.182.471.776 1.011 1.258.696.62 1.282.812 1.464.903.182.091.289.076.395-.046.106-.121.456-.532.577-.714.122-.182.243-.152.411-.091.167.061 1.064.502 1.246.593.182.091.304.137.349.213.045.076.045.441-.099.846z"/>
+              </svg>
+              <span>Solicitar Orçamento no WhatsApp</span>
+            </a>
             <a
               href="/orcamento/"
-              className="inline-block bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-base px-8 py-4 rounded-lg shadow-md transition-transform active:scale-95 focus-visible-ring"
+              className="w-full sm:w-auto inline-block bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-base px-8 py-4 rounded-xl shadow-md transition-transform active:scale-95 focus-visible-ring"
             >
-              Iniciar Meu Pedido de Orçamento
+              Preencher Formulário
             </a>
           </div>
         </div>

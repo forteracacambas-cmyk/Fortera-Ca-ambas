@@ -3,6 +3,7 @@ import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { PRACTICAL_GUIDES, GuideItem } from '../data/guidesData';
 import { NotFoundPage } from './NotFoundPage';
+import { getWhatsAppLink } from '../config/siteConfig';
 
 interface GuiaDetailPageProps {
   slug: string;
@@ -62,6 +63,21 @@ export const GuiaDetailPage: React.FC<GuiaDetailPageProps> = ({ slug }) => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#10263D] tracking-tight leading-tight mb-6">
               {guide.title}
             </h1>
+
+            {/* Imagem Editorial do Guia */}
+            <div className="rounded-2xl overflow-hidden shadow-xl border-2 border-slate-200 bg-slate-900 mb-6">
+              <img
+                src={guide.image.src}
+                alt={guide.image.alt}
+                width={guide.image.width}
+                height={guide.image.height}
+                loading="eager"
+                className="w-full h-auto object-cover aspect-16/9"
+              />
+              <div className="p-3 bg-slate-950 text-slate-300 text-xs text-center">
+                {guide.image.alt}
+              </div>
+            </div>
 
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal bg-slate-50 p-6 rounded-xl border-l-4 border-[#FFC52D]">
               {guide.intro}
@@ -148,12 +164,23 @@ export const GuiaDetailPage: React.FC<GuiaDetailPageProps> = ({ slug }) => {
             <p className="text-sm sm:text-base text-slate-700 mt-2 max-w-xl mx-auto">
               Garanta pontualidade e descarte legal em qualquer cidade do país com a Fortera Caçambas.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-3">
+              <a
+                href={getWhatsAppLink(`Olá! Li o guia "${guide.title}" e gostaria de solicitar um orçamento para aluguel de caçamba com a Fortera.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white font-black text-base px-7 py-3.5 rounded-lg shadow-md transition-transform active:scale-95 focus-visible-ring"
+              >
+                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.149.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.588-5.771-5.768-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.074-2.222-.559-1.826-.757-3.003-2.617-3.094-2.738-.091-.121-.741-.986-.741-1.88 0-.895.469-1.336.636-1.517.167-.182.365-.228.486-.228.122 0 .243.002.349.007.112.005.263-.042.411.316.152.365.517 1.262.563 1.354.045.091.076.198.015.319-.06.121-.091.198-.182.304-.091.106-.192.236-.274.317-.091.091-.186.19-.08.372.106.182.471.776 1.011 1.258.696.62 1.282.812 1.464.903.182.091.289.076.395-.046.106-.121.456-.532.577-.714.122-.182.243-.152.411-.091.167.061 1.064.502 1.246.593.182.091.304.137.349.213.045.076.045.441-.099.846z"/>
+                </svg>
+                <span>Tirar Dúvidas no WhatsApp</span>
+              </a>
               <a
                 href="/orcamento/"
-                className="inline-block bg-[#10263D] hover:bg-[#1A3856] text-[#FFC52D] font-black text-base px-8 py-3.5 rounded-lg shadow-md transition-colors focus-visible-ring"
+                className="w-full sm:w-auto inline-block bg-[#10263D] hover:bg-[#1A3856] text-[#FFC52D] font-black text-base px-7 py-3.5 rounded-lg shadow-md transition-colors focus-visible-ring"
               >
-                Solicitar Cotação Agora &rarr;
+                Solicitar Cotação no Site &rarr;
               </a>
             </div>
           </div>

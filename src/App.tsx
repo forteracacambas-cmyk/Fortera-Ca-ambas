@@ -11,8 +11,12 @@ import { OrcamentoPage } from './pages/OrcamentoPage';
 import { PrivacidadePage } from './pages/PrivacidadePage';
 import { GuiasHubPage } from './pages/GuiasHubPage';
 import { GuiaDetailPage } from './pages/GuiaDetailPage';
+import { ServicesHubPage } from './pages/ServicesHubPage';
+import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { CityDetailPage } from './pages/CityDetailPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { MobileBottomBar } from './components/MobileBottomBar';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 interface AppProps {
   initialUrl?: string;
@@ -111,17 +115,30 @@ export default function App({ initialUrl }: AppProps) {
       const ufParam = searchParams.get('uf') || undefined;
       const cityParam = searchParams.get('cidade') || undefined;
       const sizeParam = searchParams.get('tamanho') || undefined;
+      const periodParam = searchParams.get('prazo') || undefined;
       return (
         <OrcamentoPage 
           initialUf={ufParam} 
           initialCity={cityParam} 
           initialSize={sizeParam} 
+          initialPeriod={periodParam}
         />
       );
     }
 
     if (normalizedPath === '/privacidade/') {
       return <PrivacidadePage />;
+    }
+
+    if (normalizedPath === '/servicos/') {
+      return <ServicesHubPage />;
+    }
+
+    // Rotas de Serviços: /servicos/:slug/
+    const serviceMatch = normalizedPath.match(/^\/servicos\/([a-z0-9-]+)\/$/);
+    if (serviceMatch) {
+      const serviceSlug = serviceMatch[1];
+      return <ServiceDetailPage slug={serviceSlug} />;
     }
 
     if (normalizedPath === '/guias/') {
@@ -148,7 +165,7 @@ export default function App({ initialUrl }: AppProps) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen text-[#10263D] bg-white">
+    <div className="flex flex-col min-h-screen text-[#10263D] bg-white pb-14 md:pb-0">
       {/* Acessibilidade: Pular para Conteúdo Principal */}
       <a
         href="#main-content"
@@ -164,6 +181,12 @@ export default function App({ initialUrl }: AppProps) {
       </main>
 
       <Footer />
+
+      {/* Botão Flutuante de WhatsApp Oficial */}
+      <FloatingWhatsApp />
+
+      {/* Barra de Ações Rápidas Mobile */}
+      <MobileBottomBar currentPath={normalizedPath} />
     </div>
   );
 }

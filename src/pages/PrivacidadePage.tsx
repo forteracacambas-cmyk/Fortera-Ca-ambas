@@ -90,10 +90,17 @@ export const PrivacidadePage: React.FC = () => {
 
           <div>
             <h2 className="text-xl font-bold text-[#10263D] mb-3">
-              6. Canal de Atendimento
+              6. Identificação do Controlador e Contato
             </h2>
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-1 mb-3">
+              <div><strong>Marca:</strong> FORTERA CAÇAMBAS</div>
+              <div><strong>Razão Social:</strong> {SITE_CONFIG.legalName}</div>
+              <div><strong>CNPJ:</strong> {SITE_CONFIG.cnpj}</div>
+              <div><strong>Correspondência Administrativa:</strong> {SITE_CONFIG.correspondenceAddress} (endereço não aberto ao público)</div>
+              <div><strong>Telefone / WhatsApp Oficial:</strong> {SITE_CONFIG.whatsappFormatted}</div>
+            </div>
             <p>
-              Para esclarecer qualquer dúvida sobre o tratamento de seus dados ou exercer seus direitos de titular, entre em contato diretamente pelo nosso e-mail:
+              Para esclarecer qualquer dúvida sobre o tratamento de seus dados ou exercer seus direitos de titular, entre em contato diretamente pelo nosso canal oficial de atendimento:
             </p>
             <p className="mt-2">
               <a 

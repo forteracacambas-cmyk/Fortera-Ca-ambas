@@ -34,35 +34,51 @@ export const GuiasHubPage: React.FC = () => {
       {/* Lista de Guias */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {PRACTICAL_GUIDES.map((guide) => (
               <article 
                 key={guide.slug}
-                className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md hover:border-[#FFC52D] transition-all"
+                className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-xl hover:border-[#FFC52D] transition-all group"
               >
-                <div className="p-6 sm:p-8">
-                  <div className="flex items-center justify-between text-xs text-slate-500 mb-4">
-                    <span className="font-bold text-[#10263D] bg-amber-100 text-amber-900 px-2.5 py-1 rounded">
+                <div>
+                  <div className="relative aspect-16/10 overflow-hidden bg-slate-900">
+                    <img
+                      src={guide.image.src}
+                      alt={guide.image.alt}
+                      width={guide.image.width}
+                      height={guide.image.height}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#10263D]/90 text-[#FFC52D] text-xs font-black px-2.5 py-1 rounded backdrop-blur-sm">
                       {guide.category}
-                    </span>
-                    <span>{guide.readTime}</span>
+                    </div>
                   </div>
 
-                  <h2 className="text-xl font-black text-[#10263D] leading-snug mb-3">
-                    <a href={`/guias/${guide.slug}/`} className="hover:text-amber-600 transition-colors">
-                      {guide.title}
-                    </a>
-                  </h2>
+                  <div className="p-6 sm:p-8">
+                    <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
+                      <span className="font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded">
+                        {guide.lastUpdated}
+                      </span>
+                      <span>{guide.readTime}</span>
+                    </div>
 
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                    {guide.description}
-                  </p>
+                    <h2 className="text-xl sm:text-2xl font-black text-[#10263D] leading-snug mb-3 group-hover:text-amber-600 transition-colors">
+                      <a href={`/guias/${guide.slug}/`}>
+                        {guide.title}
+                      </a>
+                    </h2>
+
+                    <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                      {guide.description}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="p-6 sm:p-8 pt-0">
                   <a
                     href={`/guias/${guide.slug}/`}
-                    className="inline-flex items-center justify-center w-full bg-[#10263D] hover:bg-[#1A3856] text-white font-bold text-sm py-3 px-4 rounded-lg transition-colors focus-visible-ring"
+                    className="inline-flex items-center justify-center w-full bg-[#10263D] hover:bg-[#1A3856] text-[#FFC52D] font-bold text-sm py-3 px-4 rounded-xl transition-colors focus-visible-ring"
                   >
                     <span>Ler Guia Completo</span>
                     <span className="ml-2">&rarr;</span>

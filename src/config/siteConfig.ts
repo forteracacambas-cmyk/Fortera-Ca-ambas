@@ -1,22 +1,174 @@
 /**
  * Configurações Centrais - Fortera Caçambas
  * 
- * Centralização de dados da marca, contatos e variáveis de ambiente.
+ * Centralização de dados da marca, contatos, imagens e variáveis de ambiente.
  * - E-mail comercial: forteracacambas@gmail.com
  * - WhatsApp, CNPJ e Domínio mantidos vazios como configuração padrão até fornecimento.
  */
 
+export const SUPABASE_ASSETS = {
+  hero: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/exec-9b8cec25-54fe-4673-b79c-e5618bb4048b.png',
+  produto: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/exec-6dd8074b-74d3-4674-bab9-271b69aab66d.png',
+  comparativo: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/exec-ac802670-4a12-4fa4-a305-661ee53eb4c7.png',
+  logo: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/logo-fortera.svg',
+  favicon: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/favicon-fortera.svg',
+};
+
+export const SITE_IMAGES = {
+  hero: {
+    src: SUPABASE_ASSETS.hero,
+    alt: 'Caçamba estacionária Fortera amarela em via pública para descarte organizado de entulho',
+    width: 1536,
+    height: 1024,
+  },
+  dumpsterProduct: {
+    src: SUPABASE_ASSETS.produto,
+    alt: 'Caçamba estacionária metálica Fortera para recolhimento de entulho de obras e reformas',
+    width: 1536,
+    height: 1024,
+  },
+  comparative: {
+    src: SUPABASE_ASSETS.comparativo,
+    alt: 'Comparativo visual de capacidades e dimensões de caçambas estacionárias Fortera',
+    width: 1536,
+    height: 1024,
+  },
+  logo: {
+    src: SUPABASE_ASSETS.logo,
+    alt: 'Fortera Caçambas - Logotipo Oficial',
+    width: 620,
+    height: 150,
+  },
+  favicon: {
+    src: SUPABASE_ASSETS.favicon,
+    alt: 'Ícone Fortera Caçambas',
+    width: 160,
+    height: 160,
+  },
+  delivery: {
+    src: SUPABASE_ASSETS.hero,
+    alt: 'Caçamba estacionária Fortera posicionada em via pública para descarte de entulho de obra',
+    width: 1536,
+    height: 1024,
+  },
+  detail: {
+    src: SUPABASE_ASSETS.produto,
+    alt: 'Caçamba estacionária Fortera posicionada para reforma de imóvel',
+    width: 1536,
+    height: 1024,
+  },
+  renovationHouse: {
+    src: SUPABASE_ASSETS.produto,
+    alt: 'Caçamba estacionária Fortera para reforma e descarte de materiais',
+    width: 1536,
+    height: 1024,
+  },
+  commercialSite: {
+    src: SUPABASE_ASSETS.produto,
+    alt: 'Caçamba estacionária Fortera para canteiro de obras e reformas comerciais',
+    width: 1536,
+    height: 1024,
+  },
+  demolition: {
+    src: SUPABASE_ASSETS.produto,
+    alt: 'Caçamba estacionária Fortera para descarte de entulho de obra',
+    width: 1536,
+    height: 1024,
+  },
+};
+
+export interface RentalPeriodOption {
+  id: string;
+  days: number;
+  label: string;
+  shortLabel: string;
+  isPopular?: boolean;
+  description: string;
+}
+
+export const RENTAL_PERIODS: RentalPeriodOption[] = [
+  {
+    id: '7-dias',
+    days: 7,
+    label: '7 dias (Semanal)',
+    shortLabel: '7 dias (Semanal)',
+    isPopular: true,
+    description: 'Plano semanal de 7 dias com permanência adequada para reformas e obras.',
+  },
+  {
+    id: '3-dias',
+    days: 3,
+    label: '3 dias',
+    shortLabel: '3 dias',
+    description: 'Para etapas com descarte concentrado; condições acordadas no orçamento.',
+  },
+  {
+    id: '2-dias',
+    days: 2,
+    label: '2 dias',
+    shortLabel: '2 dias',
+    description: 'Para descartes pontuais; condições acordadas no orçamento.',
+  },
+  {
+    id: '1-dia',
+    days: 1,
+    label: '1 dia',
+    shortLabel: '1 dia',
+    description: 'Para permanência rápida de 1 dia; condições acordadas no orçamento.',
+  },
+];
+
+/**
+ * Tabela de preços configurável por tamanho / prazo / região.
+ * Valores vazios = "Consultar valor". Nunca inventar preços nem dividir semanal automaticamente.
+ */
+export const PRICING_CONFIG: Record<string, Record<string, string>> = {
+  '3 m³': {
+    '7-dias': '',
+    '3-dias': '',
+    '2-dias': '',
+    '1-dia': '',
+  },
+  '4 m³': {
+    '7-dias': '',
+    '3-dias': '',
+    '2-dias': '',
+    '1-dia': '',
+  },
+  '5 m³': {
+    '7-dias': '',
+    '3-dias': '',
+    '2-dias': '',
+    '1-dia': '',
+  },
+};
+
+export function getPriceDisplay(size: string, periodId: string): string {
+  const configured = PRICING_CONFIG[size]?.[periodId];
+  if (configured && configured.trim()) {
+    return configured.trim();
+  }
+  return 'Consultar valor';
+}
+
 export const SITE_CONFIG = {
   brandName: 'Fortera Caçambas',
+  legalName: 'Dias Dias Servico de Cacamba LTDA',
+  cnpj: '03.983.304/0001-04',
+  correspondenceAddress: 'Rua Axui, 146, Penha, São Paulo/SP, CEP 03617-040',
+  addressNotice: 'Endereço para correspondência. Atendimento em todo o Brasil por rede de parceiros e afiliados, com condições acordadas no orçamento.',
   tagline: 'Sua obra avança. O entulho sai.',
   subtitle: 'Aluguel de caçambas estacionárias para obras, reformas e demolições com atendimento nacional.',
   email: 'forteracacambas@gmail.com',
-  whatsapp: '',
-  cnpj: '',
+  whatsapp: '5511957595840',
+  whatsappFormatted: '(11) 95759-5840',
   siteUrl: (typeof process !== 'undefined' && process.env?.SITE_URL) || 
            (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_URL) || '',
-  heroImage: '/images/cacamba_estacionaria_1791441651712.jpg',
-  detailImage: '/images/cacamba_obra_detalhe_1791441663960.jpg',
+  logo: SUPABASE_ASSETS.logo,
+  favicon: SUPABASE_ASSETS.favicon,
+  heroImage: SUPABASE_ASSETS.hero,
+  detailImage: SUPABASE_ASSETS.produto,
+  comparativeImage: SUPABASE_ASSETS.comparativo,
 };
 
 /**
@@ -35,11 +187,44 @@ export function getCanonicalUrl(path: string): string | null {
 /**
  * Helper para links WhatsApp se configurado
  */
-export function getWhatsAppLink(message: string): string | null {
-  if (!SITE_CONFIG.whatsapp) return null;
-  const cleanNumber = SITE_CONFIG.whatsapp.replace(/\D/g, '');
-  if (!cleanNumber) return null;
+export function getWhatsAppLink(message: string): string {
+  const cleanNumber = SITE_CONFIG.whatsapp.replace(/\D/g, '') || '5511957595840';
   return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+}
+
+/**
+ * Helper para mensagem genérica de WhatsApp
+ */
+export function getWhatsAppGenericLink(): string {
+  return getWhatsAppLink('Olá! Gostaria de solicitar um orçamento para aluguel de caçamba de entulho com a Fortera.');
+}
+
+/**
+ * Helper para mensagem contextualizada de cidade
+ */
+export function getWhatsAppCityLink(cityName: string, uf: string): string {
+  return getWhatsAppLink(`Olá! Gostaria de solicitar um orçamento para aluguel de caçamba de entulho em ${cityName} - ${uf} com a Fortera.`);
+}
+
+/**
+ * Helper para mensagem contextualizada de tamanho de caçamba
+ */
+export function getWhatsAppSizeLink(size: string): string {
+  return getWhatsAppLink(`Olá! Gostaria de um orçamento para aluguel de caçamba de ${size} com a Fortera.`);
+}
+
+/**
+ * Helper para mensagem contextualizada de prazo de locação
+ */
+export function getWhatsAppPeriodLink(periodLabel: string): string {
+  return getWhatsAppLink(`Olá! Gostaria de um orçamento para locação de caçamba no prazo de ${periodLabel} com a Fortera.`);
+}
+
+/**
+ * Helper para mensagem contextualizada de serviço específico
+ */
+export function getWhatsAppServiceLink(serviceTitle: string): string {
+  return getWhatsAppLink(`Olá! Gostaria de um orçamento para caçamba de entulho voltada para ${serviceTitle} com a Fortera.`);
 }
 
 /**
