@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a href="/tamanhos-de-cacamba/" className="hover:text-[#FFC52D] transition-colors">
-                  Tamanhos de Caçamba (3, 4 e 5 m³)
+                  Tamanhos de Caçamba (3 a 10 m³)
                 </a>
               </li>
               <li>
