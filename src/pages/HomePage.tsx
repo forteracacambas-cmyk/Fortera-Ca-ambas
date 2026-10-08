@@ -49,7 +49,7 @@ export const HomePage: React.FC = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-200 leading-relaxed max-w-2xl font-normal">
-                Aluguel de caçambas estacionárias de entulho com logística pontual por caminhão poliguindaste. Prazos de 1, 2, 3 ou 7 dias semanais para manter seu canteiro de obras limpo, organizado e dentro do cronograma.
+                Aluguel de caçambas estacionárias de entulho com logística pontual por caminhão poliguindaste. Prazos de 1, 2 ou 3 dias, ou plano semanal de 7 dias para manter seu canteiro de obras limpo, organizado e dentro do cronograma.
               </p>
 
               {/* Botões de Ação */}
@@ -196,7 +196,7 @@ export const HomePage: React.FC = () => {
                 Tamanhos de Caçamba Estacionária
               </h2>
               <p className="text-slate-600 text-base mt-2 max-w-xl">
-                Capacidades nominais de 3, 4 e 5 m³. O volume cúbico não determina o peso final: consulte dimensões e limites de carga para seu endereço.
+                Capacidades nominais de 3, 4 e 5 m³, além de 7 e 10 m³ sob consulta. O volume cúbico não determina o peso final: consulte dimensões e limites de carga para seu endereço.
               </p>
             </div>
             <div className="mt-4 md:mt-0">
@@ -301,7 +301,7 @@ export const HomePage: React.FC = () => {
                 Operação Segura com Caminhão Poliguindaste
               </h2>
               <p className="text-slate-300 text-base leading-relaxed">
-                As caçambas estacionárias da Fortera são posicionadas e recolhidas por veículos especializados dotados de braços hidráulicos articulados. Uma operação precisa preserva o pavimento, garante estacionamento correto e evita transtornos aos vizinhos.
+                As caçambas estacionárias da Fortera são posicionadas e recolhidas por veículos especializados dotados de braços hidráulicos articulados. O posicionamento é planejado conforme o acesso e as regras locais, com condições acordadas no orçamento.
               </p>
 
               <div className="space-y-4">
@@ -321,7 +321,7 @@ export const HomePage: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-white text-sm">Prazos de 1, 2, 3 ou 7 Dias (Semanal Destaque)</h4>
-                    <p className="text-xs text-slate-300 mt-0.5">Flexibilidade para o ritmo da sua equipe: o plano semanal de 7 dias garante tempo hábil sem custos imprevistos.</p>
+                    <p className="text-xs text-slate-300 mt-0.5">Flexibilidade para o ritmo da sua equipe: o plano semanal oferece 7 dias de permanência, com valores e condições acordados no orçamento.</p>
                   </div>
                 </div>
 
@@ -368,7 +368,7 @@ export const HomePage: React.FC = () => {
                   className="w-full h-auto object-cover aspect-16/9"
                 />
                 <div className="p-3 bg-slate-950 text-slate-400 text-xs">
-                  <span>Operação técnica com caminhão poliguindaste e içamento hidráulico</span>
+                  <span>Caçamba Fortera para descarte organizado de entulho</span>
                 </div>
               </div>
             </div>
@@ -388,7 +388,7 @@ export const HomePage: React.FC = () => {
               Opções de Prazos de Locação
             </h2>
             <p className="text-slate-600 text-base mt-2">
-              A Fortera disponibiliza prazos de 1, 2, 3 ou 7 dias. O plano semanal de 7 dias é o mais indicado para a maioria das reformas.
+              A Fortera disponibiliza prazos de 1, 2, 3 ou 7 dias. Escolha o plano semanal de 7 dias ou um prazo menor conforme o ritmo da sua obra.
             </p>
           </div>
 
@@ -405,7 +405,7 @@ export const HomePage: React.FC = () => {
                 <div>
                   {period.isPopular && (
                     <span className="inline-block bg-[#FFC52D] text-[#10263D] text-[11px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full mb-3">
-                      Mais Recomendado
+                      Plano Semanal
                     </span>
                   )}
                   <div className="text-2xl font-black text-[#10263D] mb-1">

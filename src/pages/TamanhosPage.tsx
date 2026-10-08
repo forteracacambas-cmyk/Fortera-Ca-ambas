@@ -130,7 +130,7 @@ export const TamanhosPage: React.FC = () => {
                     <td className="p-3.5 text-xs text-slate-600">Alvenaria, azulejos e reformas pontuais compactas</td>
                   </tr>
                   <tr className="hover:bg-slate-50 bg-amber-50/40">
-                    <th scope="row" className="p-3.5 font-extrabold text-[#10263D]">4 m³ (Mais comum)</th>
+                    <th scope="row" className="p-3.5 font-extrabold text-[#10263D]">4 m³</th>
                     <td className="p-3.5">2,568 m</td>
                     <td className="p-3.5">1,890 m</td>
                     <td className="p-3.5">1,208 m</td>
@@ -211,7 +211,7 @@ export const TamanhosPage: React.FC = () => {
                 </a>.
               </p>
               <p>
-                As dimensões podem variar discretamente conforme o fabricante e as tolerâncias industriais de caldeiraria. Nunca afirmamos que medidas são universais nem que volume equivale diretamente ao peso final da carga transportada. Caçambas de 7 m³ e 10 m³ e modelos mini/personalizados são fornecidos exclusivamente sob consulta prévia sem garantia de disponibilidade.
+                As dimensões podem variar discretamente conforme o fabricante e as tolerâncias industriais de caldeiraria. As medidas são referências de fabricante; o limite de peso deve ser confirmado conforme o material. Caçambas de 7 m³ e 10 m³ e modelos mini/personalizados são fornecidos exclusivamente sob consulta prévia sem garantia de disponibilidade.
               </p>
             </div>
           </div>
@@ -335,7 +335,7 @@ export const TamanhosPage: React.FC = () => {
                       ))}
                     </ul>
                     <div className="mt-3 text-xs text-slate-500">
-                      Prazos disponíveis: <strong>7 dias (semanal destaque)</strong>, 3 dias, 2 dias e 1 dia (diária expressa).
+                      Prazos disponíveis: <strong>7 dias (semanal destaque)</strong>, 3 dias, 2 dias e 1 dia, com condições confirmadas no orçamento.
                     </div>
                   </div>
 

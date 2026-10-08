@@ -96,7 +96,7 @@ export const PrivacidadePage: React.FC = () => {
               <div><strong>Marca:</strong> FORTERA CAÇAMBAS</div>
               <div><strong>Razão Social:</strong> {SITE_CONFIG.legalName}</div>
               <div><strong>CNPJ:</strong> {SITE_CONFIG.cnpj}</div>
-              <div><strong>Correspondência Administrativa:</strong> {SITE_CONFIG.correspondenceAddress} (endereço não aberto ao público)</div>
+              <div><strong>Correspondência Administrativa:</strong> {SITE_CONFIG.correspondenceAddress}</div>
               <div><strong>Telefone / WhatsApp Oficial:</strong> {SITE_CONFIG.whatsappFormatted}</div>
             </div>
             <p>

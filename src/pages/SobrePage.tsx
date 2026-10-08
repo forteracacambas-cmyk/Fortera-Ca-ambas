@@ -115,7 +115,7 @@ export const SobrePage: React.FC = () => {
                 <strong className="text-slate-900 block mb-0.5">Endereço Administrativo para Correspondência:</strong>
                 <span>{SITE_CONFIG.correspondenceAddress}</span>
                 <p className="text-xs text-slate-500 mt-1">
-                  <em>*Aviso: Este endereço é exclusivamente administrativo e de correspondência postal; não realizamos atendimento presencial ao público no local. O atendimento é operacionalizado em todo o Brasil através de nossa rede de parceiros e afiliados credenciados, com disponibilidade e condições confirmadas no orçamento.</em>
+                  <em>*Aviso: Endereço informado para correspondência. O atendimento é operacionalizado em todo o Brasil através de nossa rede de parceiros e afiliados, com disponibilidade e condições confirmadas no orçamento.</em>
                 </p>
               </div>
             </div>
@@ -149,7 +149,7 @@ export const SobrePage: React.FC = () => {
               </a>
             </div>
             <p className="text-xs text-slate-400 mt-4">
-              Atendimento nacional por rede de parceiros e afiliados credenciados. Disponibilidade e condições confirmadas no orçamento.
+              Atendimento nacional por rede de parceiros e afiliados. Disponibilidade e condições confirmadas no orçamento.
             </p>
           </div>
 
