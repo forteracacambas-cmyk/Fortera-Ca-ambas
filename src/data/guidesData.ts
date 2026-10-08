@@ -32,7 +32,7 @@ export const PRACTICAL_GUIDES: GuideItem[] = [
     slug: 'locacao-semanal-versus-diaria',
     title: 'Aluguel de Caçamba Semanal de 7 Dias vs Diária: Qual Prazo Escolher?',
     shortTitle: 'Semanal (7 Dias) vs Diária',
-    description: 'Compare as vantagens do aluguel semanal de 7 dias com as opções de 1, 2 ou 3 dias. Saiba como escolher o prazo certo para sua reforma sem pressa nem custos imprevistos.',
+    description: 'Compare as vantagens do aluguel semanal de 7 dias com as opções de 1, 2 ou 3 dias. Saiba como escolher o prazo certo para sua reforma conforme o ritmo da sua obra.',
     readTime: '6 min de leitura',
     category: 'Planejamento e Prazos',
     lastUpdated: 'Atualizado em 2026',
