@@ -58,12 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath }) => {
               <span>{SITE_CONFIG.whatsappFormatted}</span>
             </a>
             <span className="text-slate-500 hidden sm:inline">&bull;</span>
-            <a 
-              href="mailto:forteracacambas@gmail.com" 
-              className="text-[#FFC52D] hover:underline font-medium focus-visible-ring hidden sm:inline"
-            >
-              forteracacambas@gmail.com
-            </a>
+            
           </div>
         </div>
       </div>

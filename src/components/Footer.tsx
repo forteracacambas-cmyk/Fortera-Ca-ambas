@@ -49,12 +49,7 @@ export const Footer: React.FC = () => {
                 </svg>
                 <span>WhatsApp: {SITE_CONFIG.whatsappFormatted}</span>
               </a>
-              <a 
-                href={`mailto:${SITE_CONFIG.email}`} 
-                className="text-[#FFC52D] hover:underline font-mono text-xs block"
-              >
-                {SITE_CONFIG.email}
-              </a>
+              
             </div>
           </div>
 
