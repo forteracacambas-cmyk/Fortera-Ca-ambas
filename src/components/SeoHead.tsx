@@ -77,7 +77,8 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
       postalCode: '03617-040',
       addressCountry: 'BR',
     },
-    ...(canonicalUrl ? { url: canonicalUrl } : {}),
+    '@id': getCanonicalUrl('/') + '#organization',
+    url: getCanonicalUrl('/'),
   };
 
   return (
