@@ -1,3 +1,4 @@
+import { MUNICIPALITIES, NATIONAL_STATES, cityPath, statePath } from './nationalCoverage';
 import { SERVICE_AREAS } from './serviceAreas';
 import { CITIES_DATA } from './citiesData';
 import { PRACTICAL_GUIDES } from './guidesData';
@@ -125,10 +126,13 @@ export function getAllRoutes(): RouteMeta[] {
     });
   });
 
+  NATIONAL_STATES.forEach(state => routes.push({path:statePath(state.uf),title:'Aluguel de Caçamba em '+state.name+' | Fortera',description:'Consulte municípios de '+state.name+', tamanhos e locação por dias ou meses. Peça orçamento pelo WhatsApp.',changefreq:'monthly',priority:0.8}));
+  MUNICIPALITIES.filter(city=>!CITIES_DATA.some(c=>c.uf===city.uf&&c.slug===city.slug)).forEach(city=>routes.push({path:cityPath(city),title:'Aluguel de Caçamba em '+city.name+' '+city.uf+' | Fortera',description:'Consulte aluguel de caçamba em '+city.name+' — '+city.uf+', tamanhos e prazos por dias ou meses. Solicite orçamento para seu bairro no WhatsApp.',changefreq:'monthly',priority:0.7}));
   return routes;
 }
 
+const ROUTE_INDEX = new Map(getAllRoutes().map(route=>[route.path,route]));
 export function getRouteMeta(path: string): RouteMeta | undefined {
   const normalized = path === '/' ? '/' : (path.endsWith('/') ? path : `${path}/`);
-  return getAllRoutes().find(r => r.path === normalized);
+  return ROUTE_INDEX.get(normalized);
 }
