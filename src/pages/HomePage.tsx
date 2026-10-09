@@ -50,7 +50,7 @@ export const HomePage: React.FC = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-200 leading-relaxed max-w-2xl font-normal">
-                Aluguel de caçambas estacionárias de entulho com logística pontual por caminhão poliguindaste. Locação por dias, semanas ou meses para manter seu canteiro de obras limpo, organizado e dentro do cronograma.
+                Aluguel de caçambas de entulho por dias, semanas ou meses. A Fortera conecta sua obra a empresas parceiras locais em todo o Brasil. Informe cidade e bairro para confirmar disponibilidade, entrega e orçamento.
               </p>
 
               {/* Botões de Ação */}

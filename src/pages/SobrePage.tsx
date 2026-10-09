@@ -26,7 +26,7 @@ export const SobrePage: React.FC = () => {
               Sobre a Fortera Caçambas
             </h1>
             <p className="text-base sm:text-lg text-slate-200 mt-4 leading-relaxed">
-              Trabalhamos na organização da locação de caçambas estacionárias para que construtores, reformadores e proprietários mantenham suas obras limpas, com previsibilidade e descarte adequado.
+              Somos uma rede que conecta quem precisa alugar uma caçamba a empresas parceiras locais. Recebemos sua solicitação e consultamos uma operação disponível para o município, bairro e endereço da obra.
             </p>
           </div>
         </div>
@@ -44,7 +44,7 @@ export const SobrePage: React.FC = () => {
               O acúmulo desordenado de entulho no canteiro compromete a segurança da equipe, atrapalha a circulação de materiais e atrasa a produtividade das etapas de obra.
             </p>
             <p className="text-base text-slate-700 leading-relaxed">
-              A <strong>Fortera Caçambas</strong> atua para simplificar o aluguel de caçambas estacionárias em todo o país. Com atendimento dedicado e orientação clara sobre modelos e separação de materiais, conectamos sua obra à solução mais indicada para a retirada dos resíduos.
+              A <strong>Fortera Caçambas</strong> recebe pedidos de clientes em todo o Brasil e os conecta a empresas locais da rede parceira. A disponibilidade, os modelos, o valor e as condições de entrega, retirada e troca são confirmados para cada solicitação. O endereço cadastral informado nesta página é destinado à correspondência.
             </p>
           </div>
 
