@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { trackContactIntent } from './AnalyticsConsent';
 import { BRAZILIAN_STATES } from '../data/regionsAndStates';
 import { DUMPSTER_SIZES } from '../data/dumpsterSizes';
 import { RENTAL_PERIODS, RENTAL_TERMS, getWhatsAppLink } from '../config/siteConfig';
@@ -14,6 +15,7 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({ initialUf = 'SP', initialC
     if (!city.trim()) { event.currentTarget.querySelector<HTMLInputElement>('[name="cidade"]')?.focus(); return; }
     const prazo = RENTAL_PERIODS.find(p => p.id === period)?.label || period;
     const message = ['Olá! Quero um orçamento da Fortera Caçambas.', 'País: Brasil', 'Estado: ' + uf, 'Cidade: ' + city.trim(), 'Bairro: ' + (bairro.trim() || 'A informar'), 'Prazo: ' + prazo, 'Tamanho: ' + size].join('\n');
+    trackContactIntent('quote_request');
     window.open(getWhatsAppLink(message), '_blank', 'noopener,noreferrer');
   };
   const input = 'w-full rounded-lg border border-slate-300 p-3 mt-2 bg-white';
