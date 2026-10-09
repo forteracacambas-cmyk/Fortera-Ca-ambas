@@ -1,9 +1,10 @@
+import { NationalCoverage } from './NationalCoverage';
 import React from 'react';
 import { SERVICE_AREAS } from '../data/serviceAreas';
 import { SITE_IMAGES, getWhatsAppLink } from '../config/siteConfig';
 
 export const RegionalCoverage = () => (
-  <section className="py-16 sm:py-20 bg-[#10263D] text-white">
+  <><section className="py-16 sm:py-20 bg-[#10263D] text-white">
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       <div className="max-w-3xl mb-10">
         <p className="text-xs font-black uppercase tracking-wider text-[#FFC52D]">Sua obra, sua região</p>
@@ -34,5 +35,5 @@ export const RegionalCoverage = () => (
         <a href="/atendimento/" className="bg-[#FFC52D] text-[#10263D] font-black rounded-xl px-6 py-3 shrink-0 text-center">Consultar outras regiões</a>
       </div>
     </div>
-  </section>
+  </section><NationalCoverage/></>
 );
