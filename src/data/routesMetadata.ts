@@ -92,6 +92,7 @@ export function getAllRoutes(): RouteMeta[] {
     description: `Consulte caçambas em ${area.name}, cidades da região, tamanhos e locação por dias, semanas ou meses. Peça orçamento para seu endereço no WhatsApp.`,
     changefreq: 'monthly', priority: 0.9,
   }));
+  routes.push({path:'/aluguel-de-cacamba/sp/sao-paulo/sao-mateus/',title:'Aluguel de Caçamba em São Mateus, São Paulo | Fortera',description:'Consulte locação de caçamba de entulho em São Mateus, São Paulo. Tamanhos, aluguel por dias ou meses e troca semanal. Orçamento pelo WhatsApp.',changefreq:'monthly',priority:0.8});
 
   // Serviços especializados
   SERVICES_DATA.forEach(s => {
