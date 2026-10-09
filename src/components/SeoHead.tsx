@@ -69,14 +69,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
     telephone: '+55-11-95759-5840',
     description: SITE_CONFIG.subtitle,
     logo: SITE_CONFIG.logo,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Rua Axui, 146',
-      addressLocality: 'São Paulo',
-      addressRegion: 'SP',
-      postalCode: '03617-040',
-      addressCountry: 'BR',
-    },
+    areaServed: { '@type': 'Country', name: 'Brasil' },
     '@id': getCanonicalUrl('/') + '#organization',
     url: getCanonicalUrl('/'),
   };
