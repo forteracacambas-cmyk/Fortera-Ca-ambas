@@ -1,3 +1,4 @@
+import { AnalyticsConsent } from './components/AnalyticsConsent';
 import { NationalLocationPage } from './pages/NationalLocationPage';
 import { CITIES_DATA } from './data/citiesData';
 import { RentalTerms } from './components/RentalTerms';
@@ -198,6 +199,7 @@ export default function App({ initialUrl }: AppProps) {
 
       {/* Barra de Ações Rápidas Mobile */}
       <MobileBottomBar currentPath={normalizedPath} />
+      <AnalyticsConsent currentUrl={currentUrl} />
     </div>
   );
 }
