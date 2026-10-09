@@ -16,19 +16,19 @@ export const SUPABASE_ASSETS = {
 
 export const SITE_IMAGES = {
   hero: {
-    src: SUPABASE_ASSETS.hero,
+    src: '/images/hero_fortera.webp',
     alt: 'Caçamba estacionária Fortera amarela em via pública para descarte organizado de entulho',
     width: 1536,
     height: 1024,
   },
   dumpsterProduct: {
-    src: SUPABASE_ASSETS.produto,
+    src: '/images/produto_fortera.webp',
     alt: 'Caçamba estacionária metálica Fortera para recolhimento de entulho de obras e reformas',
     width: 1536,
     height: 1024,
   },
   comparative: {
-    src: SUPABASE_ASSETS.comparativo,
+    src: '/images/comparativo_fortera.webp',
     alt: 'Comparativo visual de capacidades e dimensões de caçambas estacionárias Fortera',
     width: 1536,
     height: 1024,
