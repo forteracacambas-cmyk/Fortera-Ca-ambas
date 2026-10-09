@@ -1,4 +1,5 @@
 import { AnalyticsConsent } from './components/AnalyticsConsent';
+import { SaoMateusPage, SAO_MATEUS_PATH } from './pages/SaoMateusPage';
 import { NationalLocationPage } from './pages/NationalLocationPage';
 import { CITIES_DATA } from './data/citiesData';
 import { RentalTerms } from './components/RentalTerms';
@@ -92,6 +93,7 @@ export default function App({ initialUrl }: AppProps) {
 
   // Roteador de Páginas
   const renderPage = () => {
+    if (normalizedPath === SAO_MATEUS_PATH) return <SaoMateusPage />;
     if (normalizedPath === '/') {
       return <HomePage />;
     }
