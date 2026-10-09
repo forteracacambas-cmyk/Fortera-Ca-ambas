@@ -234,6 +234,7 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
         </div>
       </section>
 
+      {cityData.uf === 'SP' && cityData.slug === 'sao-paulo' && <section className="max-w-7xl mx-auto px-6 py-10"><h2 className="text-2xl font-black">Caçamba em São Mateus</h2><p className="mt-3">Sua obra fica em São Mateus, na capital? Veja orientações de entrega, prazo e orçamento para o distrito.</p><a href="/aluguel-de-cacamba/sp/sao-paulo/sao-mateus/" className="inline-block mt-4 font-bold underline">Consultar aluguel de caçamba em São Mateus →</a></section>}
       <LocalRentalDetails location={`${cityData.city} (${cityData.uf})`} />
 
       {/* Passo a Passo de Locação no Município */}
