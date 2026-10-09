@@ -1,3 +1,5 @@
+import { RentalTerms } from './components/RentalTerms';
+import { RegionDetailPage } from './pages/RegionDetailPage';
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -152,12 +154,15 @@ export default function App({ initialUrl }: AppProps) {
       return <GuiaDetailPage slug={guideSlug} />;
     }
 
+    const regionMatch = normalizedPath.match(/^\/regioes\/([a-z0-9-]+)\/$/);
+    if (regionMatch) return <RegionDetailPage key={regionMatch[1]} slug={regionMatch[1]} />;
+
     // Rotas de Cidades: /aluguel-de-cacamba/:uf/:cidade/
     const cityMatch = normalizedPath.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/([a-z0-9-]+)\/$/);
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
-      return <CityDetailPage uf={uf} citySlug={citySlug} />;
+      return <CityDetailPage key={uf + citySlug} uf={uf} citySlug={citySlug} />;
     }
 
     // 404
@@ -180,6 +185,7 @@ export default function App({ initialUrl }: AppProps) {
         {renderPage()}
       </main>
 
+      <RentalTerms />
       <Footer />
 
       {/* Botão Flutuante de WhatsApp Oficial */}
