@@ -1,3 +1,4 @@
+import { SERVICE_AREAS } from './serviceAreas';
 import { CITIES_DATA } from './citiesData';
 import { PRACTICAL_GUIDES } from './guidesData';
 import { SERVICES_DATA } from './servicesData';
@@ -36,7 +37,7 @@ export function getAllRoutes(): RouteMeta[] {
     {
       path: '/preco-aluguel-cacamba/',
       title: 'Preço de Aluguel de Caçamba: Fatores e Como Funciona | Fortera',
-      description: 'Entenda os fatores que determinam o preço do aluguel de caçamba de entulho: volume, tipo de resíduo, prazo semanal de 7 dias e condições no orçamento.',
+      description: 'Entenda os fatores que determinam o preço do aluguel de caçamba de entulho: volume, tipo de resíduo, prazo por dias, semanas ou meses e condições no orçamento.',
       changefreq: 'monthly',
       priority: 0.9,
     },
@@ -50,7 +51,7 @@ export function getAllRoutes(): RouteMeta[] {
     {
       path: '/orcamento/',
       title: 'Solicitar Orçamento de Caçamba de Entulho | Fortera Caçambas',
-      description: 'Solicite cotação ágil para aluguel de caçamba em qualquer cidade do Brasil. Escolha tamanho (3, 4 ou 5 m³), prazo (semanal 7 dias ou diárias) e material.',
+      description: 'Solicite cotação ágil para aluguel de caçamba em qualquer cidade do Brasil. Escolha tamanhos de 3 a 10 m³, prazo por dias ou meses e envie pelo WhatsApp.',
       changefreq: 'weekly',
       priority: 1.0,
     },
@@ -78,11 +79,18 @@ export function getAllRoutes(): RouteMeta[] {
     {
       path: '/guias/',
       title: 'Guias Práticos sobre Aluguel de Caçamba de Entulho | Fortera',
-      description: 'Aprenda a escolher o tamanho de caçamba, conheça o prazo semanal de 7 dias vs diárias, materiais aceitos e preparação da vaga para o poliguindaste.',
+      description: 'Aprenda a escolher o tamanho de caçamba, conheça o prazo por dias, semanas ou meses vs diárias, materiais aceitos e preparação da vaga para o poliguindaste.',
       changefreq: 'weekly',
       priority: 0.8,
     },
   ];
+
+  SERVICE_AREAS.forEach(area => routes.push({
+    path: `/regioes/${area.slug}/`,
+    title: `Aluguel de Caçamba em ${area.name} | Fortera`,
+    description: `Consulte caçambas em ${area.name}, cidades da região, tamanhos e locação por dias, semanas ou meses. Peça orçamento para seu endereço no WhatsApp.`,
+    changefreq: 'monthly', priority: 0.9,
+  }));
 
   // Serviços especializados
   SERVICES_DATA.forEach(s => {

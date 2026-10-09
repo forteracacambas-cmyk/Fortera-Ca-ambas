@@ -29,65 +29,59 @@ export interface GuideItem {
 
 export const PRACTICAL_GUIDES: GuideItem[] = [
   {
-    slug: 'locacao-semanal-versus-diaria',
-    title: 'Aluguel de Caçamba Semanal de 7 Dias vs Diária: Qual Prazo Escolher?',
-    shortTitle: 'Semanal (7 Dias) vs Diária',
-    description: 'Compare as vantagens do aluguel semanal de 7 dias com as opções de 1, 2 ou 3 dias. Saiba como escolher o prazo certo para sua reforma conforme o ritmo da sua obra.',
-    readTime: '6 min de leitura',
-    category: 'Planejamento e Prazos',
-    lastUpdated: 'Atualizado em 2026',
-    intro: 'Ao alugar uma caçamba estacionária, uma das decisões mais estratégicas é o tempo de permanência no local. O prazo semanal de 7 dias é o mais adotado e recomendado para reformas, mas opções de 1, 2 ou 3 dias atendem a necessidades específicas de canteiro.',
-    image: SITE_IMAGES.renovationHouse,
-    sections: [
-      {
-        heading: '1. Por que o prazo semanal de 7 dias é o mais recomendado?',
-        paragraphs: [
-          'Em reformas residenciais e comerciais, imprevistos de cronograma acontecem com frequência: a demolição de um banheiro pode demorar mais horas do que o previsto, chuvas podem suspender o carregamento externo ou a equipe de pedreiros pode priorizar a quebra de alvenaria em etapas espaçadas.',
-          'Com o prazo semanal de 7 dias, sua obra ganha tranquilidade operacional: você não precisa correr para carregar o entulho às pressas no mesmo dia e evita custos adicionais de reagendamento de caminhão.'
-        ],
-        tips: [
-          'O prazo semanal de 7 dias oferece a melhor relação custo-benefício para a maioria das reformas residenciais.',
-          'Consulte o valor para o período semanal no formulário de orçamento informando seu bairro.'
-        ]
-      },
-      {
-        heading: '2. Quando vale a pena optar por diárias curtas (1, 2 ou 3 dias)?',
-        paragraphs: [
-          'Diárias mais curtas são especialmente úteis em situações pontuais com limitações externas de estacionamento ou manobra:',
-          'Vias com restrições rígidas: ruas estreitas ou áreas de tráfego intenso onde a permanência contínua por muitos dias é inviável.',
-          'Regras de condomínio: condomínios que autorizam a permanência da caçamba apenas por 24h ou 48h durante os dias úteis.',
-          'Mutirões de limpeza ou demolição expressa: quando todo o entulho já está previamente quebrado, ensacado ou amontoado no quintal, bastando carregar a caçamba em poucas horas.'
-        ],
-        tips: [
-          'Só contrate diária rápida de 1 dia se o entulho já estiver 100% pronto e a equipe estiver disponível para abastecer a caçamba imediatamente após a descida do poliguindaste.'
-        ]
-      },
-      {
-        heading: '3. Como são calculados os preços por prazo?',
-        paragraphs: [
-          'O valor do aluguel de caçamba é estabelecido por pacote de período, capacidade cúbica e localização, e não por mera divisão aritmética do valor semanal pelo número de dias.',
-          'Isso ocorre porque grande parte do custo operacional da locação envolve a ida e volta do caminhão poliguindaste (combustível, deslocamento do motorista e manobra dos braços hidráulicos) somada às taxas de recebimento dos resíduos.',
-          'Por isso, a diferença de valor entre uma permanência de 3 dias e uma de 7 dias costuma ser muito pequena, tornando a locação semanal a escolha mais segura financeiramente.'
-        ]
-      }
-    ],
-    checklist: [
-      'Avaliar se o entulho já está demolido ou se será quebrado ao longo dos próximos dias.',
-      'Consultar se o condomínio ou a via possui limite máximo de permanência contínua.',
-      'Selecionar o prazo no formulário de orçamento (7 dias semanal, 3 dias, 2 dias ou 1 dia).',
-      'Informar o bairro para conferir a disponibilidade de colocação e retirada.'
-    ],
-    faq: [
-      {
-        question: 'Posso pedir a retirada da caçamba antes do término dos 7 dias?',
-        answer: 'Sim. Se sua equipe terminar de encher a caçamba antes do prazo contratado, basta entrar em contato solicitando a coleta antecipada.'
-      },
-      {
-        question: 'O que acontece se a obra atrasar e eu precisar de mais dias além do contratado?',
-        answer: 'Caso necessite de prorrogação, avise nossa equipe antes do término do prazo para verificar a viabilidade de extensão de permanência para o seu endereço.'
-      }
-    ]
-  },
+  slug: "locacao-semanal-versus-diaria",
+  title: "Aluguel de Caçamba por Dias, Semanas ou Meses: Qual Prazo Escolher?",
+  shortTitle: "Dias, semanas e meses",
+  description: "Escolha o prazo de locação e entenda como funciona 1 troca por semana quando a caçamba encher e a obra continuar.",
+  readTime: "4 min de leitura",
+  category: "Planejamento e Prazos",
+  lastUpdated: "Atualizado em 2026",
+  image: SITE_IMAGES.renovationHouse,
+  intro: "A Fortera aluga caçambas por dias, semanas e meses. Escolha o período conforme o ritmo da obra; a locação não fica limitada a 7 dias.",
+  sections: [
+    {
+      heading: "Locação de 1, 2 ou 3 dias",
+      paragraphs: [
+        "Indicada para descartes concentrados e etapas curtas. Confira se a equipe conseguirá carregar o entulho no período escolhido e combine entrega e retirada pelo WhatsApp."
+      ]
+    },
+    {
+      heading: "Locação semanal e mensal",
+      paragraphs: [
+        "Para reformas por etapas, escolha 7 ou 15 dias, 1, 2 ou 3 meses, ou consulte um período maior. Informe o prazo esperado para receber o orçamento adequado."
+      ]
+    },
+    {
+      heading: "Como funciona a troca semanal?",
+      paragraphs: [
+        "Se a caçamba encher e a obra continuar, você tem 1 troca por semana durante a locação. Entre em contato pelo WhatsApp para solicitar a troca.",
+        "Exemplo: em uma obra de 1 mês, você pode solicitar uma troca a cada semana se a caçamba estiver cheia e ainda precisar continuar o descarte. Combine o atendimento para o endereço da obra."
+      ]
+    },
+    {
+      heading: "Como consultar o valor?",
+      paragraphs: [
+        "O orçamento depende da cidade, bairro, tamanho, prazo e condições de operação. Não divida automaticamente um valor semanal para estimar diárias ou meses: peça a proposta para o período desejado."
+      ]
+    }
+  ],
+  checklist: [
+    "Informe estado, cidade e bairro.",
+    "Escolha o tempo de locação.",
+    "Selecione o tamanho ou peça ajuda.",
+    "Envie suas escolhas pelo WhatsApp."
+  ],
+  faq: [
+    {
+      question: "Posso alugar por mais de um mês?",
+      answer: "Sim. Você pode solicitar locação por meses e combinar um prazo maior com nossa equipe."
+    },
+    {
+      question: "A caçamba encheu e a obra continua. Posso trocar?",
+      answer: "Sim. Durante a locação, você tem 1 troca por semana quando a caçamba encher e precisar continuar a obra. Solicite pelo WhatsApp."
+    }
+  ]
+},
   {
     slug: 'como-escolher-tamanho-de-cacamba',
     title: 'Como Escolher o Tamanho Certo de Caçamba para sua Obra',
