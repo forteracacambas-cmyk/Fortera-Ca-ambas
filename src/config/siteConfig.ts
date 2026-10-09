@@ -86,7 +86,13 @@ export interface RentalPeriodOption {
   description: string;
 }
 
+export const RENTAL_TERMS = 'Alugue por dias, semanas ou meses. Se a caçamba encher e a obra continuar, você tem 1 troca por semana durante a locação. Solicite a troca pelo WhatsApp.';
 export const RENTAL_PERIODS: RentalPeriodOption[] = [
+  { id: '15-dias', days: 15, label: '15 dias', shortLabel: '15 dias', description: 'Para etapas de obra com duração de duas semanas.' },
+  { id: '1-mes', days: 30, label: '1 mês', shortLabel: '1 mês', description: 'Locação mensal com 1 troca por semana, quando encher e a obra continuar.' },
+  { id: '2-meses', days: 60, label: '2 meses', shortLabel: '2 meses', description: 'Para obras prolongadas, com 1 troca por semana quando necessário.' },
+  { id: '3-meses', days: 90, label: '3 meses', shortLabel: '3 meses', description: 'Para canteiros e reformas em várias etapas.' },
+  { id: 'outro', days: 0, label: 'Outro período / mais meses', shortLabel: 'Outro período', description: 'Combine o prazo da sua obra pelo WhatsApp.' },
   {
     id: '7-dias',
     days: 7,
