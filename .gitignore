@@ -6,3 +6,8 @@ coverage/
 *.log
 .env*
 !.env.example
+
+cloudflare-dist/
+cloudflare-site.zip
+cloudflare-upload.zip
+districts-source.json
