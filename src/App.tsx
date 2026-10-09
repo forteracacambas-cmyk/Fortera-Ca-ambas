@@ -1,3 +1,5 @@
+import { NationalLocationPage } from './pages/NationalLocationPage';
+import { CITIES_DATA } from './data/citiesData';
 import { RentalTerms } from './components/RentalTerms';
 import { RegionDetailPage } from './pages/RegionDetailPage';
 import React, { useState, useEffect } from 'react';
@@ -157,11 +159,14 @@ export default function App({ initialUrl }: AppProps) {
     const regionMatch = normalizedPath.match(/^\/regioes\/([a-z0-9-]+)\/$/);
     if (regionMatch) return <RegionDetailPage key={regionMatch[1]} slug={regionMatch[1]} />;
 
+    const stateMatch = normalizedPath.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/$/);
+    if (stateMatch) return <NationalLocationPage key={stateMatch[1]} uf={stateMatch[1]}/>;
     // Rotas de Cidades: /aluguel-de-cacamba/:uf/:cidade/
     const cityMatch = normalizedPath.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/([a-z0-9-]+)\/$/);
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
+      if (!CITIES_DATA.some(c=>c.uf===uf && c.slug===citySlug)) return <NationalLocationPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
       return <CityDetailPage key={uf + citySlug} uf={uf} citySlug={citySlug} />;
     }
 
