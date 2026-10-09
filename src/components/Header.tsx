@@ -57,7 +57,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath }) => {
               </svg>
               <span>{SITE_CONFIG.whatsappFormatted}</span>
             </a>
-            <span className="text-slate-500 hidden sm:inline">&bull;</span>
+            
             
           </div>
         </div>

@@ -22,7 +22,7 @@ export const LocalRentalDetails = ({ location }: { location: string }) => (
     <section className="py-16 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h2 className="text-3xl font-black">Preço e prazo do aluguel em {location}</h2>
-        <p className="max-w-3xl mt-4 text-slate-600 leading-relaxed">O orçamento considera município e bairro, tamanho, composição dos resíduos, acesso do caminhão e prazo de permanência. Peça o valor total e confirme o que está incluído na entrega e na retirada. Prorrogação, troca ou recolhimento adicional devem ser combinados antes da contratação.</p>
+        <p className="max-w-3xl mt-4 text-slate-600 leading-relaxed">O orçamento considera município e bairro, tamanho, composição dos resíduos, acesso do caminhão e prazo de permanência. Peça o valor total e confirme o que está incluído na entrega e na retirada. Alugue por dias ou meses. Se a caçamba encher e a obra continuar, você tem 1 troca por semana. Solicite pelo WhatsApp.</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
           {RENTAL_PERIODS.map(period => <article key={period.id} className={`rounded-xl p-6 border-2 bg-white ${period.days === 7 ? 'border-[#FFC52D]' : 'border-slate-200'}`}>
             <h3 className="text-xl font-black">{period.shortLabel}</h3><p className="text-sm text-slate-600 mt-3">{period.description}</p><p className="font-bold mt-4">Consultar valor</p>
