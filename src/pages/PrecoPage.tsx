@@ -19,7 +19,7 @@ export const PrecoPage: React.FC = () => {
     },
     {
       title: '4. Prazo de Locação: 7 Dias (Semanal) vs Diárias',
-      desc: 'Disponibilizamos opções de 1, 2, 3 ou 7 dias. O plano semanal de 7 dias é o mais recomendado para reformas. O valor não é calculado por divisão aritmética do semanal, pois o transporte do poliguindaste compõe grande parte do custo.'
+      desc: 'Disponibilizamos locação por dias, semanas ou meses. Se a caçamba encher e a obra continuar, você tem 1 troca por semana. O valor não é calculado por divisão aritmética do semanal, pois o transporte do poliguindaste compõe grande parte do custo.'
     },
     {
       title: '5. Acesso e Particularidades da Via',

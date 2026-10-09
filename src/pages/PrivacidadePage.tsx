@@ -49,7 +49,7 @@ export const PrivacidadePage: React.FC = () => {
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-sm">
               <li><strong>Na navegação:</strong> O site não armazena formulários em banco de dados ou cadastros de pré-atendimento enquanto você preenche os campos.</li>
-              <li><strong>No envio:</strong> Quando você clica para abrir o aplicativo de e-mail ou WhatsApp e envia sua mensagem para a nossa equipe, as informações contidas no pedido são recebidas e tratadas por nossa equipe comercial exclusivamente para prestar o atendimento solicitado, elaborar a proposta e coordenar a entrega da caçamba.</li>
+              <li><strong>No envio:</strong> Quando você clica para abrir o WhatsApp e envia sua mensagem para a nossa equipe, as informações contidas no pedido são recebidas e tratadas por nossa equipe comercial exclusivamente para prestar o atendimento solicitado, elaborar a proposta e coordenar a entrega da caçamba.</li>
             </ul>
             <p className="mt-3 font-semibold text-slate-900">
               Não solicitamos número de CPF, dados bancários, números de cartão de crédito ou quaisquer dados sensíveis neste ambiente.
@@ -61,7 +61,7 @@ export const PrivacidadePage: React.FC = () => {
               3. Finalidade e Compartilhamento
             </h2>
             <p>
-              Os dados recebidos via e-mail (<code className="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">{SITE_CONFIG.email}</code>) ou mensagem são utilizados exclusivamente para responder sua solicitação de orçamento e operacionalizar o serviço contratado. Não comercializamos, não alugamos e não vendemos dados para redes de publicidade de terceiros.
+              Os dados recebidos via WhatsApp são utilizados exclusivamente para responder sua solicitação de orçamento e operacionalizar o serviço contratado. Não comercializamos, não alugamos e não vendemos dados para redes de publicidade de terceiros.
             </p>
           </div>
 
@@ -82,7 +82,7 @@ export const PrivacidadePage: React.FC = () => {
               Conforme a legislação brasileira de proteção de dados, você pode solicitar a qualquer momento:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li>Confirmação da existência de tratamento dos dados recebidos por e-mail;</li>
+              <li>Confirmação da existência de tratamento dos dados recebidos pelo WhatsApp;</li>
               <li>Atualização ou correção de informações enviadas;</li>
               <li>Exclusão dos dados das mensagens comerciais após a conclusão do atendimento.</li>
             </ul>
@@ -104,10 +104,10 @@ export const PrivacidadePage: React.FC = () => {
             </p>
             <p className="mt-2">
               <a 
-                href={`mailto:${SITE_CONFIG.email}`} 
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}`} 
                 className="text-[#10263D] font-mono font-bold hover:underline"
               >
-                {SITE_CONFIG.email}
+                {SITE_CONFIG.whatsappFormatted}
               </a>
             </p>
           </div>

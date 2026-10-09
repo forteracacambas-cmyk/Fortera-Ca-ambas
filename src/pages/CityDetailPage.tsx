@@ -1,3 +1,6 @@
+import { LocalRentalDetails } from '../components/LocalRentalDetails';
+import { SERVICE_AREAS } from '../data/serviceAreas';
+import { SITE_IMAGES } from '../config/siteConfig';
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -18,6 +21,7 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
     return <NotFoundPage />;
   }
 
+  const relatedArea = SERVICE_AREAS.find(area => area.uf === cityData.uf && area.cities.includes(cityData.city));
   const otherCities = CITIES_DATA.filter(c => c.slug !== cityData.slug);
 
   return (
@@ -52,7 +56,8 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
       {/* Hero Local */}
       <section className="bg-[#10263D] text-white py-14 sm:py-16 border-b border-[#1A3856]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
             <div className="inline-flex items-center gap-2 bg-[#1A3856] text-[#FFC52D] text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-md mb-3 border border-[#FFC52D]/30">
               <span>{cityData.city} - {cityData.stateName} ({cityData.uf})</span>
             </div>
@@ -88,6 +93,8 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
                 Ver Tamanhos
               </a>
             </div>
+          </div>
+          <img src={SITE_IMAGES.hero.src} alt={`Caçamba Fortera para obras e reformas em ${cityData.city}`} width={1536} height={1024} fetchPriority="high" className="w-full h-auto rounded-2xl" />
           </div>
         </div>
       </section>
@@ -153,8 +160,8 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
               <div className="p-4 bg-slate-100 rounded-lg text-xs text-slate-600 space-y-2">
                 <div><strong>Região:</strong> {cityData.stateName} ({cityData.uf})</div>
                 <div><strong>Modelos:</strong> Caçambas estacionárias 3, 4 e 5 m³ nominais</div>
-                <div><strong>Destinação:</strong> Áreas de triagem e aterros inertes homologados</div>
-                <div><strong>Segurança:</strong> Carga strictly no nível da borda superior</div>
+                <div><strong>Destinação:</strong> Condições e destino confirmados no orçamento</div>
+                <div><strong>Segurança:</strong> Carga no nível da borda superior</div>
               </div>
 
               <a
@@ -226,6 +233,8 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
           </div>
         </div>
       </section>
+
+      <LocalRentalDetails location={`${cityData.city} (${cityData.uf})`} />
 
       {/* Passo a Passo de Locação no Município */}
       <section className="py-16 bg-slate-900 text-white">
@@ -308,6 +317,8 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
           />
         </div>
       </section>
+
+      {relatedArea && <section className="py-10 bg-[#10263D] text-white"><div className="max-w-7xl mx-auto px-4 sm:px-6"><h2 className="text-2xl font-black">Atendimento em {relatedArea.name}</h2><p className="mt-3 text-slate-200">Consulte também {relatedArea.cities.filter(c => c !== cityData.city).join(', ')}. Informe município e bairro para confirmar disponibilidade.</p><a className="inline-block mt-5 text-[#FFC52D] font-bold" href={'/regioes/' + relatedArea.slug + '/'}>Conhecer cidades e orientações da região →</a></div></section>}
 
       {/* Outras Cidades */}
       <section className="py-12 bg-slate-100 border-t border-slate-200">

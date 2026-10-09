@@ -1,3 +1,4 @@
+import { RegionalCoverage } from '../components/RegionalCoverage';
 import React, { useState } from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -38,6 +39,8 @@ export const AtendimentoPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <RegionalCoverage />
 
       {/* Cidades com Orientações */}
       <section className="py-12 bg-amber-50/50 border-b border-amber-200">

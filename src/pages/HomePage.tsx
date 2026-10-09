@@ -1,3 +1,4 @@
+import { RegionalCoverage } from '../components/RegionalCoverage';
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { QuoteForm } from '../components/QuoteForm';
@@ -49,7 +50,7 @@ export const HomePage: React.FC = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-200 leading-relaxed max-w-2xl font-normal">
-                Aluguel de caçambas estacionárias de entulho com logística pontual por caminhão poliguindaste. Prazos de 1, 2 ou 3 dias, ou plano semanal de 7 dias para manter seu canteiro de obras limpo, organizado e dentro do cronograma.
+                Aluguel de caçambas estacionárias de entulho com logística pontual por caminhão poliguindaste. Locação por dias, semanas ou meses para manter seu canteiro de obras limpo, organizado e dentro do cronograma.
               </p>
 
               {/* Botões de Ação */}
@@ -388,7 +389,7 @@ export const HomePage: React.FC = () => {
               Opções de Prazos de Locação
             </h2>
             <p className="text-slate-600 text-base mt-2">
-              A Fortera disponibiliza prazos de 1, 2, 3 ou 7 dias. Escolha o plano semanal de 7 dias ou um prazo menor conforme o ritmo da sua obra.
+              Alugue por 1, 2, 3, 7 ou 15 dias, por 1, 2, 3 meses ou por um prazo maior. Se a caçamba encher e a obra continuar, você tem 1 troca por semana.
             </p>
           </div>
 
@@ -533,72 +534,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* ENCONTRE ATENDIMENTO NA SUA CIDADE */}
-      <section className="py-16 sm:py-20 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-black uppercase tracking-wider text-[#FFC52D] bg-[#1A3856] px-3 py-1 rounded">
-              Abrangência Nacional
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mt-3">
-              Encontre atendimento na sua cidade
-            </h2>
-            <p className="text-slate-300 text-base mt-2">
-              Consulte orientações práticas de acesso, estacionamento na via e modelos indicados para sua localidade.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CITIES_DATA.map((city) => (
-              <a
-                key={city.slug}
-                href={`/aluguel-de-cacamba/${city.stateSlug}/${city.slug}/`}
-                className="bg-[#10263D] hover:bg-[#1A3856] p-6 rounded-2xl border border-slate-700 hover:border-[#FFC52D] transition-all group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-black bg-[#FFC52D] text-[#10263D] px-2 py-0.5 rounded">
-                      {city.uf}
-                    </span>
-                    <span className="text-xs text-slate-400 group-hover:text-[#FFC52D] transition-colors">
-                      Ver Orientações &rarr;
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-[#FFC52D] transition-colors">
-                    {city.city} ({city.uf})
-                  </h3>
-                  <p className="text-xs text-slate-300 mt-2 line-clamp-3 leading-relaxed">
-                    {city.localContext.overview}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
-                  <span>Caçambas 3, 4 e 5 m³</span>
-                  <span className="font-semibold text-white">Consulte Condições</span>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          {/* Chamada para o Atendimento nas 27 UFs */}
-          <div className="mt-12 text-center bg-[#0B1B2C] p-8 rounded-2xl border border-slate-800">
-            <h3 className="text-xl font-bold text-white mb-2">
-              Sua obra está em outro município ou estado?
-            </h3>
-            <p className="text-sm text-slate-300 max-w-2xl mx-auto mb-6">
-              A Fortera Caçambas atende todas as 27 Unidades Federativas do Brasil. Consulte atendimento no seu estado ou solicite uma cotação indicando sua cidade.
-            </p>
-            <a
-              href="/atendimento/"
-              className="inline-block bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-xl transition-transform active:scale-95"
-            >
-              Consultar Atendimento nas 27 UFs
-            </a>
-          </div>
-
-        </div>
-      </section>
+      <RegionalCoverage />
 
       {/* GUIAS DE OBRA EM DESTAQUE COM FOTOS */}
       <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">

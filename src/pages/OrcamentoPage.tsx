@@ -23,7 +23,7 @@ export const OrcamentoPage: React.FC<OrcamentoPageProps> = ({
     <div className="bg-slate-50 min-h-screen">
       <SeoHead
         title="Solicitar Orçamento de Caçamba de Entulho | Fortera Caçambas"
-        description="Solicite cotação ágil para aluguel de caçamba em qualquer cidade do Brasil. Escolha tamanho (3, 4 ou 5 m³), tipo de material e receba atendimento dedicado."
+        description="Solicite cotação ágil para aluguel de caçamba em qualquer cidade do Brasil. Escolha tamanho (3, 4 ou 5 m³), prazo de dias ou meses e receba atendimento dedicado."
         path="/orcamento/"
       />
 
@@ -75,7 +75,7 @@ export const OrcamentoPage: React.FC<OrcamentoPageProps> = ({
             <ul className="text-xs sm:text-sm text-slate-600 space-y-2">
               <li className="flex items-start gap-2">
                 <span className="text-[#FFC52D] font-black text-base leading-none">&bull;</span>
-                <span><strong>Informe se há restrição de trânsito:</strong> Se a sua rua tiver feira livre em dias específicos, for rota de ônibus ou tiver fiação baixa, mencione nas observações.</span>
+                <span><strong>Informe se há restrição de trânsito:</strong> Se a sua rua tiver feira livre em dias específicos, for rota de ônibus ou tiver fiação baixa, conte ao atendente pelo WhatsApp.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#FFC52D] font-black text-base leading-none">&bull;</span>

@@ -110,7 +110,7 @@ export const ComoFuncionaPage: React.FC = () => {
                 Nossos operadores realizam manobras controladas para posicionar as caçambas estacionárias rente ao meio-fio ou dentro da área de serviço do seu canteiro. A descida suave preserva o calçamento e previne avarias.
               </p>
               <div className="pt-2 text-xs text-slate-400">
-                Prazos: <strong>7 dias (semanal destaque)</strong>, 3 dias, 2 dias ou 1 dia (diária rápida para descarte no mesmo dia).
+                Prazos: <strong>dias, semanas ou meses</strong>. Se a caçamba encher e a obra continuar, você tem 1 troca por semana.
               </div>
             </div>
 

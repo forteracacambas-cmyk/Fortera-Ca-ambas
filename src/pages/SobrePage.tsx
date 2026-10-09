@@ -141,12 +141,7 @@ export const SobrePage: React.FC = () => {
                 </svg>
                 <span>WhatsApp: {SITE_CONFIG.whatsappFormatted}</span>
               </a>
-              <a 
-                href={`mailto:${SITE_CONFIG.email}`} 
-                className="inline-flex items-center gap-2 bg-[#10263D] px-4 py-2.5 rounded-lg border border-[#1A3856] text-[#FFC52D] font-mono text-sm font-bold hover:underline"
-              >
-                {SITE_CONFIG.email}
-              </a>
+              
             </div>
             <p className="text-xs text-slate-400 mt-4">
               Atendimento nacional por rede de parceiros e afiliados. Disponibilidade e condições confirmadas no orçamento.

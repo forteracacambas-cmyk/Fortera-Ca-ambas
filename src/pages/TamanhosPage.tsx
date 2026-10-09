@@ -227,7 +227,7 @@ export const TamanhosPage: React.FC = () => {
               Especificações Detalhadas por Capacidade
             </h2>
             <p className="text-slate-600 text-sm mt-2">
-              Prazos flexíveis de locação: 1, 2, 3 e 7 dias (semanal). Consulte valores para seu bairro.
+              Prazos flexíveis de dias, semanas ou meses, com 1 troca por semana quando a caçamba encher e a obra continuar. Consulte valores para seu bairro.
             </p>
           </div>
 
@@ -335,7 +335,7 @@ export const TamanhosPage: React.FC = () => {
                       ))}
                     </ul>
                     <div className="mt-3 text-xs text-slate-500">
-                      Prazos disponíveis: <strong>7 dias (semanal destaque)</strong>, 3 dias, 2 dias e 1 dia, com condições confirmadas no orçamento.
+                      Prazos disponíveis: <strong>dias, semanas ou meses</strong>, com condições confirmadas no orçamento.
                     </div>
                   </div>
 
