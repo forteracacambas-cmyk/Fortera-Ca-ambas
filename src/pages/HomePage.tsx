@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Texto Hero */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="order-2 lg:order-1 lg:col-span-7 space-y-6">
               
               <div className="inline-flex items-center gap-2 bg-[#1A3856] text-[#FFC52D] text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-md border border-[#FFC52D]/30 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#FFC52D]"></span>
@@ -99,7 +99,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Imagem Realista da Caçamba Hero */}
-            <div className="lg:col-span-5">
+            <div className="order-1 lg:order-2 lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-[#1A3856] bg-[#0B1B2C]">
                 <img
                   src={SITE_IMAGES.hero.src}
