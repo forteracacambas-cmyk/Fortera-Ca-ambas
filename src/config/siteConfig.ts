@@ -169,7 +169,7 @@ export const SITE_CONFIG = {
   whatsapp: '5511957595840',
   whatsappFormatted: '(11) 95759-5840',
   siteUrl: (typeof process !== 'undefined' && process.env?.SITE_URL) || 
-           (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_URL) || '',
+           (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_URL) || 'https://forteracacambas.com',
   logo: SUPABASE_ASSETS.logo,
   favicon: SUPABASE_ASSETS.favicon,
   heroImage: SUPABASE_ASSETS.hero,
