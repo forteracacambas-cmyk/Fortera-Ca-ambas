@@ -13,7 +13,7 @@ export const FloatingWhatsApp: React.FC = () => {
         href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Solicitar orçamento no WhatsApp oficial da Fortera: ${SITE_CONFIG.whatsappFormatted || '(11) 95759-5840'}`}
+        aria-label={`Solicitar orçamento no WhatsApp oficial da Fortera: ${SITE_CONFIG.whatsappFormatted || '(11) 95759-6840'}`}
         className="group flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20BD5A] text-white px-3.5 py-3 md:px-4 md:py-3.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 focus-visible-ring border-2 border-white/30"
       >
         {/* Ícone Oficial WhatsApp */}

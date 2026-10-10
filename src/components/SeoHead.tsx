@@ -66,7 +66,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
     legalName: SITE_CONFIG.legalName,
     taxID: SITE_CONFIG.cnpj,
     email: SITE_CONFIG.email,
-    telephone: '+55-11-95759-5840',
+    telephone: '+55-11-95759-6840',
     description: SITE_CONFIG.subtitle,
     logo: SITE_CONFIG.logo,
     areaServed: { '@type': 'Country', name: 'Brasil' },
