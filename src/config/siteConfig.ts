@@ -7,28 +7,28 @@
  */
 
 export const SUPABASE_ASSETS = {
-  hero: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/exec-9b8cec25-54fe-4673-b79c-e5618bb4048b.png',
-  produto: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/exec-6dd8074b-74d3-4674-bab9-271b69aab66d.png',
-  comparativo: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/exec-ac802670-4a12-4fa4-a305-661ee53eb4c7.png',
+  hero: '/images/hero_fortera-6840.webp',
+  produto: '/images/produto_fortera-6840.webp',
+  comparativo: '/images/comparativo_fortera-6840.webp',
   logo: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/logo-fortera.svg',
   favicon: 'https://omkxdavxrezrfxvsjsgi.supabase.co/storage/v1/object/public/site-images/favicon-fortera.svg',
 };
 
 export const SITE_IMAGES = {
   hero: {
-    src: '/images/hero_fortera.webp',
+    src: '/images/hero_fortera-6840.webp',
     alt: 'Caçamba estacionária Fortera amarela em via pública para descarte organizado de entulho',
     width: 1536,
     height: 1024,
   },
   dumpsterProduct: {
-    src: '/images/produto_fortera.webp',
+    src: '/images/produto_fortera-6840.webp',
     alt: 'Caçamba estacionária metálica Fortera para recolhimento de entulho de obras e reformas',
     width: 1536,
     height: 1024,
   },
   comparative: {
-    src: '/images/comparativo_fortera.webp',
+    src: '/images/comparativo_fortera-6840.webp',
     alt: 'Comparativo visual de capacidades e dimensões de caçambas estacionárias Fortera',
     width: 1536,
     height: 1024,
@@ -166,8 +166,8 @@ export const SITE_CONFIG = {
   tagline: 'Sua obra avança. O entulho sai.',
   subtitle: 'Aluguel de caçambas estacionárias para obras, reformas e demolições com atendimento nacional.',
   email: 'forteracacambas@gmail.com',
-  whatsapp: '5511957595840',
-  whatsappFormatted: '(11) 95759-5840',
+  whatsapp: '5511957596840',
+  whatsappFormatted: '(11) 95759-6840',
   siteUrl: (typeof process !== 'undefined' && process.env?.SITE_URL) || 
            (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_URL) || 'https://forteracacambas.com',
   logo: SUPABASE_ASSETS.logo,
@@ -194,7 +194,7 @@ export function getCanonicalUrl(path: string): string | null {
  * Helper para links WhatsApp se configurado
  */
 export function getWhatsAppLink(message: string): string {
-  const cleanNumber = SITE_CONFIG.whatsapp.replace(/\D/g, '') || '5511957595840';
+  const cleanNumber = SITE_CONFIG.whatsapp.replace(/\D/g, '') || '5511957596840';
   return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
 }
 
