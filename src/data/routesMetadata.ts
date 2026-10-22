@@ -16,8 +16,8 @@ export function getAllRoutes(): RouteMeta[] {
   const routes: RouteMeta[] = [
     {
       path: '/',
-      title: 'Fortera Caçambas | Aluguel de Caçambas de Entulho com Atendimento Nacional',
-      description: 'Aluguel de caçambas estacionárias de entulho para obras, reformas e demolições em todo o Brasil. Sua obra avança. O entulho sai. Peça seu orçamento.',
+      title: 'Aluguel de Caçambas de Entulho no Brasil | Fortera Caçambas',
+      description: 'Aluguel e locação de caçambas de entulho para obras e reformas no Brasil. Consulte seu CEP, escolha tamanho e prazo e peça orçamento pelo WhatsApp.',
       changefreq: 'weekly',
       priority: 1.0,
     },
@@ -30,14 +30,14 @@ export function getAllRoutes(): RouteMeta[] {
     },
     {
       path: '/tamanhos-de-cacamba/',
-      title: 'Tamanhos de Caçamba de Entulho (3, 4 e 5 m³) | Fortera Caçambas',
-      description: 'Conheça as capacidades nominais de 3m³, 4m³ e 5m³ para aluguel de caçamba. Exemplos de uso sob avaliação e limites sob consulta para seu endereço.',
+      title: 'Tamanhos de Caçamba: 3, 4, 5, 7 e 10 m³ | Fortera',
+      description: 'Compare caçambas de 3, 4 e 5 m³, além de 7 e 10 m³ sob consulta. Veja medidas de referência e escolha tamanho e prazo para pedir orçamento.',
       changefreq: 'monthly',
       priority: 0.9,
     },
     {
       path: '/preco-aluguel-cacamba/',
-      title: 'Preço de Aluguel de Caçamba: Fatores e Como Funciona | Fortera',
+      title: 'Quanto Custa Alugar uma Caçamba de Entulho? | Fortera',
       description: 'Entenda os fatores que determinam o preço do aluguel de caçamba de entulho: volume, tipo de resíduo, prazo por dias, semanas ou meses e condições no orçamento.',
       changefreq: 'monthly',
       priority: 0.9,
@@ -129,7 +129,7 @@ export function getAllRoutes(): RouteMeta[] {
 
   NATIONAL_STATES.forEach(state => routes.push({path:statePath(state.uf),title:'Aluguel de Caçamba em '+state.name+' | Fortera',description:'Consulte municípios de '+state.name+', tamanhos e locação por dias ou meses. Peça orçamento pelo WhatsApp.',changefreq:'monthly',priority:0.8}));
   MUNICIPALITIES.filter(city=>!CITIES_DATA.some(c=>c.uf===city.uf&&c.slug===city.slug)).forEach(city=>routes.push({path:cityPath(city),title:'Aluguel de Caçamba em '+city.name+' '+city.uf+' | Fortera',description:'Consulte aluguel de caçamba em '+city.name+' — '+city.uf+', tamanhos e prazos por dias ou meses. Solicite orçamento para seu bairro no WhatsApp.',changefreq:'monthly',priority:0.7}));
-  return routes;
+  return [...new Map(routes.map(route => [route.path, route])).values()];
 }
 
 const ROUTE_INDEX = new Map(getAllRoutes().map(route=>[route.path,route]));
