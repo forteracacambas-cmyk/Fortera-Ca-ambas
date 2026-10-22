@@ -26,15 +26,19 @@ export function trackContactIntent(event: 'whatsapp_click' | 'quote_request', so
 }
 
 export function AnalyticsConsent({ currentUrl }: { currentUrl: string }) {
-  const [choice, setChoice] = useState<Choice | null>(null);
+  const [choice, setChoice] = useState<Choice>('accepted');
   const [ready, setReady] = useState(false);
   const [show, setShow] = useState(false);
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === 'accepted' || saved === 'rejected') setChoice(saved);
-      else setShow(true);
-    } catch { setShow(true); }
+      if (saved === 'rejected') setChoice('rejected');
+      else {
+        // Preserve the existing AI Studio configuration and its opt-out.
+        if (saved !== 'accepted') localStorage.setItem(STORAGE_KEY, 'accepted');
+        setChoice('accepted');
+      }
+    } catch { setChoice('accepted'); }
     setReady(true);
     const reopen = () => setShow(true);
     window.addEventListener('fortera:cookie-settings', reopen);
