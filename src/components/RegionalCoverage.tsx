@@ -15,7 +15,7 @@ export const RegionalCoverage = () => (
         {SERVICE_AREAS.map((area, index) => (
           <article key={area.slug} className="bg-[#1A3856] rounded-2xl overflow-hidden border border-slate-600 flex flex-col">
             <a href={`/regioes/${area.slug}/`} className="block">
-              <img src={index % 2 ? SITE_IMAGES.dumpsterProduct.src : SITE_IMAGES.hero.src} alt={`Caçamba Fortera para obras e reformas: consulte atendimento em ${area.name}`} width={1536} height={1024} loading="lazy" className="w-full aspect-[16/9] object-cover" />
+              <img src={[SITE_IMAGES.renovationHouse, SITE_IMAGES.commercialSite, SITE_IMAGES.demolition, SITE_IMAGES.delivery, SITE_IMAGES.detail][index % 5].src} alt={`Cena ilustrativa de caçamba para obras e reformas; consulte atendimento em ${area.name}`} width={1536} height={1024} loading="lazy" className="w-full aspect-[16/9] object-cover" />
             </a>
             <div className="p-6 flex flex-col flex-1">
               <p className="text-xs text-[#FFC52D] font-bold">{area.uf} • Consulta por município e bairro</p>
