@@ -71,7 +71,7 @@ export const PrivacidadePage: React.FC = () => {
               4. Cookies e Navegação
             </h2>
             <p>
-              Com sua autorização, usamos o Google Analytics para medir visitas às páginas e cliques de contato pelo WhatsApp. Cookies de estatísticas ajudam a entender o uso do site. A medição só é ativada após aceitar as estatísticas; recusar não impede a navegação nem a solicitação de orçamento. Não enviamos ao Analytics os campos preenchidos no formulário ou o conteúdo da mensagem de WhatsApp, e os recursos de personalização de anúncios ficam desativados.
+              Usamos o Google Analytics para medir visitas às páginas e cliques de contato pelo WhatsApp. As estatísticas ficam ativadas por padrão e podem ser desativadas no botão de preferências abaixo. A opção de recusar é respeitada nas próximas visitas e não impede a navegação nem a solicitação de orçamento. Não enviamos ao Analytics os campos preenchidos no formulário ou o conteúdo da mensagem de WhatsApp, e os recursos de personalização de anúncios ficam desativados.
             </p>
             <p className="mt-3">Saiba <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="underline">como o Google usa informações de sites que utilizam seus serviços</a>.</p>
             <button type="button" className="mt-3 underline font-bold" onClick={() => window.dispatchEvent(new Event('fortera:cookie-settings'))}>Alterar preferências de cookies</button>
