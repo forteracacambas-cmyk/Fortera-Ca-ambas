@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Texto Hero */}
-            <div className="order-2 lg:order-1 lg:col-span-7 space-y-6">
+            <div className="order-1 lg:col-span-7 space-y-6">
               
               <div className="inline-flex items-center gap-2 bg-[#1A3856] text-[#FFC52D] text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-md border border-[#FFC52D]/30 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#FFC52D]"></span>
@@ -45,8 +45,8 @@ export const HomePage: React.FC = () => {
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                Sua obra avança.<br />
-                <span className="text-[#FFC52D]">O entulho sai.</span>
+                Aluguel de caçambas<br />
+                <span className="text-[#FFC52D]">de entulho no Brasil.</span>
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-200 leading-relaxed max-w-2xl font-normal">
@@ -67,10 +67,10 @@ export const HomePage: React.FC = () => {
                   <span>Pedir Orçamento no WhatsApp</span>
                 </a>
                 <a
-                  href="/orcamento/"
+                  href="#consulta-cep"
                   className="bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-base sm:text-lg px-6 py-4 rounded-xl shadow-lg text-center transition-transform active:scale-95 focus-visible-ring"
                 >
-                  Preencher Formulário
+                  Consultar meu CEP
                 </a>
                 <a
                   href="/tamanhos-de-cacamba/"
@@ -99,7 +99,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Imagem Realista da Caçamba Hero */}
-            <div className="order-1 lg:order-2 lg:col-span-5">
+            <div className="order-2 lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-[#1A3856] bg-[#0B1B2C]">
                 <img
                   src={SITE_IMAGES.hero.src}
@@ -118,6 +118,8 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      <section id="consulta-cep" className="py-10 bg-slate-50 scroll-mt-32"><div className="max-w-4xl mx-auto px-4 sm:px-6"><QuoteForm compact /></div></section>
+
 
       {/* DIFERENCIAIS OPERACIONAIS */}
       <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
@@ -615,12 +617,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* FORMULÁRIO DE ORÇAMENTO DA HOME */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <QuoteForm />
-        </div>
-      </section>
+
 
     </div>
   );

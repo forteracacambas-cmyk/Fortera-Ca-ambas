@@ -49,6 +49,7 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
       <Breadcrumbs
         items={[
           { name: 'Atendimento Nacional', href: '/atendimento/' },
+          { name: cityData.stateName, href: `/aluguel-de-cacamba/${cityData.stateSlug}/` },
           { name: `${cityData.city} (${cityData.uf})` },
         ]}
       />
@@ -307,7 +308,7 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
               Orçamento de Caçamba para {cityData.city} - {cityData.uf}
             </h2>
             <p className="text-sm text-slate-600 mt-2">
-              Os dados de {cityData.city} já estão pré-selecionados abaixo. Complete com o bairro e tipo de material da sua obra.
+              Consulte o CEP da obra em {cityData.city}. O endereço é preenchido automaticamente; complete o número e siga para o WhatsApp.
             </p>
           </div>
 

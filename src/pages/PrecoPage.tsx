@@ -49,7 +49,7 @@ export const PrecoPage: React.FC = () => {
               Transparência Comercial
             </span>
             <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-              Fatores que Determinam o Preço do Aluguel
+              Quanto custa alugar uma caçamba de entulho?
             </h1>
             <p className="text-base sm:text-lg text-slate-200 mt-4 leading-relaxed">
               O valor da locação é calculado de acordo com o tamanho da caçamba, o tipo de material a ser descartado e as condições de logística para o seu endereço.

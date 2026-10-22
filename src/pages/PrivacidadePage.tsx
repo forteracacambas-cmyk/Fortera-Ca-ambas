@@ -48,6 +48,7 @@ export const PrivacidadePage: React.FC = () => {
               O formulário de cotação disponibilizado no site serve para estruturar os dados do seu pedido de forma prática:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-sm">
+              <li><strong>Consulta de CEP:</strong> Ao consultar, apenas o CEP é enviado ao serviço ViaCEP para preencher rua, bairro, cidade e UF. O CEP não confirma disponibilidade de entrega. Número e complemento são adicionados por você e seguem no pedido ao abrir o WhatsApp. Não enviamos endereço, CEP, número ou complemento ao Google Analytics.</li>
               <li><strong>Na navegação:</strong> O site não armazena formulários em banco de dados ou cadastros de pré-atendimento enquanto você preenche os campos.</li>
               <li><strong>No envio:</strong> Quando você clica para abrir o WhatsApp e envia sua mensagem para a nossa equipe, as informações contidas no pedido são recebidas e tratadas por nossa equipe comercial exclusivamente para prestar o atendimento solicitado, elaborar a proposta e coordenar a entrega da caçamba.</li>
             </ul>
