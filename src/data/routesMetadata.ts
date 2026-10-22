@@ -3,6 +3,7 @@ import { SERVICE_AREAS } from './serviceAreas';
 import { CITIES_DATA } from './citiesData';
 import { PRACTICAL_GUIDES } from './guidesData';
 import { SERVICES_DATA } from './servicesData';
+import { stateSeo } from './stateSeo';
 
 export interface RouteMeta {
   path: string;
@@ -127,7 +128,7 @@ export function getAllRoutes(): RouteMeta[] {
     });
   });
 
-  NATIONAL_STATES.forEach(state => routes.push({path:statePath(state.uf),title:'Aluguel de Caçamba em '+state.name+' | Fortera',description:'Consulte municípios de '+state.name+', tamanhos e locação por dias ou meses. Peça orçamento pelo WhatsApp.',changefreq:'monthly',priority:0.8}));
+  NATIONAL_STATES.forEach(state => routes.push({ path: statePath(state.uf), ...stateSeo(state), changefreq: 'monthly', priority: 0.8 }));
   MUNICIPALITIES.filter(city=>!CITIES_DATA.some(c=>c.uf===city.uf&&c.slug===city.slug)).forEach(city=>routes.push({path:cityPath(city),title:'Aluguel de Caçamba em '+city.name+' '+city.uf+' | Fortera',description:'Consulte aluguel de caçamba em '+city.name+' — '+city.uf+', tamanhos e prazos por dias ou meses. Solicite orçamento para seu bairro no WhatsApp.',changefreq:'monthly',priority:0.7}));
   return [...new Map(routes.map(route => [route.path, route])).values()];
 }
