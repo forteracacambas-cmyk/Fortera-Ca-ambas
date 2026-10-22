@@ -7,7 +7,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './src/App';
 import { SITE_CONFIG, getCanonicalUrl } from './src/config/siteConfig';
-import { getRouteMeta, getAllRoutes } from './src/data/routesMetadata';
+import { getRouteMeta } from './src/data/routesMetadata';
+import { getSitemapXml } from './src/data/sitemaps';
 
 dotenv.config();
 
@@ -50,38 +51,10 @@ async function createServer() {
     }
   });
 
-  // Rota sitemap.xml
-  app.get('/sitemap.xml', (req, res) => {
-    res.type('application/xml');
-    const siteUrl = SITE_CONFIG.siteUrl?.trim();
-    if (!siteUrl || siteUrl.includes('localhost') || siteUrl.includes('127.0.0.1')) {
-      // Conforme requisitos: se sem domínio válido não emitir canonical ou URLs localhost no sitemap
-      res.send(`<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Sitemap em modo de espera de produção.
-  Para ativar a listagem completa das URLs indexáveis, configure a variável
-  SITE_URL no arquivo .env com o domínio oficial (ex: https://seudominio.com.br).
--->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-</urlset>`);
-      return;
-    }
-
-    const cleanBase = siteUrl.replace(/\/$/, '');
-    const routes = getAllRoutes();
-    const currentDate = new Date().toISOString().split('T')[0];
-
-    const urlsXml = routes.map(r => `  <url>
-    <loc>${cleanBase}${r.path}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>${r.changefreq}</changefreq>
-    <priority>${r.priority.toFixed(1)}</priority>
-  </url>`).join('\n');
-
-    res.send(`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlsXml}
-</urlset>`);
+  app.get(['/sitemap.xml', '/sitemaps/:file'], (req, res) => {
+    const xml = getSitemapXml(req.path);
+    if (!xml) { res.status(404).type('text/plain').send('Sitemap não encontrado.'); return; }
+    res.type('application/xml').send(xml);
   });
 
   // Tratamento geral de páginas com SSR
@@ -93,6 +66,7 @@ ${urlsXml}
       const [pathname] = url.split('?');
       const routeMeta = getRouteMeta(pathname);
       const is404 = !routeMeta;
+      if (routeMeta && pathname !== routeMeta.path) { res.redirect(301, routeMeta.path + (url.includes('?') ? '?' + url.split('?')[1] : '')); return; }
 
       // Lê o template base do index.html
       let template: string;
@@ -109,7 +83,7 @@ ${urlsXml}
       // Determina título e descrição para SSR
       const pageTitle = routeMeta?.title || 'Página Não Encontrada (404) | Fortera Caçambas';
       const pageDesc = routeMeta?.description || 'A página solicitada não foi encontrada. Navegue pelo site da Fortera Caçambas ou solicite um orçamento.';
-      const canonical = getCanonicalUrl(pathname);
+      const canonical = routeMeta ? getCanonicalUrl(routeMeta.path) : null;
 
       // Injeta os metadados específicos e o conteúdo HTML dentro do template
       let html = template
@@ -125,6 +99,7 @@ ${urlsXml}
         html = html.replace('</head>', `  <link rel="canonical" href="${canonical}" />\n  <meta property="og:url" content="${canonical}" />\n</head>`);
       }
 
+      if (is404) html = html.replace('</head>', '<meta name="robots" content="noindex, follow" /></head>');
       res.status(is404 ? 404 : 200).set({ 'Content-Type': 'text/html; charset=utf-8' }).send(html);
     } catch (e: any) {
       if (!isProduction && vite) {
