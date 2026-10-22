@@ -5,6 +5,25 @@ Site institucional e plataforma de conversão para **FORTERA CAÇAMBAS** (alugue
 > **Slogan:** *Sua obra avança. O entulho sai.*  
 > **E-mail Comercial:** `forteracacambas@gmail.com`
 
+## Site em produção
+
+- [Site oficial da Fortera Caçambas](https://forteracacambas.com/)
+- [Atendimento por estado e cidade](https://forteracacambas.com/atendimento/)
+- WhatsApp comercial: **(11) 95759-6840**.
+
+### Exemplos de páginas estaduais
+
+Estas rotas permitem conferir a navegação estado → cidade e a renderização do conteúdo no site publicado:
+
+| Estado | Página publicada |
+| --- | --- |
+| Minas Gerais | [Fortera em Minas Gerais](https://forteracacambas.com/aluguel-de-cacamba/mg/) |
+| São Paulo | [Fortera em São Paulo](https://forteracacambas.com/aluguel-de-cacamba/sp/) |
+| Paraná | [Fortera no Paraná](https://forteracacambas.com/aluguel-de-cacamba/pr/) |
+| Santa Catarina | [Fortera em Santa Catarina](https://forteracacambas.com/aluguel-de-cacamba/sc/) |
+
+As demais UFs estão no diretório de atendimento. Disponibilidade de entrega, preço e prazo são confirmados pela equipe para o CEP informado.
+
 ---
 
 ## 1. Visão Geral da Arquitetura
@@ -34,14 +53,14 @@ Quando você tiver os dados oficiais, edite `src/config/siteConfig.ts` ou defina
 1. **Domínio Oficial e Canonical (`SITE_URL`):**
    - No arquivo `.env` (ou no painel do servidor), configure:
      ```env
-     SITE_URL=https://forteracacambas.com.br
+     SITE_URL=https://forteracacambas.com
      ```
    - *Comportamento do sistema:* Enquanto `SITE_URL` estiver vazio ou for localhost, o sistema **não** emite tags canônicas incorretas nem URLs locais no `sitemap.xml`. Assim que o domínio oficial é configurado, as tags `<link rel="canonical">` absolutas e o `sitemap.xml` completo passam a ser gerados automaticamente.
 
 2. **WhatsApp Comercial:**
    - Preencha no `siteConfig.ts`:
      ```ts
-     whatsapp: '5511999999999', // Apenas números com DDI + DDD
+     whatsapp: '5511957596840', // Apenas números com DDI + DDD
      ```
    - O formulário de orçamento exibirá automaticamente a opção de envio direto para a API do WhatsApp (`wa.me`) com a mensagem formatada. Enquanto estiver vazio, o site oferece o fluxo de e-mail (`mailto:forteracacambas@gmail.com`).
 
@@ -80,11 +99,11 @@ Quando você tiver os dados oficiais, edite `src/config/siteConfig.ts` ou defina
 Quando publicar o site no domínio final:
 
 1. Acesse o [Google Search Console](https://search.google.com/search-console).
-2. Adicione a propriedade com o domínio final (ex: `https://forteracacambas.com.br`).
+2. Adicione a propriedade com o domínio final (ex: `https://forteracacambas.com`).
 3. Verifique a propriedade via registro DNS TXT ou meta tag.
 4. No menu lateral, acesse **Sitemaps** e envie:
    ```
-   https://forteracacambas.com.br/sitemap.xml
+   https://forteracacambas.com/sitemap.xml
    ```
 5. O arquivo `robots.txt` já aponta dinamicamente para o sitemap assim que a variável `SITE_URL` for preenchida.
 
