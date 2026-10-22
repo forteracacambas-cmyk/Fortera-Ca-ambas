@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { SITE_CONFIG, getCanonicalUrl } from '../config/siteConfig';
+import { getRouteMeta } from '../data/routesMetadata';
 
 interface SeoHeadProps {
   title: string;
@@ -16,7 +17,11 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
   type = 'website',
   jsonLd,
 }) => {
-  const canonicalUrl = getCanonicalUrl(path);
+  // The same metadata source is used by SSR and client-side navigation.
+  const route = getRouteMeta(path);
+  title = route?.title || title;
+  description = route?.description || description;
+  const canonicalUrl = route ? getCanonicalUrl(route.path) : null;
 
   useEffect(() => {
     // Atualiza title do documento
@@ -40,6 +45,9 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
     setMetaTag('meta[property="og:type"]', 'content', type);
     setMetaTag('meta[name="twitter:title"]', 'content', title);
     setMetaTag('meta[name="twitter:description"]', 'content', description);
+    setMetaTag('meta[property="og:image"]', 'content', getCanonicalUrl(SITE_CONFIG.heroImage) || '');
+    setMetaTag('meta[name="twitter:image"]', 'content', getCanonicalUrl(SITE_CONFIG.heroImage) || '');
+    setMetaTag('meta[name="robots"]', 'content', route ? 'index, follow' : 'noindex, follow');
 
     // Canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]');
@@ -56,7 +64,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
         canonicalLink.remove();
       }
     }
-  }, [title, description, path, type, canonicalUrl]);
+  }, [title, description, path, type, canonicalUrl, route]);
 
   // Schema.org Organization padrão
   const organizationSchema = {

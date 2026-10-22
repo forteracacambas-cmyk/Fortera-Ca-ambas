@@ -12,7 +12,7 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ currentPath })
   const whatsappHref = getWhatsAppGenericLink();
 
   return (
-    <aside 
+    <aside data-contact-source="mobile"
       aria-label="Ações rápidas de contato mobile"
       className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#10263D]/95 backdrop-blur-md border-t border-[#FFC52D]/40 px-3 py-2.5 shadow-2xl"
     >

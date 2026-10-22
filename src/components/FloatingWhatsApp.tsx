@@ -5,7 +5,7 @@ export const FloatingWhatsApp: React.FC = () => {
   const whatsappHref = getWhatsAppGenericLink();
 
   return (
-    <aside 
+    <aside data-contact-source="floating"
       aria-label="Atendimento Rápido no WhatsApp"
       className="fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-40 print:hidden"
     >
