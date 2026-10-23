@@ -1,4 +1,5 @@
 import { RegionalCoverage } from '../components/RegionalCoverage';
+import { RentalLandingLinks } from '../components/RentalLandingLinks';
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { QuoteForm } from '../components/QuoteForm';
@@ -616,9 +617,7 @@ export const HomePage: React.FC = () => {
 
         </div>
       </section>
-
-
-
+      <RentalLandingLinks/>
     </div>
   );
 };

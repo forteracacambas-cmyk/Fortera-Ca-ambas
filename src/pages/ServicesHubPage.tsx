@@ -1,4 +1,5 @@
 import React from 'react';
+import { RentalLandingLinks } from '../components/RentalLandingLinks';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { SERVICES_DATA } from '../data/servicesData';
@@ -52,7 +53,8 @@ export const ServicesHubPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Grid de Serviços com Imagens Reais de Caçambas */}
+      <RentalLandingLinks/>
+      {/* Serviços e aplicações */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           
