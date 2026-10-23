@@ -4,6 +4,7 @@ import { CITIES_DATA } from './citiesData';
 import { PRACTICAL_GUIDES } from './guidesData';
 import { SERVICES_DATA } from './servicesData';
 import { stateSeo } from './stateSeo';
+import { RENTAL_LANDINGS } from './rentalLandingPages';
 
 export interface RouteMeta {
   path: string;
@@ -86,6 +87,8 @@ export function getAllRoutes(): RouteMeta[] {
       priority: 0.8,
     },
   ];
+
+  RENTAL_LANDINGS.forEach(page => routes.push({ path: page.path, title: page.title, description: page.description, changefreq: 'monthly', priority: 0.9 }));
 
   SERVICE_AREAS.forEach(area => routes.push({
     path: `/regioes/${area.slug}/`,
