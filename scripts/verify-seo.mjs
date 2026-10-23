@@ -6,6 +6,7 @@ import path from 'node:path';
 
 const worker = (await import(pathToFileURL(path.resolve('cloudflare-dist/_worker.js')).href + '?test=' + Date.now())).default;
 const origin = 'https://forteracacambas.com';
+const municipalities = JSON.parse(await readFile('src/data/municipalities.json', 'utf8'));
 const assets = { fetch: async request => {
   try { return new Response(await readFile('cloudflare-dist' + new URL(request.url).pathname)); }
   catch { return new Response('Not found', { status: 404 }); }
@@ -30,6 +31,32 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
   assert.equal([...html.matchAll(/<h1[ >]/g)].length, 1, pathname + ': one H1');
   assert.ok(!html.includes('95759-5840'), pathname + ': old phone');
   for (const script of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)) JSON.parse(script[1]);
+  const stateMatch = pathname.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/$/);
+  if (stateMatch) {
+    const uf = stateMatch[1].toUpperCase();
+    assert.ok(html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
+    assert.ok(html.includes('Cidades atendidas'), uf + ': visible coverage information');
+    assert.ok(html.includes('id="municipios-atendidos"'), uf + ': municipality directory');
+    assert.ok(html.includes('id="orcamento-local"'), uf + ': accessible CEP consultation');
+    assert.ok(html.includes('id="duvidas-locacao"'), uf + ': rental questions');
+    assert.ok(html.includes('srcSet="/images/estados/') || html.includes('srcset="/images/estados/'), uf + ': responsive illustration');
+    for (const city of municipalities.filter(item => item.uf === uf)) {
+      assert.ok(html.includes(`href="/aluguel-de-cacamba/${uf.toLowerCase()}/${city.slug}/"`), uf + ': city preserved: ' + city.name);
+    }
+    for (const guide of ['/preco-aluguel-cacamba/', '/tamanhos-de-cacamba/', '/guias/o-que-pode-colocar-na-cacamba/']) {
+      assert.ok(html.includes(`href="${guide}"`), uf + ': useful guide: ' + guide);
+    }
+  }
+}
+assert.equal(urls.length, 5623, 'state improvements must not create new city URLs');
+for (const scene of ['sudeste', 'sul', 'nordeste', 'norte', 'centro-oeste']) {
+  for (const suffix of ['', '-640']) {
+    const asset = await fetchPage(`/images/estados/cacamba-${scene}${suffix}.webp`);
+    assert.equal(asset.status, 200, 'state image must exist');
+    const bytes = new Uint8Array(await asset.arrayBuffer());
+    assert.ok(bytes.length < 250000, 'optimized image under 250 KB');
+    assert.equal(new TextDecoder().decode(bytes.slice(8, 12)), 'WEBP');
+  }
 }
 assert.equal((await fetchPage('/aluguel-de-cacamba/sp')).status, 301);
 assert.equal((await fetchPage('/pagina-inexistente/')).status, 404);
