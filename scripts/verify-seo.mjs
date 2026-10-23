@@ -48,7 +48,35 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
     }
   }
 }
-assert.equal(urls.length, 5623, 'state improvements must not create new city URLs');
+assert.equal(urls.length, 5626, 'three new keyword pages, existing city URLs preserved');
+const rentalPaths = ['/locacao-de-cacamba/', '/alugar-cacamba-de-entulho/', '/cacamba-de-entulho/'];
+const landingBodies = [];
+for (const pathname of rentalPaths) {
+  assert.equal(urls.filter(url => url === origin + pathname).length, 1, 'landing in sitemap once');
+  const response = await fetchPage(pathname); assert.equal(response.status, 200);
+  const html = await response.text(); landingBodies.push(html);
+  assert.ok(html.includes('rel="canonical" href="' + origin + pathname + '"'), 'self canonical');
+  assert.equal([...html.matchAll(/<h1[ >]/g)].length, 1, 'one landing H1');
+  assert.ok(html.includes('id="consultar-cep"'), 'CEP section');
+  assert.ok(html.includes('https://wa.me/5511957596840'), 'WhatsApp destination');
+  assert.ok(html.includes('srcSet="/images/contratacao/') || html.includes('srcset="/images/contratacao/'), 'responsive hero');
+  assert.ok(html.includes('&quot;@type&quot;:&quot;Service&quot;') || html.includes('"@type":"Service"'), 'service structured data');
+  assert.ok(!html.includes('noindex'));
+  for (const script of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)) JSON.parse(script[1]);
+  assert.equal((await fetchPage(pathname.slice(0, -1))).status, 301, 'canonical redirect');
+}
+assert.equal(new Set(landingBodies.map(html => html.match(/<h1[^>]*>(.*?)<\/h1>/)?.[1])).size, 3, 'distinct headings');
+for (const source of ['/', '/servicos/']) {
+  const html = await (await fetchPage(source)).text();
+  for (const pathname of rentalPaths) assert.ok(html.includes(`href="${pathname}"`), 'landing must have crawlable incoming links');
+}
+for (const image of ['locacao-cacamba-obra', 'alugar-cacamba-reforma', 'cacamba-entulho-materiais']) {
+  for (const suffix of ['', '-640']) {
+    const asset = await fetchPage(`/images/contratacao/${image}${suffix}.webp`);
+    assert.equal(asset.status, 200); const bytes = new Uint8Array(await asset.arrayBuffer());
+    assert.ok(bytes.length < 250000); assert.equal(new TextDecoder().decode(bytes.slice(8, 12)), 'WEBP');
+  }
+}
 for (const scene of ['sudeste', 'sul', 'nordeste', 'norte', 'centro-oeste']) {
   for (const suffix of ['', '-640']) {
     const asset = await fetchPage(`/images/estados/cacamba-${scene}${suffix}.webp`);
