@@ -1,4 +1,6 @@
 import { AnalyticsConsent } from './components/AnalyticsConsent';
+import { RentalLandingPage } from './pages/RentalLandingPage';
+import { RENTAL_LANDINGS } from './data/rentalLandingPages';
 import { SaoMateusPage, SAO_MATEUS_PATH } from './pages/SaoMateusPage';
 import { NationalLocationPage } from './pages/NationalLocationPage';
 import { CITIES_DATA } from './data/citiesData';
@@ -93,6 +95,8 @@ export default function App({ initialUrl }: AppProps) {
 
   // Roteador de Páginas
   const renderPage = () => {
+    const rentalLanding = RENTAL_LANDINGS.find(page => page.path === normalizedPath);
+    if (rentalLanding) return <RentalLandingPage page={rentalLanding}/>;
     if (normalizedPath === SAO_MATEUS_PATH) return <SaoMateusPage />;
     if (normalizedPath === '/') {
       return <HomePage />;
