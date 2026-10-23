@@ -1,4 +1,5 @@
 import React from 'react';
+import { RENTAL_LANDINGS } from '../data/rentalLandingPages';
 import { SITE_CONFIG, getWhatsAppGenericLink } from '../config/siteConfig';
 
 export const Footer: React.FC = () => {
@@ -59,6 +60,7 @@ export const Footer: React.FC = () => {
               Serviços e Soluções
             </h2>
             <ul className="space-y-2.5 text-sm">
+              {RENTAL_LANDINGS.map(page => <li key={page.path}><a href={page.path} className="hover:text-[#FFC52D] transition-colors">{page.label}</a></li>)}
               <li>
                 <a href="/tamanhos-de-cacamba/" className="hover:text-[#FFC52D] transition-colors">
                   Tamanhos de Caçamba (3 a 10 m³)
