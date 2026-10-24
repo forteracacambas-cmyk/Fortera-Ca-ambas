@@ -42,16 +42,10 @@ export const PrivacidadePage: React.FC = () => {
 
           <div>
             <h2 className="text-xl font-bold text-[#10263D] mb-3">
-              2. Como Funciona o Formulário no Site
+              2. Contato direto e dados do atendimento
             </h2>
-            <p className="mb-2">
-              O formulário de cotação disponibilizado no site serve para estruturar os dados do seu pedido de forma prática:
-            </p>
-            <ul className="list-disc pl-5 space-y-1.5 text-sm">
-              <li><strong>Consulta de CEP:</strong> Ao consultar, apenas o CEP é enviado ao serviço ViaCEP para preencher rua, bairro, cidade e UF. O CEP não confirma disponibilidade de entrega. Número e complemento são adicionados por você e seguem no pedido ao abrir o WhatsApp. Não enviamos endereço, CEP, número ou complemento ao Google Analytics.</li>
-              <li><strong>Na navegação:</strong> O site não armazena formulários em banco de dados ou cadastros de pré-atendimento enquanto você preenche os campos.</li>
-              <li><strong>No envio:</strong> Quando você clica para abrir o WhatsApp e envia sua mensagem para a nossa equipe, as informações contidas no pedido são recebidas e tratadas por nossa equipe comercial exclusivamente para prestar o atendimento solicitado, elaborar a proposta e coordenar a entrega da caçamba.</li>
-            </ul>
+            <p className="mb-2">O site não utiliza consulta por CEP nem formulário de orçamento. No celular, os botões abrem o WhatsApp. No computador, mostram uma página com nosso número para ligação ou cópia.</p>
+            <p>As informações que você enviar voluntariamente na conversa são utilizadas para orientar o orçamento e coordenar o atendimento. O Google Analytics recebe eventos de contato e o caminho da página, sem o conteúdo das mensagens ou endereço da obra.</p>
             <p className="mt-3 font-semibold text-slate-900">
               Não solicitamos número de CPF, dados bancários, números de cartão de crédito ou quaisquer dados sensíveis neste ambiente.
             </p>
@@ -71,7 +65,7 @@ export const PrivacidadePage: React.FC = () => {
               4. Cookies e Navegação
             </h2>
             <p>
-              Usamos o Google Analytics para medir visitas às páginas e cliques de contato pelo WhatsApp. As estatísticas ficam ativadas por padrão e podem ser desativadas no botão de preferências abaixo. A opção de recusar é respeitada nas próximas visitas e não impede a navegação nem a solicitação de orçamento. Não enviamos ao Analytics os campos preenchidos no formulário ou o conteúdo da mensagem de WhatsApp, e os recursos de personalização de anúncios ficam desativados.
+              Usamos o Google Analytics para medir visitas às páginas e cliques de contato pelo WhatsApp. As estatísticas ficam ativadas por padrão e podem ser desativadas no botão de preferências abaixo. A opção de recusar é respeitada nas próximas visitas e não impede a navegação nem a solicitação de orçamento. Não enviamos ao Analytics o conteúdo da mensagem de WhatsApp, e os recursos de personalização de anúncios ficam desativados.
             </p>
             <p className="mt-3">Saiba <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="underline">como o Google usa informações de sites que utilizam seus serviços</a>.</p>
             <button type="button" className="mt-3 underline font-bold" onClick={() => window.dispatchEvent(new Event('fortera:cookie-settings'))}>Alterar preferências de cookies</button>

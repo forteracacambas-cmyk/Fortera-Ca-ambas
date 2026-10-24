@@ -151,10 +151,10 @@ export const PrecoPage: React.FC = () => {
                 <span>Solicitar Orçamento no WhatsApp</span>
               </a>
               <a
-                href="/orcamento/"
+                href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                 className="w-full sm:w-auto inline-block bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-base px-8 py-4 rounded-xl shadow-md transition-transform active:scale-95 focus-visible-ring"
               >
-                Preencher Formulário
+                Solicitar orçamento agora
               </a>
             </div>
           </div>

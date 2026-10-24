@@ -171,7 +171,7 @@ export const AtendimentoPage: React.FC = () => {
 
                           <div className="pt-2 border-t border-slate-100">
                             <a
-                              href={`/orcamento/?uf=${st.uf}`}
+                              href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                               className="text-xs font-bold text-[#10263D] hover:text-amber-600 inline-flex items-center gap-1"
                             >
                               <span>Cotar caçamba em {st.uf}</span>
@@ -197,7 +197,7 @@ export const AtendimentoPage: React.FC = () => {
             Não encontrou sua cidade listada acima?
           </h2>
           <p className="text-sm text-slate-600 mt-2 max-w-xl mx-auto">
-            Consulte disponibilidade e condições para seu endereço. Preencha seu estado e município no formulário de orçamento ou fale direto com a nossa equipe no WhatsApp.
+            Consulte disponibilidade e condições para seu endereço. Fale direto com a nossa equipe e informe cidade, bairro e material para descarte.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row justify-center items-center gap-3">
             <a
@@ -212,7 +212,7 @@ export const AtendimentoPage: React.FC = () => {
               <span>Falar no WhatsApp Oficial</span>
             </a>
             <a
-              href="/orcamento/"
+              href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
               className="w-full sm:w-auto inline-block bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-extrabold text-base px-8 py-3.5 rounded-lg transition-transform active:scale-95 focus-visible-ring"
             >
               Iniciar Orçamento com Meu Município

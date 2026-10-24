@@ -68,10 +68,10 @@ export const HomePage: React.FC = () => {
                   <span>Pedir Orçamento no WhatsApp</span>
                 </a>
                 <a
-                  href="#consulta-cep"
+                  href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                   className="bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-base sm:text-lg px-6 py-4 rounded-xl shadow-lg text-center transition-transform active:scale-95 focus-visible-ring"
                 >
-                  Consultar meu CEP
+                  Solicitar orçamento agora
                 </a>
                 <a
                   href="/tamanhos-de-cacamba/"
@@ -119,7 +119,7 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-      <section id="consulta-cep" className="py-10 bg-slate-50 scroll-mt-32"><div className="max-w-4xl mx-auto px-4 sm:px-6"><QuoteForm compact /></div></section>
+      <section id="contato-direto" className="py-10 bg-slate-50 scroll-mt-32"><div className="max-w-4xl mx-auto px-4 sm:px-6"><QuoteForm compact /></div></section>
 
 
       {/* DIFERENCIAIS OPERACIONAIS */}
@@ -273,10 +273,10 @@ export const HomePage: React.FC = () => {
                       <span>Pedir {size.volume} no WhatsApp</span>
                     </a>
                     <a
-                      href={`/orcamento/?tamanho=${encodeURIComponent(size.volume)}`}
+                      href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                       className="block w-full text-center bg-[#10263D] hover:bg-[#1A3856] text-[#FFC52D] font-bold text-xs py-2 px-3 rounded-lg transition-colors focus-visible-ring"
                     >
-                      Cotar no Formulário
+                      Pedir orçamento agora
                     </a>
                   </div>
 
@@ -436,14 +436,14 @@ export const HomePage: React.FC = () => {
                     <span>Pedir {period.shortLabel} no Whats</span>
                   </a>
                   <a
-                    href={`/orcamento/?prazo=${period.id}`}
+                    href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                     className={`block w-full text-center text-xs font-bold py-1.5 px-3 rounded-lg transition-colors ${
                       period.isPopular
                         ? 'bg-[#10263D] hover:bg-[#1A3856] text-[#FFC52D]'
                         : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
                     }`}
                   >
-                    Cotar no Formulário
+                    Pedir orçamento agora
                   </a>
                 </div>
               </div>

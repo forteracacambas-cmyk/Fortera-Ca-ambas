@@ -76,7 +76,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug }) =>
                   href="#formulario"
                   className="bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-sm sm:text-base px-6 py-3.5 rounded-lg shadow transition-transform active:scale-95 focus-visible-ring"
                 >
-                  Formulário de Cotação
+                  Orçamento direto
                 </a>
                 <a
                   href="/tamanhos-de-cacamba/"
@@ -202,7 +202,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug }) =>
               Solicitar Cotação para {service.shortTitle}
             </h2>
             <p className="text-sm text-slate-600 mt-2">
-              Preencha sua localidade e dados da obra para receber a proposta comercial sem compromisso.
+              Fale diretamente com a equipe para receber uma proposta para a sua obra.
             </p>
           </div>
           <QuoteForm defaultPeriod="7-dias" />

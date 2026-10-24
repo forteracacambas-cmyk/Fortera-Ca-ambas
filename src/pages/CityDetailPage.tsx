@@ -82,10 +82,10 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
                 <span>Pedir no WhatsApp em {cityData.city}</span>
               </a>
               <a
-                href="#formulario-orcamento"
+                href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                 className="bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-base px-6 py-3.5 rounded-lg shadow transition-transform active:scale-95 focus-visible-ring"
               >
-                Preencher Formulário Local
+                Solicitar orçamento agora Local
               </a>
               <a
                 href="#tamanhos-locais"
@@ -166,7 +166,7 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
               </div>
 
               <a
-                href="#formulario-orcamento"
+                href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                 className="block text-center bg-[#10263D] hover:bg-[#1A3856] text-[#FFC52D] font-extrabold text-sm py-3 px-4 rounded-lg transition-colors"
               >
                 Preencher Dados para {cityData.city} &darr;
@@ -223,10 +223,10 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
                     <span>Pedir {rec.size} no WhatsApp</span>
                   </a>
                   <a
-                    href={`#formulario-orcamento`}
+                    href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                     className="block text-center text-xs font-bold text-[#10263D] hover:text-amber-600 bg-white border border-slate-200 py-1.5 px-3 rounded-lg transition-colors"
                   >
-                    Cotar no Formulário Abaixo
+                    Pedir orçamento agora Abaixo
                   </a>
                 </div>
               </div>
@@ -308,7 +308,7 @@ export const CityDetailPage: React.FC<CityDetailPageProps> = ({ uf, citySlug }) 
               Orçamento de Caçamba para {cityData.city} - {cityData.uf}
             </h2>
             <p className="text-sm text-slate-600 mt-2">
-              Consulte o CEP da obra em {cityData.city}. O endereço é preenchido automaticamente; complete o número e siga para o WhatsApp.
+              Fale com a equipe da obra em {cityData.city}. O endereço é preenchido automaticamente; complete o número e siga para o WhatsApp.
             </p>
           </div>
 

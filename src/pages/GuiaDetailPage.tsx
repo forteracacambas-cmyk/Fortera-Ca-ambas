@@ -177,7 +177,7 @@ export const GuiaDetailPage: React.FC<GuiaDetailPageProps> = ({ slug }) => {
                 <span>Tirar Dúvidas no WhatsApp</span>
               </a>
               <a
-                href="/orcamento/"
+                href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                 className="w-full sm:w-auto inline-block bg-[#10263D] hover:bg-[#1A3856] text-[#FFC52D] font-black text-base px-7 py-3.5 rounded-lg shadow-md transition-colors focus-visible-ring"
               >
                 Solicitar Cotação no Site &rarr;

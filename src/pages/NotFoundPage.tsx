@@ -35,7 +35,7 @@ export const NotFoundPage: React.FC = () => {
                 Voltar à Página Inicial
               </a>
               <a
-                href="/orcamento/"
+                href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
                 className="bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-sm px-6 py-3 rounded-lg shadow transition-colors"
               >
                 Solicitar Orçamento
