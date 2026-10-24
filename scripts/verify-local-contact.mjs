@@ -42,7 +42,9 @@ try {
     for(const suffix of ['', '-640']){const img=LOCAL_IMAGES[city.slug].replace('.webp',suffix+'.webp');assert.ok((await fs.stat('cloudflare-dist'+img)).size<250000);}
   }
   const pc=await(await worker.fetch(new Request(origin+'/contatopc/'),{ASSETS:assets})).text();
-  assert.ok(pc.includes('tel:+5511957596840'));assert.ok(pc.includes('Copiar número'));
+  assert.ok(pc.includes('(11) 95759-6840') && pc.includes('telefone fixo ou celular'));
+  assert.ok(!pc.includes('<button') && !pc.includes('href="tel:') && !pc.includes('Copiar número'),'desktop displays number without action buttons');
   assert.ok(!/<a[^>]+href="https:\/\/(wa\.me|api\.whatsapp\.com)/.test(pc),'no WhatsApp button on desktop page');
   console.log('PASS: 21 local pages, desktop contact, mobile/desktop routing, single event and all images. No test events sent to Google.');
 } finally {await fs.unlink(temp).catch(()=>{});}
+process.exit(0);
