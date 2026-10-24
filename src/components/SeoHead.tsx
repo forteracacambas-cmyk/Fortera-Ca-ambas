@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { SITE_CONFIG, getCanonicalUrl } from '../config/siteConfig';
 import { getRouteMeta } from '../data/routesMetadata';
+import { getPageImages } from '../data/pageImages';
 
 interface SeoHeadProps {
   title: string;
@@ -22,6 +23,8 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
   title = route?.title || title;
   description = route?.description || description;
   const canonicalUrl = route ? getCanonicalUrl(route.path) : null;
+  const images = getPageImages(path);
+  const primaryImage = images[0] ? getCanonicalUrl(images[0]) : null;
 
   useEffect(() => {
     // Atualiza title do documento
@@ -32,8 +35,8 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
       let el = document.querySelector(selector);
       if (!el) {
         el = document.createElement('meta');
-        const [key, val] = selector.replace(/[\[\]']/g, '').split('=');
-        el.setAttribute(key, val);
+        const match = selector.match(/\[(name|property)="([^"]+)"\]/)!;
+        el.setAttribute(match[1], match[2]);
         document.head.appendChild(el);
       }
       el.setAttribute(attr, value);
@@ -45,9 +48,14 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
     setMetaTag('meta[property="og:type"]', 'content', type);
     setMetaTag('meta[name="twitter:title"]', 'content', title);
     setMetaTag('meta[name="twitter:description"]', 'content', description);
-    setMetaTag('meta[property="og:image"]', 'content', getCanonicalUrl(SITE_CONFIG.heroImage) || '');
-    setMetaTag('meta[name="twitter:image"]', 'content', getCanonicalUrl(SITE_CONFIG.heroImage) || '');
-    setMetaTag('meta[name="robots"]', 'content', route ? 'index, follow' : 'noindex, follow');
+    if (primaryImage) {
+      setMetaTag('meta[property="og:image"]', 'content', primaryImage);
+      setMetaTag('meta[name="twitter:image"]', 'content', primaryImage);
+    } else {
+      document.querySelector('meta[property="og:image"]')?.remove();
+      document.querySelector('meta[name="twitter:image"]')?.remove();
+    }
+    setMetaTag('meta[name="robots"]', 'content', route ? 'index, follow, max-image-preview:large' : 'noindex, follow');
 
     // Canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]');
@@ -64,7 +72,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
         canonicalLink.remove();
       }
     }
-  }, [title, description, path, type, canonicalUrl, route]);
+  }, [title, description, path, type, canonicalUrl, route, primaryImage]);
 
   // Schema.org Organization padrão
   const organizationSchema = {
@@ -88,6 +96,10 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
+      {canonicalUrl && <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({
+        '@context':'https://schema.org', '@type':'WebPage', '@id':canonicalUrl+'#webpage', url:canonicalUrl, name:title, description,
+        ...(primaryImage ? {primaryImageOfPage:{'@type':'ImageObject','@id':canonicalUrl+'#primaryimage',contentUrl:primaryImage,url:primaryImage}, image:images.map(image=>getCanonicalUrl(image))} : {}),
+      })}}/>}
       {jsonLd && (
         <script
           type="application/ld+json"
