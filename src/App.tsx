@@ -1,3 +1,5 @@
+import { CapitalAreaPage } from './pages/CapitalAreaPage';
+import { CAPITAL_AREAS, capitalAreaPath } from './data/saoPauloAreas';
 import { LocalSeoPage } from './pages/LocalSeoPage';
 import { LOCAL_SEO_PAGES } from './data/campinasLocalPages';
 import { ContactRouting } from './components/ContactRouting';
@@ -99,6 +101,8 @@ export default function App({ initialUrl }: AppProps) {
 
   // Roteador de Páginas
   const renderPage = () => {
+    const capitalArea = CAPITAL_AREAS.find(area => capitalAreaPath(area.slug) === normalizedPath);
+    if (capitalArea) return <CapitalAreaPage key={capitalArea.slug} area={capitalArea}/>;
     const rentalLanding = RENTAL_LANDINGS.find(page => page.path === normalizedPath);
     if (rentalLanding) return <RentalLandingPage page={rentalLanding}/>;
     if (normalizedPath === SAO_MATEUS_PATH) return <SaoMateusPage />;
