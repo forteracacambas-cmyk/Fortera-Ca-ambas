@@ -1,4 +1,5 @@
 import React from 'react';
+import { CapitalAreaLinks } from './CapitalAreaPage';
 import { ArrowRight, Check, MessageCircle, Truck, Ruler, CalendarDays } from 'lucide-react';
 import { LOCAL_SEO_PAGES, localCityPath } from '../data/campinasLocalPages';
 import { SeoHead } from '../components/SeoHead';
@@ -41,6 +42,9 @@ export function LocalSeoPage({ slug }: { slug: string }) {
 
     <section className="max-w-7xl mx-auto px-5 sm:px-6 py-14"><h2 className="text-3xl font-black">Dúvidas sobre aluguel de caçamba em {city.name}</h2><div className="grid md:grid-cols-2 gap-5 mt-8">{faq.map(item=><article className="bg-white rounded-2xl border border-slate-200 p-6" key={item.q}><h3 className="text-lg font-bold">{item.q}</h3><p className="text-sm text-slate-600 leading-relaxed mt-3">{item.a}</p></article>)}</div></section>
 
+    {capital && <section className="bg-[#E9EDE8] border-t border-slate-200"><div className="max-w-7xl mx-auto px-5 sm:px-6 py-14"><p className="text-xs uppercase tracking-widest font-bold text-amber-700">Dentro da capital paulista</p><h2 className="text-3xl sm:text-4xl font-black mt-3">Aluguel de caçamba por zona e bairro de São Paulo</h2><p className="text-slate-600 leading-relaxed mt-5">Consulte orientações de contratação na Zona Leste, Norte, Sul e Oeste, com páginas específicas para os bairros abaixo. São locais dentro do município de São Paulo, com planejamento de acesso, carga e prazo conforme o endereço.</p><CapitalAreaLinks/><a className="inline-block underline font-bold mt-6" href="/aluguel-de-cacamba/sp/sao-paulo/sao-mateus/">Ver também São Mateus, São Paulo →</a></div></section>}
+
     <section className="bg-white border-y border-slate-200"><div className="max-w-7xl mx-auto px-5 sm:px-6 py-14"><h2 className="text-3xl font-black">{capital ? 'Outras localidades de São Paulo' : 'Cidades da Região Metropolitana de Campinas'}</h2><p className="text-slate-600 mt-4">Escolha o município da obra para consultar as orientações. Para pedir orçamento, use os botões de contato nesta página.</p><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">{LOCAL_SEO_PAGES.filter(item=>item.slug!==slug && item.slug!=='sao-paulo').map(item=><a key={item.slug} href={localCityPath(item.slug)} className="border border-slate-200 rounded-xl p-4 hover:border-amber-400 font-bold">{item.name} →</a>)}</div><p className="text-sm text-slate-500 mt-6">{!capital && <>Composição regional: <a className="underline" target="_blank" rel="noopener noreferrer" href="https://homologacao.agemcamp.sp.gov.br/sobre-a-rmc/">AGEMCAMP</a>. </>}<a href="/aluguel-de-cacamba/sp/" className="underline font-bold">Ver o estado de São Paulo</a></p></div></section>
+
   </div>;
 }
