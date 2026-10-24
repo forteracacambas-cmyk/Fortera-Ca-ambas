@@ -9,6 +9,7 @@ import App from './src/App';
 import { SITE_CONFIG, getCanonicalUrl } from './src/config/siteConfig';
 import { getRouteMeta } from './src/data/routesMetadata';
 import { getSitemapXml } from './src/data/sitemaps';
+import { getImageHeadTags } from './src/data/pageImages';
 
 dotenv.config();
 
@@ -99,7 +100,7 @@ async function createServer() {
         html = html.replace('</head>', `  <link rel="canonical" href="${canonical}" />\n  <meta property="og:url" content="${canonical}" />\n</head>`);
       }
 
-      if (is404) html = html.replace('</head>', '<meta name="robots" content="noindex, follow" /></head>');
+      html = html.replace('</head>', getImageHeadTags(pathname, !is404) + '</head>');
       res.status(is404 ? 404 : 200).set({ 'Content-Type': 'text/html; charset=utf-8' }).send(html);
     } catch (e: any) {
       if (!isProduction && vite) {
