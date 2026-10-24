@@ -11,8 +11,8 @@ declare global {
 }
 
 export type ContactSource = 'header' | 'footer' | 'floating' | 'mobile' | 'content' | 'quote_form';
-export function trackContactIntent(event: 'whatsapp_click' | 'quote_request', source: ContactSource = 'content', selections?: { dumpster_size: string; rental_period: string }) {
-  if (typeof window === 'undefined') return;
+export function trackContactIntent(event: 'whatsapp_click' | 'quote_request' | 'contactpc_click' | 'contact_phone_click' | 'contact_number_copy', source: ContactSource = 'content', selections?: { dumpster_size: string; rental_period: string }) {
+  if (typeof window === 'undefined' || ['localhost', '127.0.0.1'].includes(window.location.hostname)) return;
   try {
     if (localStorage.getItem(STORAGE_KEY) === 'accepted') {
       // Do not include CEP, address, message contents or destination query strings.
@@ -20,7 +20,7 @@ export function trackContactIntent(event: 'whatsapp_click' | 'quote_request', so
         dumpster_size: ['3 m³', '4 m³', '5 m³', '7 m³', '10 m³', 'Preciso de ajuda para escolher'].includes(selections.dumpster_size) ? selections.dumpster_size : 'nao_informado',
         rental_period: ['1-dia', '2-dias', '3-dias', '7-dias', '15-dias', '1-mes', '2-meses', '3-meses', 'outro'].includes(selections.rental_period) ? selections.rental_period : 'outro',
       } : {};
-      window.gtag?.('event', event, { contact_method: 'whatsapp', contact_source: source, page_path: window.location.pathname, ...safeSelections, transport_type: 'beacon' });
+      window.gtag?.('event', event, { contact_method: event === 'contactpc_click' ? 'desktop_contact' : event === 'contact_phone_click' ? 'phone' : event === 'contact_number_copy' ? 'copy_number' : 'whatsapp', contact_source: source, page_path: window.location.pathname, ...safeSelections, transport_type: 'beacon' });
     }
   } catch { /* Tracking must never interrupt an enquiry. */ }
 }
@@ -46,7 +46,7 @@ export function AnalyticsConsent({ currentUrl }: { currentUrl: string }) {
   }, []);
 
   useEffect(() => {
-    if (!ready || choice !== 'accepted') return;
+    if (!ready || choice !== 'accepted' || ['localhost', '127.0.0.1'].includes(window.location.hostname)) return;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () {
       window.dataLayer!.push(arguments);
@@ -64,21 +64,6 @@ export function AnalyticsConsent({ currentUrl }: { currentUrl: string }) {
     // Only the route is measured; URL queries and quote fields are not sent.
     window.gtag('event', 'page_view', { page_location: window.location.origin + currentUrl.split('?')[0], page_title: document.title });
   }, [choice, ready, currentUrl]);
-
-  useEffect(() => {
-    if (choice !== 'accepted') return;
-    const onClick = (event: MouseEvent) => {
-      const link = event.target instanceof Element ? event.target.closest('a') : null;
-      if ((event.button !== 0 && event.button !== 1) || !link?.href || !/^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(link.href)) return;
-      const source: ContactSource = link.closest('[data-contact-source="floating"]') ? 'floating'
-        : link.closest('[data-contact-source="mobile"]') ? 'mobile'
-        : link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'content';
-      trackContactIntent('whatsapp_click', source);
-    };
-    document.addEventListener('click', onClick);
-    document.addEventListener('auxclick', onClick);
-    return () => { document.removeEventListener('click', onClick); document.removeEventListener('auxclick', onClick); };
-  }, [choice]);
 
   const save = (value: Choice) => {
     try { localStorage.setItem(STORAGE_KEY, value); } catch { /* Session choice still works. */ }

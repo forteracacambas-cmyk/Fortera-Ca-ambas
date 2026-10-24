@@ -34,13 +34,13 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ currentPath })
 
         {/* Botão Formulário Completo */}
         <a
-          href="/orcamento/"
+          href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
           className="flex-1 bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-xs uppercase tracking-wider py-3 px-3 rounded-lg text-center shadow flex items-center justify-center gap-1.5 focus-visible-ring active:scale-95 transition-transform"
         >
           <svg className="w-4 h-4 text-[#10263D] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
-          <span>Formulário</span>
+          <span>Orçamento</span>
         </a>
 
       </div>

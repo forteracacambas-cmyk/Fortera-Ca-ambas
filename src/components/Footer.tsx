@@ -82,7 +82,7 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="/orcamento/" className="hover:text-[#FFC52D] transition-colors font-semibold text-[#FFC52D]">
+                <a href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba." className="hover:text-[#FFC52D] transition-colors font-semibold text-[#FFC52D]">
                   Solicitar Cotação Online &rarr;
                 </a>
               </li>
@@ -192,7 +192,7 @@ export const Footer: React.FC = () => {
             <a href="/sobre/" className="hover:text-white">Sobre</a>
             <a href="/privacidade/" className="hover:text-white">Privacidade</a>
             <a href="/atendimento/" className="hover:text-white">Atendimento Nacional</a>
-            <a href="/orcamento/" className="text-[#FFC52D] font-bold hover:underline">Orçamento</a>
+            <a href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba." className="text-[#FFC52D] font-bold hover:underline">Orçamento</a>
           </div>
         </div>
 

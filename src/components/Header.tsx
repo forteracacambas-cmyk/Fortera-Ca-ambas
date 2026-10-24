@@ -117,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath }) => {
             </a>
 
             <a
-              href="/orcamento/"
+              href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
               className="bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-black text-xs px-4 py-2.5 rounded-md shadow-sm transition-transform active:scale-95 focus-visible-ring flex items-center gap-1.5"
             >
               <span>Solicitar Orçamento</span>
@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath }) => {
               <span>Whats</span>
             </a>
             <a
-              href="/orcamento/"
+              href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
               className="sm:hidden bg-[#FFC52D] text-[#10263D] font-bold text-xs px-2.5 py-1.5 rounded focus-visible-ring"
             >
               Orçamento
@@ -204,7 +204,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath }) => {
             </a>
 
             <a
-              href="/orcamento/"
+              href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba."
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full text-center bg-[#FFC52D] hover:bg-[#EBB220] text-[#10263D] font-extrabold text-base py-3 px-4 rounded-md shadow"
             >
