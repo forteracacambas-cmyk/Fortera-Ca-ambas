@@ -22,7 +22,7 @@ export function LocalSeoPage({ slug }: { slug: string }) {
     { q: 'Qual tamanho escolher para meu entulho?', a: 'Descreva a reforma e, se possível, envie fotos. Consulte capacidades de 3, 4 e 5 m³; opções de 7 e 10 m³ dependem da operação. Volume não define sozinho o peso: concreto, cerâmica e materiais leves precisam de avaliações diferentes.' },
     { q: 'Posso contratar uma caçamba para entulho misto?', a: 'Informe quais materiais compõem a carga antes de contratar. A aceitação e a separação de gesso, madeira, terra e outros resíduos precisam ser confirmadas. Não misture lixo doméstico, líquidos, tintas ou materiais perigosos ao entulho.' },
     { q: `Como funciona a entrega e a retirada em ${city.name}?`, a: city.tip },
-    { q: 'Preciso preencher formulário para receber orçamento?', a: 'Não. No celular, toque no botão para abrir o WhatsApp com a mensagem de orçamento. No computador, você verá uma página com nosso telefone para ligar, copiar ou anotar e falar pelo celular.' },
+    { q: 'Preciso preencher formulário para receber orçamento?', a: 'Não. No celular, toque no botão para abrir o WhatsApp com a mensagem de orçamento. No computador, você verá uma página com nosso telefone para ligar ou anotar e falar pelo celular.' },
     { q: 'Posso alugar por dias ou por um mês?', a: 'Sim. Combine o prazo conforme a etapa da obra. Se a caçamba encher e a obra continuar, solicite a troca semanal à equipe. Confirme o período contratado, a programação e as condições antes de reservar.' },
   ];
   return <div className="bg-[#F6F5F1] text-[#10263D]">
