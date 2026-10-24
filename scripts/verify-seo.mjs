@@ -35,12 +35,12 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
   if (stateMatch) {
     const uf = stateMatch[1].toUpperCase();
     assert.ok(html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
-    assert.ok(html.includes('Cidades atendidas'), uf + ': visible coverage information');
-    assert.ok(html.includes('id="municipios-atendidos"'), uf + ': municipality directory');
+    assert.ok(html.includes('state-coverage-title'), uf + ': visible service information');
+    assert.equal(html.includes('id="municipios-atendidos"'), uf === 'SP', uf + ': city directory only in SP');
     assert.ok(html.includes('id="orcamento-local"'), uf + ': accessible CEP consultation');
     assert.ok(html.includes('id="duvidas-locacao"'), uf + ': rental questions');
     assert.ok(html.includes('srcSet="/images/estados/') || html.includes('srcset="/images/estados/'), uf + ': responsive illustration');
-    for (const city of municipalities.filter(item => item.uf === uf)) {
+    for (const city of municipalities.filter(item => item.uf === uf && uf === 'SP')) {
       assert.ok(html.includes(`href="/aluguel-de-cacamba/${uf.toLowerCase()}/${city.slug}/"`), uf + ': city preserved: ' + city.name);
     }
     for (const guide of ['/preco-aluguel-cacamba/', '/tamanhos-de-cacamba/', '/guias/o-que-pode-colocar-na-cacamba/']) {
@@ -48,7 +48,7 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
     }
   }
 }
-assert.equal(urls.length, 5626, 'three new keyword pages, existing city URLs preserved');
+assert.equal(urls.length, 5627, 'three new keyword pages, existing city URLs preserved');
 const rentalPaths = ['/locacao-de-cacamba/', '/alugar-cacamba-de-entulho/', '/cacamba-de-entulho/'];
 const landingBodies = [];
 for (const pathname of rentalPaths) {
@@ -57,7 +57,7 @@ for (const pathname of rentalPaths) {
   const html = await response.text(); landingBodies.push(html);
   assert.ok(html.includes('rel="canonical" href="' + origin + pathname + '"'), 'self canonical');
   assert.equal([...html.matchAll(/<h1[ >]/g)].length, 1, 'one landing H1');
-  assert.ok(html.includes('id="consultar-cep"'), 'CEP section');
+  assert.ok(!html.includes('ViaCEP') && !html.includes('<form'), 'no CEP or quote form');
   assert.ok(html.includes('https://wa.me/5511957596840'), 'WhatsApp destination');
   assert.ok(html.includes('srcSet="/images/contratacao/') || html.includes('srcset="/images/contratacao/'), 'responsive hero');
   assert.ok(html.includes('&quot;@type&quot;:&quot;Service&quot;') || html.includes('"@type":"Service"'), 'service structured data');
