@@ -1,3 +1,7 @@
+import { LocalSeoPage } from './pages/LocalSeoPage';
+import { LOCAL_SEO_PAGES } from './data/campinasLocalPages';
+import { ContactRouting } from './components/ContactRouting';
+import { ContactPcPage } from './pages/ContactPcPage';
 import { AnalyticsConsent } from './components/AnalyticsConsent';
 import { RentalLandingPage } from './pages/RentalLandingPage';
 import { RENTAL_LANDINGS } from './data/rentalLandingPages';
@@ -173,6 +177,7 @@ export default function App({ initialUrl }: AppProps) {
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
+      if (uf === 'SP' && LOCAL_SEO_PAGES.some(city => city.slug === citySlug)) return <LocalSeoPage key={citySlug} slug={citySlug}/>;
       if (!CITIES_DATA.some(c=>c.uf===uf && c.slug===citySlug)) return <NationalLocationPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
       return <CityDetailPage key={uf + citySlug} uf={uf} citySlug={citySlug} />;
     }
@@ -180,6 +185,8 @@ export default function App({ initialUrl }: AppProps) {
     // 404
     return <NotFoundPage />;
   };
+
+  if (normalizedPath === '/contatopc/') return <><ContactPcPage/><ContactRouting currentUrl={currentUrl}/><AnalyticsConsent currentUrl={currentUrl}/></>;
 
   return (
     <div className="flex flex-col min-h-screen text-[#10263D] bg-white pb-14 md:pb-0">
@@ -205,7 +212,7 @@ export default function App({ initialUrl }: AppProps) {
 
       {/* Barra de Ações Rápidas Mobile */}
       <MobileBottomBar currentPath={normalizedPath} />
-      <AnalyticsConsent currentUrl={currentUrl} />
+      <ContactRouting currentUrl={currentUrl}/><AnalyticsConsent currentUrl={currentUrl} />
     </div>
   );
 }
