@@ -48,7 +48,7 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
     }
   }
 }
-assert.equal(urls.length, 5627, 'three new keyword pages, existing city URLs preserved');
+assert.equal(urls.length, 5640, '13 capital areas added; existing city, service and state URLs preserved');
 const rentalPaths = ['/locacao-de-cacamba/', '/alugar-cacamba-de-entulho/', '/cacamba-de-entulho/'];
 const landingBodies = [];
 for (const pathname of rentalPaths) {
