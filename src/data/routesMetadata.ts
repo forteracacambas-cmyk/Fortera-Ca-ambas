@@ -135,7 +135,7 @@ export function getAllRoutes(): RouteMeta[] {
 
   NATIONAL_STATES.forEach(state => routes.push({ path: statePath(state.uf), ...stateSeo(state), changefreq: 'monthly', priority: 0.8 }));
   MUNICIPALITIES.filter(city=>!CITIES_DATA.some(c=>c.uf===city.uf&&c.slug===city.slug)).forEach(city=>routes.push({path:cityPath(city),title:'Aluguel de Caçamba em '+city.name+' '+city.uf+' | Fortera',description:'Consulte aluguel de caçamba em '+city.name+' — '+city.uf+', tamanhos e prazos por dias ou meses. Solicite orçamento para seu bairro no WhatsApp.',changefreq:'monthly',priority:0.7}));
-  routes.push({ path: '/contatopc/', title: 'Fale com a Fortera | Telefone e atendimento', description: 'Ligue ou salve o número (11) 95759-6840 para solicitar seu orçamento de caçamba.', changefreq: 'monthly', priority: 0.3 });
+  routes.push({ path: '/contatopc/', title: 'Fale com a Fortera | Telefone e atendimento', description: 'Ligue de um telefone fixo ou celular, ou fale pelo WhatsApp: (11) 95759-6840. Solicite seu orçamento de caçamba à Fortera.', changefreq: 'monthly', priority: 0.3 });
   LOCAL_SEO_PAGES.forEach(city => routes.push({path: localCityPath(city.slug), title: `Aluguel de Caçamba em ${city.name} SP | Fortera`, description: `Locação de caçamba de entulho em ${city.name}: ${city.focus.toLowerCase()}. Tamanhos, preço, entrega e retirada. Peça orçamento direto.`, changefreq: 'monthly', priority: 0.9}));
   CAPITAL_AREAS.forEach(area => routes.push({path:capitalAreaPath(area.slug),title:capitalAreaTitle(area),description:capitalAreaDescription(area),changefreq:'monthly',priority:0.8}));
   return [...new Map(routes.map(route => [route.path, route])).values()];
