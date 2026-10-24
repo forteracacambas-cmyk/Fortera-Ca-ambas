@@ -1,0 +1,23 @@
+export const LOCAL_IMAGES: Record<string, string> = {
+  "campinas": "/images/locais/ilustracao-01.webp",
+  "americana": "/images/locais/ilustracao-02.webp",
+  "artur-nogueira": "/images/locais/ilustracao-03.webp",
+  "cosmopolis": "/images/locais/ilustracao-04.webp",
+  "engenheiro-coelho": "/images/locais/ilustracao-05.webp",
+  "holambra": "/images/locais/ilustracao-06.webp",
+  "hortolandia": "/images/locais/ilustracao-02.webp",
+  "indaiatuba": "/images/locais/ilustracao-08.webp",
+  "itatiba": "/images/locais/ilustracao-09.webp",
+  "jaguariuna": "/images/locais/ilustracao-10.webp",
+  "monte-mor": "/images/locais/ilustracao-11.webp",
+  "morungaba": "/images/locais/ilustracao-12.webp",
+  "nova-odessa": "/images/locais/ilustracao-13.webp",
+  "paulinia": "/images/locais/ilustracao-14.webp",
+  "pedreira": "/images/locais/ilustracao-15.webp",
+  "santa-barbara-d-oeste": "/images/locais/ilustracao-01.webp",
+  "santo-antonio-de-posse": "/images/locais/ilustracao-02.webp",
+  "sumare": "/images/locais/ilustracao-03.webp",
+  "valinhos": "/images/locais/ilustracao-04.webp",
+  "vinhedo": "/images/locais/ilustracao-05.webp",
+  "sao-paulo": "/images/locais/ilustracao-03.webp"
+};

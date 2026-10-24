@@ -12,7 +12,7 @@ export const stateLocation = (state: StateInfo) => `${STATE_PREPOSITIONS[state.u
 export function stateSeo(state: StateInfo) {
   return {
     title: `Aluguel de Caçamba ${stateLocation(state)} (${state.uf}) | Fortera`,
-    description: `Locação de caçambas de entulho ${stateLocation(state)}. Consulte as cidades atendidas, tamanhos de 3 a 10 m³, prazo e preço para seu CEP pelo WhatsApp.`,
+    description: `Locação de caçambas de entulho ${stateLocation(state)}. Aluguel para obras e reformas, tamanhos de 3 a 10 m³ e orçamento direto. Confirme preço, entrega e retirada.`,
   };
 }
 

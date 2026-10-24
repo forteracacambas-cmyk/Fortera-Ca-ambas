@@ -1,3 +1,4 @@
+import { LOCAL_SEO_PAGES, localCityPath } from './campinasLocalPages';
 import { MUNICIPALITIES, NATIONAL_STATES, cityPath, statePath } from './nationalCoverage';
 import { SERVICE_AREAS } from './serviceAreas';
 import { CITIES_DATA } from './citiesData';
@@ -19,7 +20,7 @@ export function getAllRoutes(): RouteMeta[] {
     {
       path: '/',
       title: 'Aluguel de Caçambas de Entulho no Brasil | Fortera Caçambas',
-      description: 'Aluguel e locação de caçambas de entulho para obras e reformas no Brasil. Consulte seu CEP, escolha tamanho e prazo e peça orçamento pelo WhatsApp.',
+      description: 'Aluguel e locação de caçambas de entulho para obras e reformas no Brasil. Fale com a Fortera, escolha tamanho e prazo e peça orçamento pelo WhatsApp.',
       changefreq: 'weekly',
       priority: 1.0,
     },
@@ -133,6 +134,8 @@ export function getAllRoutes(): RouteMeta[] {
 
   NATIONAL_STATES.forEach(state => routes.push({ path: statePath(state.uf), ...stateSeo(state), changefreq: 'monthly', priority: 0.8 }));
   MUNICIPALITIES.filter(city=>!CITIES_DATA.some(c=>c.uf===city.uf&&c.slug===city.slug)).forEach(city=>routes.push({path:cityPath(city),title:'Aluguel de Caçamba em '+city.name+' '+city.uf+' | Fortera',description:'Consulte aluguel de caçamba em '+city.name+' — '+city.uf+', tamanhos e prazos por dias ou meses. Solicite orçamento para seu bairro no WhatsApp.',changefreq:'monthly',priority:0.7}));
+  routes.push({ path: '/contatopc/', title: 'Fale com a Fortera | Telefone e atendimento', description: 'Ligue ou salve o número (11) 95759-6840 para solicitar seu orçamento de caçamba.', changefreq: 'monthly', priority: 0.3 });
+  LOCAL_SEO_PAGES.forEach(city => routes.push({path: localCityPath(city.slug), title: `Aluguel de Caçamba em ${city.name} SP | Fortera`, description: `Locação de caçamba de entulho em ${city.name}: ${city.focus.toLowerCase()}. Tamanhos, preço, entrega e retirada. Peça orçamento direto.`, changefreq: 'monthly', priority: 0.9}));
   return [...new Map(routes.map(route => [route.path, route])).values()];
 }
 
