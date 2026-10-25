@@ -6,6 +6,7 @@ import { CITIES_DATA } from './citiesData';
 import { PRACTICAL_GUIDES } from './guidesData';
 import { SERVICES_DATA } from './servicesData';
 import { stateSeo } from './stateSeo';
+import { minasCityMeta } from './minasSeo';
 import { RENTAL_LANDINGS } from './rentalLandingPages';
 
 export interface RouteMeta {
@@ -138,7 +139,10 @@ export function getAllRoutes(): RouteMeta[] {
   routes.push({ path: '/contatopc/', title: 'Fale com a Fortera | Telefone e atendimento', description: 'Ligue de um telefone fixo ou celular, ou fale pelo WhatsApp: (11) 95759-6840. Solicite seu orçamento de caçamba à Fortera.', changefreq: 'monthly', priority: 0.3 });
   LOCAL_SEO_PAGES.forEach(city => routes.push({path: localCityPath(city.slug), title: `Aluguel de Caçamba em ${city.name} SP | Fortera`, description: `Locação de caçamba de entulho em ${city.name}: ${city.focus.toLowerCase()}. Tamanhos, preço, entrega e retirada. Peça orçamento direto.`, changefreq: 'monthly', priority: 0.9}));
   CAPITAL_AREAS.forEach(area => routes.push({path:capitalAreaPath(area.slug),title:capitalAreaTitle(area),description:capitalAreaDescription(area),changefreq:'monthly',priority:0.8}));
-  return [...new Map(routes.map(route => [route.path, route])).values()];
+  const unique = new Map(routes.map(route => [route.path, route]));
+  // Use the same MG metadata for SSR and client-side navigation, including legacy cities.
+  MUNICIPALITIES.filter(city => city.uf === 'MG').forEach(city => unique.set(cityPath(city), { path: cityPath(city), ...minasCityMeta(city), changefreq: 'monthly', priority: 0.8 }));
+  return [...unique.values()];
 }
 
 const ROUTE_INDEX = new Map(getAllRoutes().map(route=>[route.path,route]));

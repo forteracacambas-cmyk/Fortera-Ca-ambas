@@ -6,10 +6,13 @@ import { STATE_SCENES } from './stateSeo';
 import { RENTAL_LANDINGS } from './rentalLandingPages';
 import { SERVICES_DATA } from './servicesData';
 import { PRACTICAL_GUIDES } from './guidesData';
+import { MINAS_LOCALITIES, minasCityImage } from './minasSeo';
 
 // Select service images actually displayed in the page content.
 export function getPageImages(path: string): string[] {
   const route = path === '/' ? '/' : path.split('?')[0].replace(/\/$/, '') + '/';
+  const minas = route.match(/^\/aluguel-de-cacamba\/mg\/([^/]+)\/$/)?.[1];
+  if (minas && MINAS_LOCALITIES[minas]) return [minasCityImage(minas)];
   const area = CAPITAL_AREAS.find(area => capitalAreaPath(area.slug) === route);
   if (area) return [`/images/locais/ilustracao-${String(area.image).padStart(2, '0')}.webp`];
   const local = route.match(/^\/aluguel-de-cacamba\/sp\/([^/]+)\/$/)?.[1];

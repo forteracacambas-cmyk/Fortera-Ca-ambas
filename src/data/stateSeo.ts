@@ -10,6 +10,10 @@ const STATE_PREPOSITIONS: Record<string, string> = {
 export const stateLocation = (state: StateInfo) => `${STATE_PREPOSITIONS[state.uf] || 'em'} ${state.name}`;
 
 export function stateSeo(state: StateInfo) {
+  if (state.uf === 'MG') return {
+    title: 'Aluguel de Caçamba em Minas Gerais | 853 Municípios — Fortera',
+    description: 'Locação de caçamba de entulho em Minas Gerais. Encontre sua cidade entre os 853 municípios, consulte tamanhos, entrega e retirada e peça orçamento direto.',
+  };
   return {
     title: `Aluguel de Caçamba ${stateLocation(state)} (${state.uf}) | Fortera`,
     description: `Locação de caçambas de entulho ${stateLocation(state)}. Aluguel para obras e reformas, tamanhos de 3 a 10 m³ e orçamento direto. Confirme preço, entrega e retirada.`,
