@@ -4,6 +4,7 @@ import { MUNICIPALITIES, cityPath, normalizeSearch } from '../data/nationalCover
 import { STATE_CITY_MENTIONS, stateLocation } from '../data/stateSeo';
 import { SERVICE_AREAS } from '../data/serviceAreas';
 import { QuoteForm } from './QuoteForm';
+import { MinasStateIntro, MinasStateCoverage } from './MinasStateCoverage';
 
 export function StateCoverageContent({ state }: { state: StateInfo }) {
   const [search, setSearch] = useState('');
@@ -23,12 +24,14 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     { q: 'O que informar para receber o orçamento?', a: 'Informe cidade, bairro, ponto de entrega, tipo de resíduo, tamanho desejado e prazo. Avise sobre portões, ladeiras, ruas estreitas e horários de condomínio para avaliação do acesso do caminhão.' },
   ];
   return <>
+    {state.uf === 'MG' && <MinasStateIntro />}
     <section className="max-w-7xl mx-auto px-6 py-12" aria-labelledby="state-coverage-title">
       <h2 id="state-coverage-title" className="text-3xl font-black">Locação de caçamba de entulho {stateLocation(state)}</h2>
       <p className="mt-4 text-slate-600 leading-relaxed">A Fortera recebe pedidos de aluguel e locação de caçamba de entulho {stateLocation(state)} para obras, reformas e pequenas demolições. Fale diretamente com a equipe para escolher capacidade e período e combinar entrega, retirada e condições para o endereço da obra.</p>
       <nav aria-label="Atalhos para contratar caçamba" className="flex flex-wrap gap-3 mt-6">
         <a href="https://wa.me/5511957596840?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20ca%C3%A7amba." className="rounded-lg bg-[#10263D] text-white px-4 py-3 font-bold">Solicitar orçamento agora</a>
         {state.uf === 'SP' && <a href="#municipios-atendidos" className="rounded-lg border px-4 py-3 font-bold">Ver municípios de São Paulo</a>}
+        {state.uf === 'MG' && <a href="#municipios-atendidos" className="rounded-lg border px-4 py-3 font-bold">Ver os 853 municípios de Minas</a>}
         <a href="#duvidas-locacao" className="rounded-lg border px-4 py-3 font-bold">Preço e dúvidas</a>
       </nav>
       <div className="grid md:grid-cols-3 gap-5 mt-8">
@@ -47,5 +50,6 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
       {[...groups].sort(([a], [b]) => a.localeCompare(b, 'pt-BR')).map(([region, cities]) => <section id={regionId(region)} key={region} className="mt-8 scroll-mt-24"><h3 className="text-xl font-black">{groups.size === 1 && state.uf === 'DF' ? 'Distrito Federal' : `Região de ${region}`}</h3><ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4">{[...cities].sort((a, b) => a.name.localeCompare(b.name, 'pt-BR')).map(city => <li key={city.id}><a className="block border rounded-lg p-3 bg-white hover:bg-yellow-50" href={cityPath(city)}>{city.name} →</a></li>)}</ul></section>)}
       {groups.size === 0 && <p className="mt-6 p-5 bg-white border rounded-lg">Nenhuma localidade encontrada. Confira a grafia ou fale diretamente com a equipe.</p>}
     </div></section>}
+    {state.uf === 'MG' && <MinasStateCoverage />}
   </>;
 }
