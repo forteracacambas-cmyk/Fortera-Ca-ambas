@@ -9,6 +9,7 @@ import { RentalLandingPage } from './pages/RentalLandingPage';
 import { RENTAL_LANDINGS } from './data/rentalLandingPages';
 import { SaoMateusPage, SAO_MATEUS_PATH } from './pages/SaoMateusPage';
 import { NationalLocationPage } from './pages/NationalLocationPage';
+import { MinasCityPage } from './pages/MinasCityPage';
 import { CITIES_DATA } from './data/citiesData';
 import { RentalTerms } from './components/RentalTerms';
 import { RegionDetailPage } from './pages/RegionDetailPage';
@@ -181,6 +182,7 @@ export default function App({ initialUrl }: AppProps) {
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
+      if (uf === 'MG') return <MinasCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'SP' && LOCAL_SEO_PAGES.some(city => city.slug === citySlug)) return <LocalSeoPage key={citySlug} slug={citySlug}/>;
       if (!CITIES_DATA.some(c=>c.uf===uf && c.slug===citySlug)) return <NationalLocationPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
       return <CityDetailPage key={uf + citySlug} uf={uf} citySlug={citySlug} />;
