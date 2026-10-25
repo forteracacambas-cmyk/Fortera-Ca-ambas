@@ -19,7 +19,9 @@ const urls = [];
 for (const child of children) {
   const response = await fetchPage(child); assert.equal(response.status, 200);
   const xml = await response.text();
-  assert.ok(!xml.includes('<lastmod>'), 'no fabricated lastmod dates');
+  if (child === '/sitemaps/mg.xml') {
+    assert.equal((xml.match(/<lastmod>2026-10-25<\/lastmod>/g) || []).length, 854, 'explicit MG content release date');
+  } else assert.ok(!xml.includes('<lastmod>'), 'unchanged pages must not receive fabricated update dates');
   urls.push(...[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]));
 }
 assert.equal(new Set(urls).size, urls.length, 'sitemap URLs must be unique');
@@ -34,13 +36,13 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
   const stateMatch = pathname.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/$/);
   if (stateMatch) {
     const uf = stateMatch[1].toUpperCase();
-    assert.ok(html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
+    assert.ok(uf === 'MG' ? html.includes('853 Municípios — Fortera') : html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
     assert.ok(html.includes('state-coverage-title'), uf + ': visible service information');
-    assert.equal(html.includes('id="municipios-atendidos"'), uf === 'SP', uf + ': city directory only in SP');
+    assert.equal(html.includes('id="municipios-atendidos"'), ['SP', 'MG'].includes(uf), uf + ': city directory in SP and MG');
     assert.ok(html.includes('id="orcamento-local"'), uf + ': accessible CEP consultation');
     assert.ok(html.includes('id="duvidas-locacao"'), uf + ': rental questions');
     assert.ok(html.includes('srcSet="/images/estados/') || html.includes('srcset="/images/estados/'), uf + ': responsive illustration');
-    for (const city of municipalities.filter(item => item.uf === uf && uf === 'SP')) {
+    for (const city of municipalities.filter(item => item.uf === uf && ['SP', 'MG'].includes(uf))) {
       assert.ok(html.includes(`href="/aluguel-de-cacamba/${uf.toLowerCase()}/${city.slug}/"`), uf + ': city preserved: ' + city.name);
     }
     for (const guide of ['/preco-aluguel-cacamba/', '/tamanhos-de-cacamba/', '/guias/o-que-pode-colocar-na-cacamba/']) {
