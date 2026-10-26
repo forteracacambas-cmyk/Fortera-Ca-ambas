@@ -16,14 +16,18 @@ const index = await (await fetchPage('/sitemap.xml')).text();
 const children = [...index.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => new URL(match[1]).pathname);
 assert.equal(children.length, 28, 'main sitemap + 27 UFs');
 const urls = [];
+const updatedSP = new Set('campinas americana artur-nogueira cosmopolis engenheiro-coelho holambra hortolandia indaiatuba itatiba jaguariuna monte-mor morungaba nova-odessa paulinia pedreira santa-barbara-d-oeste santo-antonio-de-posse sumare valinhos vinhedo mairipora'.split(' '));
+const updatedPR = new Set(['matinhos','paranagua','apucarana','guaratuba']);
 for (const child of children) {
   const response = await fetchPage(child); assert.equal(response.status, 200);
   const xml = await response.text();
-  if (child === '/sitemaps/mg.xml') {
-    assert.equal((xml.match(/<lastmod>2026-10-25<\/lastmod>/g) || []).length, 854, 'explicit MG content release date');
-  } else if (child === '/sitemaps/ba.xml') {
-    assert.equal((xml.match(/<lastmod>2026-10-26<\/lastmod>/g) || []).length, 442, 'BA content release date');
-  } else assert.ok(!xml.includes('<lastmod>'), 'unchanged pages must not receive fabricated update dates');
+  for (const block of xml.matchAll(/<url>(.*?)<\/url>/gs)) {
+    const route = new URL(block[1].match(/<loc>(.*?)<\/loc>/)[1]).pathname;
+    const city = route.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/([^/]+)\/$/);
+    const edited = route.startsWith('/regioes/') || route === '/tamanhos-de-cacamba/' || city && ((city[1] === 'sp' && updatedSP.has(city[2])) || (city[1] === 'pr' && updatedPR.has(city[2])) || (city[1] === 'mg' && ['uberaba','curvelo'].includes(city[2])));
+    const expected = edited || route.startsWith('/aluguel-de-cacamba/ba/') ? '2026-10-26' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-25' : undefined;
+    assert.equal(block[1].match(/<lastmod>(.*?)<\/lastmod>/)?.[1], expected, route + ': factual release dates only');
+  }
   urls.push(...[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]));
 }
 assert.equal(new Set(urls).size, urls.length, 'sitemap URLs must be unique');
