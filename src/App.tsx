@@ -10,6 +10,9 @@ import { RENTAL_LANDINGS } from './data/rentalLandingPages';
 import { SaoMateusPage, SAO_MATEUS_PATH } from './pages/SaoMateusPage';
 import { NationalLocationPage } from './pages/NationalLocationPage';
 import { MinasCityPage } from './pages/MinasCityPage';
+import { BahiaCityPage } from './pages/BahiaCityPage';
+import { BahiaNeighborhoodPage } from './pages/BahiaNeighborhoodPage';
+import { BAHIA_NEIGHBORHOOD_PAGES, bahiaNeighborhoodPath } from './data/bahiaNeighborhoods';
 import { CITIES_DATA } from './data/citiesData';
 import { RentalTerms } from './components/RentalTerms';
 import { RegionDetailPage } from './pages/RegionDetailPage';
@@ -102,6 +105,8 @@ export default function App({ initialUrl }: AppProps) {
 
   // Roteador de Páginas
   const renderPage = () => {
+    const bahiaArea = BAHIA_NEIGHBORHOOD_PAGES.find(area => bahiaNeighborhoodPath(area) === normalizedPath);
+    if (bahiaArea) return <BahiaNeighborhoodPage key={normalizedPath} area={bahiaArea}/>;
     const capitalArea = CAPITAL_AREAS.find(area => capitalAreaPath(area.slug) === normalizedPath);
     if (capitalArea) return <CapitalAreaPage key={capitalArea.slug} area={capitalArea}/>;
     const rentalLanding = RENTAL_LANDINGS.find(page => page.path === normalizedPath);
@@ -182,6 +187,7 @@ export default function App({ initialUrl }: AppProps) {
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
+      if (uf === 'BA') return <BahiaCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'MG') return <MinasCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'SP' && LOCAL_SEO_PAGES.some(city => city.slug === citySlug)) return <LocalSeoPage key={citySlug} slug={citySlug}/>;
       if (!CITIES_DATA.some(c=>c.uf===uf && c.slug===citySlug)) return <NationalLocationPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
