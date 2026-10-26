@@ -1,7 +1,8 @@
 import localities from './bahiaLocalities.json';
 
 export const BAHIA_CONTENT_UPDATED = '2026-10-26';
-export const BAHIA_LOCALITIES: Record<string, { id: number; immediate: string; intermediate: string; districts: string[] }> = localities;
+// The API uses " ¿ " in some compound region names; normalize only that separator for display.
+export const BAHIA_LOCALITIES: Record<string, { id: number; immediate: string; intermediate: string; districts: string[] }> = Object.fromEntries(Object.entries(localities).map(([slug, city]) => [slug, { ...city, immediate: city.immediate.replaceAll(' ¿ ', ' — ') }]));
 export const bahiaRegionId = (name: string) => 'ba-' + name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
 export const BAHIA_SOURCES = { municipalities: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/29/municipios?orderBy=nome', districts: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados/29/distritos?orderBy=nome', date: '26/10/2026' };
 
