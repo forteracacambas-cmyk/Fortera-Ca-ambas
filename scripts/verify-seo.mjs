@@ -24,7 +24,7 @@ for (const child of children) {
   for (const block of xml.matchAll(/<url>(.*?)<\/url>/gs)) {
     const route = new URL(block[1].match(/<loc>(.*?)<\/loc>/)[1]).pathname;
     const city = route.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/([^/]+)\/$/);
-    const edited = route.startsWith('/regioes/') || route === '/tamanhos-de-cacamba/' || city && ((city[1] === 'sp' && updatedSP.has(city[2])) || (city[1] === 'pr' && updatedPR.has(city[2])) || (city[1] === 'mg' && ['uberaba','curvelo'].includes(city[2])));
+    const edited = route === '/aluguel-de-cacamba/sp/' || route.startsWith('/regioes/') || route === '/tamanhos-de-cacamba/' || city && ((city[1] === 'sp' && city[2] !== 'sao-paulo') || (city[1] === 'pr' && updatedPR.has(city[2])) || (city[1] === 'mg' && ['uberaba','curvelo'].includes(city[2])));
     const expected = edited || route.startsWith('/aluguel-de-cacamba/ba/') ? '2026-10-26' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-25' : undefined;
     assert.equal(block[1].match(/<lastmod>(.*?)<\/lastmod>/)?.[1], expected, route + ': factual release dates only');
   }
