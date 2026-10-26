@@ -5,6 +5,7 @@ import { STATE_CITY_MENTIONS, stateLocation } from '../data/stateSeo';
 import { SERVICE_AREAS } from '../data/serviceAreas';
 import { QuoteForm } from './QuoteForm';
 import { MinasStateIntro, MinasStateCoverage } from './MinasStateCoverage';
+import { BahiaStateIntro, BahiaStateCoverage } from './BahiaStateCoverage';
 
 export function StateCoverageContent({ state }: { state: StateInfo }) {
   const [search, setSearch] = useState('');
@@ -24,6 +25,7 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     { q: 'O que informar para receber o orçamento?', a: 'Informe cidade, bairro, ponto de entrega, tipo de resíduo, tamanho desejado e prazo. Avise sobre portões, ladeiras, ruas estreitas e horários de condomínio para avaliação do acesso do caminhão.' },
   ];
   return <>
+    {state.uf === 'BA' && <BahiaStateIntro />}
     {state.uf === 'MG' && <MinasStateIntro />}
     <section className="max-w-7xl mx-auto px-6 py-12" aria-labelledby="state-coverage-title">
       <h2 id="state-coverage-title" className="text-3xl font-black">Locação de caçamba de entulho {stateLocation(state)}</h2>
@@ -51,5 +53,6 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
       {groups.size === 0 && <p className="mt-6 p-5 bg-white border rounded-lg">Nenhuma localidade encontrada. Confira a grafia ou fale diretamente com a equipe.</p>}
     </div></section>}
     {state.uf === 'MG' && <MinasStateCoverage />}
+    {state.uf === 'BA' && <BahiaStateCoverage />}
   </>;
 }
