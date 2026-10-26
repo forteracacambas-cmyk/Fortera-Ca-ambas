@@ -8,6 +8,7 @@ import { LocalRentalDetails } from '../components/LocalRentalDetails';
 import { StateCoverageContent } from '../components/StateCoverageContent';
 import { SITE_IMAGES, getWhatsAppLink } from '../config/siteConfig';
 import { NotFoundPage } from './NotFoundPage';
+import { LocalSearchAnswers } from '../components/LocalSearchAnswers';
 
 export function NationalLocationPage({ uf, slug }: { uf: string; slug?: string }) {
   const state = NATIONAL_STATES.find(item => item.uf === uf.toUpperCase());
@@ -40,6 +41,7 @@ export function NationalLocationPage({ uf, slug }: { uf: string; slug?: string }
       </div>
     </section>}
     {state.uf === 'SP' && !city && <section className="max-w-7xl mx-auto px-6 py-8"><div className="p-6 bg-yellow-50 rounded-xl"><h2 className="text-2xl font-black">Bairros e distritos da capital</h2><p className="mt-3">São Mateus pertence ao município de São Paulo. Consulte as orientações do distrito para planejar sua entrega.</p><a className="inline-block mt-3 font-bold underline" href="/aluguel-de-cacamba/sp/sao-paulo/sao-mateus/">Caçamba em São Mateus, São Paulo →</a></div></section>}
+    {city && <LocalSearchAnswers uf={state.uf} slug={city.slug}/>}
     <LocalRentalDetails location={location} />
     {city && <section className="max-w-5xl mx-auto px-6 py-12"><h2 className="text-3xl font-black mb-5">Seu orçamento em {location}</h2><QuoteForm key={path} initialUf={state.uf} initialCity={city.name} /></section>}
     {city && <section className="bg-slate-50 py-12"><div className="max-w-7xl mx-auto px-6"><h2 className="text-2xl font-black">Outros municípios da região de {city.region}</h2><p className="mt-3 text-slate-600">Selecione o município em que sua obra está localizada.</p><div className="grid sm:grid-cols-3 gap-3 mt-5">{nearby.map(item => <a href={cityPath(item)} key={item.id} className="p-3 border rounded-lg bg-white">{item.name} →</a>)}</div><a href={statePath(state.uf)} className="inline-block font-bold underline mt-6">Ver todos os municípios de {state.name}</a></div></section>}

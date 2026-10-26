@@ -2,7 +2,8 @@ import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { DUMPSTER_SIZES, SAFETY_RULES, PRIMARY_DIMENSIONS_SOURCE } from '../data/dumpsterSizes';
-import { SITE_CONFIG, getWhatsAppSizeLink } from '../config/siteConfig';
+import { SITE_CONFIG, getWhatsAppSizeLink, getWhatsAppLink } from '../config/siteConfig';
+import { LOCAL_SEARCH_PROFILES, localSearchPath } from '../data/localSearchImprovements';
 
 export const TamanhosPage: React.FC = () => {
   return (
@@ -31,6 +32,8 @@ export const TamanhosPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <section className="py-12 border-b bg-[#F6F5F1]"><div className="max-w-7xl mx-auto px-4 sm:px-6"><h2 className="text-2xl sm:text-3xl font-black">Como escolher entre caçamba de 3, 4 e 5 m³?</h2><div className="grid md:grid-cols-3 gap-5 mt-7">{[{title:'O que será retirado?',text:'Liste piso, contrapiso, paredes, concreto e materiais leves separadamente. A composição muda o peso e as condições de recebimento.'},{title:'Quanto material e em qual etapa?',text:'Informe a área e as camadas removidas e se haverá descarte em fases. A área em m² não se transforma em capacidade sem considerar a espessura e o material.'},{title:'Onde a caçamba ficará?',text:'Confirme vaga e acesso antes de escolher apenas pelo volume. Dimensões do recipiente e espaço de operação do caminhão são verificações diferentes.'}].map(item=><article key={item.title} className="rounded-2xl bg-white border p-6"><h3 className="text-xl font-bold">{item.title}</h3><p className="mt-4 text-slate-600 leading-relaxed">{item.text}</p></article>)}</div><div className="mt-7"><a href={getWhatsAppLink('Olá! Gostaria de solicitar um orçamento de caçamba de entulho. Preciso de ajuda para escolher entre 3, 4 e 5 m³ conforme a minha reforma.')} target="_blank" rel="noopener noreferrer" className="inline-block rounded-xl bg-[#25D366] px-6 py-4 font-bold text-[#082c1b]">Quero ajuda para escolher o tamanho →</a></div><p className="mt-5 text-sm text-slate-600">Já sabe a cidade? Veja as orientações de entrega e peça o orçamento para o endereço.</p><nav aria-label="Orçamento de caçamba por município" className="flex flex-wrap gap-3 mt-4">{LOCAL_SEARCH_PROFILES.filter(p=>['campinas','monte-mor','mairipora','matinhos','paranagua','uberaba','curvelo'].includes(p.slug)).map(p=><a href={localSearchPath(p)} key={localSearchPath(p)} className="bg-white border rounded-lg px-4 py-3 font-bold">{p.name} — {p.uf} →</a>)}</nav></div></section>
 
       {/* Introdução Técnica sobre Densidade */}
       <section className="py-12 bg-slate-50 border-b border-slate-200">
