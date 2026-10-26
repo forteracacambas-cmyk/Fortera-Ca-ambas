@@ -21,6 +21,8 @@ for (const child of children) {
   const xml = await response.text();
   if (child === '/sitemaps/mg.xml') {
     assert.equal((xml.match(/<lastmod>2026-10-25<\/lastmod>/g) || []).length, 854, 'explicit MG content release date');
+  } else if (child === '/sitemaps/ba.xml') {
+    assert.equal((xml.match(/<lastmod>2026-10-26<\/lastmod>/g) || []).length, 442, 'BA content release date');
   } else assert.ok(!xml.includes('<lastmod>'), 'unchanged pages must not receive fabricated update dates');
   urls.push(...[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]));
 }
@@ -36,13 +38,13 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
   const stateMatch = pathname.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/$/);
   if (stateMatch) {
     const uf = stateMatch[1].toUpperCase();
-    assert.ok(uf === 'MG' ? html.includes('853 Municípios — Fortera') : html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
+    assert.ok(uf === 'BA' ? html.includes('417 Municípios — Fortera') : uf === 'MG' ? html.includes('853 Municípios — Fortera') : html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
     assert.ok(html.includes('state-coverage-title'), uf + ': visible service information');
-    assert.equal(html.includes('id="municipios-atendidos"'), ['SP', 'MG'].includes(uf), uf + ': city directory in SP and MG');
+    assert.equal(html.includes('id="municipios-atendidos"'), ['SP', 'MG', 'BA'].includes(uf), uf + ': city directory in SP and MG');
     assert.ok(html.includes('id="orcamento-local"'), uf + ': accessible CEP consultation');
     assert.ok(html.includes('id="duvidas-locacao"'), uf + ': rental questions');
     assert.ok(html.includes('srcSet="/images/estados/') || html.includes('srcset="/images/estados/'), uf + ': responsive illustration');
-    for (const city of municipalities.filter(item => item.uf === uf && ['SP', 'MG'].includes(uf))) {
+    for (const city of municipalities.filter(item => item.uf === uf && ['SP', 'MG', 'BA'].includes(uf))) {
       assert.ok(html.includes(`href="/aluguel-de-cacamba/${uf.toLowerCase()}/${city.slug}/"`), uf + ': city preserved: ' + city.name);
     }
     for (const guide of ['/preco-aluguel-cacamba/', '/tamanhos-de-cacamba/', '/guias/o-que-pode-colocar-na-cacamba/']) {
@@ -50,7 +52,7 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
     }
   }
 }
-assert.equal(urls.length, 5640, '13 capital areas added; existing city, service and state URLs preserved');
+assert.equal(urls.length, 5664, '13 capital areas added; existing city, service and state URLs preserved');
 const rentalPaths = ['/locacao-de-cacamba/', '/alugar-cacamba-de-entulho/', '/cacamba-de-entulho/'];
 const landingBodies = [];
 for (const pathname of rentalPaths) {
