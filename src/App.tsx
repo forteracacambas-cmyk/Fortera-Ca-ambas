@@ -10,6 +10,7 @@ import { RENTAL_LANDINGS } from './data/rentalLandingPages';
 import { SaoMateusPage, SAO_MATEUS_PATH } from './pages/SaoMateusPage';
 import { NationalLocationPage } from './pages/NationalLocationPage';
 import { MinasCityPage } from './pages/MinasCityPage';
+import { SaoPauloCityPage } from './pages/SaoPauloCityPage';
 import { BahiaCityPage } from './pages/BahiaCityPage';
 import { BahiaNeighborhoodPage } from './pages/BahiaNeighborhoodPage';
 import { BAHIA_NEIGHBORHOOD_PAGES, bahiaNeighborhoodPath } from './data/bahiaNeighborhoods';
@@ -190,6 +191,7 @@ export default function App({ initialUrl }: AppProps) {
       if (uf === 'BA') return <BahiaCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'MG') return <MinasCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'SP' && LOCAL_SEO_PAGES.some(city => city.slug === citySlug)) return <LocalSeoPage key={citySlug} slug={citySlug}/>;
+      if (uf === 'SP') return <SaoPauloCityPage key={citySlug} slug={citySlug}/>;
       if (!CITIES_DATA.some(c=>c.uf===uf && c.slug===citySlug)) return <NationalLocationPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
       return <CityDetailPage key={uf + citySlug} uf={uf} citySlug={citySlug} />;
     }
