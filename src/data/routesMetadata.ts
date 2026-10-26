@@ -7,6 +7,8 @@ import { PRACTICAL_GUIDES } from './guidesData';
 import { SERVICES_DATA } from './servicesData';
 import { stateSeo } from './stateSeo';
 import { minasCityMeta } from './minasSeo';
+import { bahiaCityMeta } from './bahiaSeo';
+import { BAHIA_NEIGHBORHOOD_PAGES, bahiaNeighborhoodPath, bahiaNeighborhoodMeta } from './bahiaNeighborhoods';
 import { RENTAL_LANDINGS } from './rentalLandingPages';
 
 export interface RouteMeta {
@@ -142,6 +144,8 @@ export function getAllRoutes(): RouteMeta[] {
   const unique = new Map(routes.map(route => [route.path, route]));
   // Use the same MG metadata for SSR and client-side navigation, including legacy cities.
   MUNICIPALITIES.filter(city => city.uf === 'MG').forEach(city => unique.set(cityPath(city), { path: cityPath(city), ...minasCityMeta(city), changefreq: 'monthly', priority: 0.8 }));
+  MUNICIPALITIES.filter(city => city.uf === 'BA').forEach(city => unique.set(cityPath(city), { path: cityPath(city), ...bahiaCityMeta(city), changefreq: 'monthly', priority: 0.8 }));
+  BAHIA_NEIGHBORHOOD_PAGES.forEach(area => unique.set(bahiaNeighborhoodPath(area), {path: bahiaNeighborhoodPath(area), ...bahiaNeighborhoodMeta(area), changefreq:'monthly',priority:0.8}));
   return [...unique.values()];
 }
 

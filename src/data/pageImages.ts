@@ -7,10 +7,16 @@ import { RENTAL_LANDINGS } from './rentalLandingPages';
 import { SERVICES_DATA } from './servicesData';
 import { PRACTICAL_GUIDES } from './guidesData';
 import { MINAS_LOCALITIES, minasCityImage } from './minasSeo';
+import { BAHIA_LOCALITIES, bahiaCityImage } from './bahiaSeo';
+import { BAHIA_NEIGHBORHOOD_PAGES, bahiaNeighborhoodPath, bahiaNeighborhoodImage } from './bahiaNeighborhoods';
 
 // Select service images actually displayed in the page content.
 export function getPageImages(path: string): string[] {
   const route = path === '/' ? '/' : path.split('?')[0].replace(/\/$/, '') + '/';
+  const bahiaArea = BAHIA_NEIGHBORHOOD_PAGES.find(area => bahiaNeighborhoodPath(area) === route);
+  if (bahiaArea) return [bahiaNeighborhoodImage(bahiaArea)];
+  const bahia = route.match(/^\/aluguel-de-cacamba\/ba\/([^/]+)\/$/)?.[1];
+  if (bahia && BAHIA_LOCALITIES[bahia]) return [bahiaCityImage(bahia)];
   const minas = route.match(/^\/aluguel-de-cacamba\/mg\/([^/]+)\/$/)?.[1];
   if (minas && MINAS_LOCALITIES[minas]) return [minasCityImage(minas)];
   const area = CAPITAL_AREAS.find(area => capitalAreaPath(area.slug) === route);
