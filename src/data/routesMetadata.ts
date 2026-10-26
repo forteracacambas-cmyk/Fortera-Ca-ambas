@@ -8,6 +8,7 @@ import { SERVICES_DATA } from './servicesData';
 import { stateSeo } from './stateSeo';
 import { minasCityMeta } from './minasSeo';
 import { bahiaCityMeta } from './bahiaSeo';
+import { saoPauloCityMeta, SAO_PAULO_PRESERVED } from './saoPauloSeo';
 import { LOCAL_SEARCH_META } from './localSearchImprovements';
 import { BAHIA_NEIGHBORHOOD_PAGES, bahiaNeighborhoodPath, bahiaNeighborhoodMeta } from './bahiaNeighborhoods';
 import { RENTAL_LANDINGS } from './rentalLandingPages';
@@ -147,7 +148,10 @@ export function getAllRoutes(): RouteMeta[] {
   MUNICIPALITIES.filter(city => city.uf === 'MG').forEach(city => unique.set(cityPath(city), { path: cityPath(city), ...minasCityMeta(city), changefreq: 'monthly', priority: 0.8 }));
   MUNICIPALITIES.filter(city => city.uf === 'BA').forEach(city => unique.set(cityPath(city), { path: cityPath(city), ...bahiaCityMeta(city), changefreq: 'monthly', priority: 0.8 }));
   BAHIA_NEIGHBORHOOD_PAGES.forEach(area => unique.set(bahiaNeighborhoodPath(area), {path: bahiaNeighborhoodPath(area), ...bahiaNeighborhoodMeta(area), changefreq:'monthly',priority:0.8}));
+  MUNICIPALITIES.filter(city => city.uf === 'SP' && !SAO_PAULO_PRESERVED.has(city.slug)).forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...saoPauloCityMeta(city), changefreq:'monthly',priority:0.8}));
   for (const [path, meta] of Object.entries(LOCAL_SEARCH_META)) {
+    const spSlug = path.match(/^\/aluguel-de-cacamba\/sp\/([^/]+)\/$/)?.[1];
+    if (spSlug && !SAO_PAULO_PRESERVED.has(spSlug)) continue;
     const existing = unique.get(path);
     if (existing) unique.set(path, { ...existing, ...meta });
   }

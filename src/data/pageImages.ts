@@ -1,3 +1,4 @@
+import { SAO_PAULO_LOCALITIES, SAO_PAULO_PRESERVED, saoPauloCityImage } from './saoPauloSeo';
 import { SITE_IMAGES } from '../config/siteConfig';
 import { CAPITAL_AREAS, capitalAreaPath } from './saoPauloAreas';
 import { LOCAL_IMAGES } from './localImages';
@@ -22,6 +23,7 @@ export function getPageImages(path: string): string[] {
   const area = CAPITAL_AREAS.find(area => capitalAreaPath(area.slug) === route);
   if (area) return [`/images/locais/ilustracao-${String(area.image).padStart(2, '0')}.webp`];
   const local = route.match(/^\/aluguel-de-cacamba\/sp\/([^/]+)\/$/)?.[1];
+  if (local && SAO_PAULO_LOCALITIES[local] && !SAO_PAULO_PRESERVED.has(local)) return [saoPauloCityImage(local)];
   if (local && LOCAL_IMAGES[local]) return [LOCAL_IMAGES[local]];
   const stateUf = route.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/$/)?.[1];
   const state = NATIONAL_STATES.find(state => state.uf.toLowerCase() === stateUf);

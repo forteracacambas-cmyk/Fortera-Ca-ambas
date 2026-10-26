@@ -1,3 +1,4 @@
+import { SAO_PAULO_CONTENT_UPDATED, SAO_PAULO_LOCALITIES, SAO_PAULO_PRESERVED } from './saoPauloSeo';
 import { getAllRoutes } from './routesMetadata';
 import { SITE_CONFIG } from '../config/siteConfig';
 import { NATIONAL_STATES } from './nationalCoverage';
@@ -12,6 +13,7 @@ const origin = SITE_CONFIG.siteUrl.replace(/\/$/, '');
 const routes = [...new Map(getAllRoutes().map(route => [route.path, route])).values()];
 const header = '<?xml version="1.0" encoding="UTF-8"?>';
 const files = ['principal', ...NATIONAL_STATES.map(state => state.uf.toLowerCase())];
+const saoPauloUpdatedPaths = new Set(['/aluguel-de-cacamba/sp/', ...Object.keys(SAO_PAULO_LOCALITIES).filter(slug => !SAO_PAULO_PRESERVED.has(slug)).map(slug => '/aluguel-de-cacamba/sp/' + slug + '/')]);
 
 // Split by state for diagnosis in Search Console; no invented daily lastmod dates.
 export function getSitemapXml(pathname: string): string | undefined {
@@ -22,5 +24,5 @@ export function getSitemapXml(pathname: string): string | undefined {
     const state = route.path.match(/^\/aluguel-de-cacamba\/([a-z]{2})\//)?.[1];
     return file === 'principal' ? !state : state === file;
   });
-  return header + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' + selected.map(route => '<url><loc>' + escapeXml(origin + route.path) + '</loc>' + (LOCAL_SEARCH_UPDATED_PATHS.has(route.path) || SERVICE_AREAS.some(area => route.path === '/regioes/' + area.slug + '/') ? '<lastmod>' + LOCAL_SEARCH_UPDATED + '</lastmod>' : route.path.startsWith('/aluguel-de-cacamba/mg/') ? '<lastmod>' + MINAS_CONTENT_UPDATED + '</lastmod>' : route.path.startsWith('/aluguel-de-cacamba/ba/') ? '<lastmod>' + BAHIA_CONTENT_UPDATED + '</lastmod>' : '') + getPageImages(route.path).map(image=>'<image:image><image:loc>'+escapeXml(new URL(image,origin).href)+'</image:loc></image:image>').join('') + '</url>').join('') + '</urlset>';
+  return header + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' + selected.map(route => '<url><loc>' + escapeXml(origin + route.path) + '</loc>' + (saoPauloUpdatedPaths.has(route.path) ? '<lastmod>' + SAO_PAULO_CONTENT_UPDATED + '</lastmod>' : LOCAL_SEARCH_UPDATED_PATHS.has(route.path) || SERVICE_AREAS.some(area => route.path === '/regioes/' + area.slug + '/') ? '<lastmod>' + LOCAL_SEARCH_UPDATED + '</lastmod>' : route.path.startsWith('/aluguel-de-cacamba/mg/') ? '<lastmod>' + MINAS_CONTENT_UPDATED + '</lastmod>' : route.path.startsWith('/aluguel-de-cacamba/ba/') ? '<lastmod>' + BAHIA_CONTENT_UPDATED + '</lastmod>' : '') + getPageImages(route.path).map(image=>'<image:image><image:loc>'+escapeXml(new URL(image,origin).href)+'</image:loc></image:image>').join('') + '</url>').join('') + '</urlset>';
 }
