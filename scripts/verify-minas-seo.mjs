@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import path from 'node:path';
 
 const temp = 'scripts/.minas-test.mjs';
-await build({ stdin: { contents: "export {MUNICIPALITIES,cityPath} from './src/data/nationalCoverage'; export {MINAS_LOCALITIES,MINAS_REGIONAL_GUIDES,minasCityMeta,minasCityImage} from './src/data/minasSeo'; export {getAllRoutes} from './src/data/routesMetadata'; export {getSitemapXml} from './src/data/sitemaps';", resolveDir: process.cwd() }, outfile: temp, bundle: true, platform: 'node', format: 'esm' });
+await build({ stdin: { contents: "export {MUNICIPALITIES,cityPath} from './src/data/nationalCoverage'; export {MINAS_LOCALITIES,MINAS_REGIONAL_GUIDES,minasCityMeta,minasCityImage,minasNeighborhoodNames,MINAS_NEIGHBORHOODS} from './src/data/minasSeo'; export {getAllRoutes} from './src/data/routesMetadata'; export {getSitemapXml} from './src/data/sitemaps';", resolveDir: process.cwd() }, outfile: temp, bundle: true, platform: 'node', format: 'esm' });
 try {
   const data = await import(pathToFileURL(path.resolve(temp)).href);
   const worker = (await import(pathToFileURL(path.resolve('cloudflare-dist/_worker.js')).href + '?t=' + Date.now())).default;
@@ -21,6 +21,10 @@ try {
   assert.equal(routes.length, new Set(routes.map(r => r.path)).size);
   const sitemap = data.getSitemapXml('/sitemaps/mg.xml');
   assert.equal((sitemap.match(/<url>/g) || []).length, 854);
+  assert.equal((sitemap.match(/<lastmod>2026-10-29<\/lastmod>/g)||[]).length,854);
+  assert.equal(routes.length,6049,'no new neighborhood or duplicate municipality URLs');
+  assert.equal(Object.keys(data.MINAS_NEIGHBORHOODS).length,55);
+  assert.equal(Object.values(data.MINAS_NEIGHBORHOODS).flat().length,1994);
   const state = await render('/aluguel-de-cacamba/mg/');
   assert.equal(state.status, 200);
   const cityLinks = new Set([...state.html.matchAll(/href="(\/aluguel-de-cacamba\/mg\/[^/]+\/)"/g)].map(m => m[1]));
@@ -45,13 +49,20 @@ try {
     for (const district of data.MINAS_LOCALITIES[city.slug].districts) assert.ok(html.includes(district.replaceAll('&', '&amp;').replaceAll("'", '&#x27;').replaceAll('"', '&quot;')), route + ' district ' + district);
     assert.ok(sitemap.includes('<loc>' + origin + route + '</loc>'));
     assert.ok(html.includes('wa.me/5511957596840?text='), route);
+    assert.ok(html.includes('id="atendimento-municipal"')&&html.includes('id="escolher-cacamba"'),route+' municipal improvements');
+    for(const n of data.minasNeighborhoodNames(city.slug)) assert.ok(html.includes(escapeHtml(n)),route+' neighborhood '+n);
+    const messages=[...html.matchAll(/href="https:\/\/wa.me\/5511957596840\?text=([^"]+)"/g)].map(m=>decodeURIComponent(m[1].replaceAll("&#x27;", "\u0027").replaceAll("&amp;","&")));
+    for(const size of [3,4,5]) assert.ok(messages.some(m=>m.includes(city.name)&&m.includes(size+' m³')),route+' capacity '+size);
+    assert.ok(messages.some(m=>m.includes(city.name)&&m.includes('7 dias')),route+' period');
+    assert.ok(messages.some(m=>m.includes(city.name)&&m.includes('Meu bairro ou distrito é:')),route+' locality contact');
     titles.add(meta.title); descriptions.add(meta.description);
     districtCounts.push(data.MINAS_LOCALITIES[city.slug].districts.length);
   }
   assert.equal(titles.size, 853); assert.equal(descriptions.size, 853);
   assert.equal((await render('/aluguel-de-cacamba/mg/cidade-inexistente/')).status, 404);
-  const evidence = { date: '2026-10-25', municipalPages: cities.length, statePages: 1, immediateRegions: 70, intermediateRegions: 13, districtRecords: districtCounts.reduce((a,b) => a+b,0), sitemapUrlsMG: 854, totalUrls: routes.length, uniqueTitles: titles.size, uniqueDescriptions: descriptions.size, stateCityLinks: cityLinks.size, checks: 'All 853 SSR responses, canonicals, H1, robots, schemas, visible image, districts, sitemap membership and direct contact; invalid city 404; no forms; no analytics contact events emitted' };
-  await fs.writeFile('../verificacao-minas-local.json', JSON.stringify(evidence, null, 2));
+  const evidence = { date: '2026-10-29', municipalPages: cities.length, neighborhoodMunicipalities: cities.filter(c=>data.minasNeighborhoodNames(c.slug).length).length, censusNeighborhoodRecords:1994, newRoutes:0, statePages: 1, immediateRegions: 70, intermediateRegions: 13, districtRecords: districtCounts.reduce((a,b) => a+b,0), sitemapUrlsMG: 854, totalUrls: routes.length, uniqueTitles: titles.size, uniqueDescriptions: descriptions.size, stateCityLinks: cityLinks.size, checks: 'All 853 SSR responses, canonicals, H1, robots, schemas, visible image, districts, sitemap membership and direct contact; invalid city 404; no forms; no analytics contact events emitted' };
+  await fs.writeFile('../verificacao-minas-cobertura-local.json', JSON.stringify(evidence, null, 2));
   console.log('PASS:', JSON.stringify(evidence));
 } finally { await fs.unlink(temp).catch(() => {}); }
 process.exit(0);
+
