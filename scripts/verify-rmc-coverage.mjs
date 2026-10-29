@@ -30,7 +30,7 @@ try {
   const hub=await render('/regioes/campinas-e-regiao/');
   for(const p of paths)assert.ok(hub.includes('href="'+p+'"'));
   assert.ok(hub.includes('Bairros e localidades para consultar:'));
-  assert.ok(!(await render('/aluguel-de-cacamba/sp/sao-paulo/')).includes('id="atendimento-municipal"'),'capital preserved');
+
   assert.ok(!(await render('/aluguel-de-cacamba/sp/campinas/cambui/')).includes('id="atendimento-municipal"'),'neighborhood page preserved');
   const sp=await render('/sitemaps/sp.xml');
   for(const p of paths)assert.ok(sp.includes('<loc>'+origin+p+'</loc><lastmod>2026-10-28</lastmod>'));
@@ -39,3 +39,4 @@ try {
   console.log('PASS '+JSON.stringify({...result,paths:undefined}));
 } finally {await fs.unlink(temp).catch(()=>{});}
 process.exit(0);
+

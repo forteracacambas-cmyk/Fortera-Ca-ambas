@@ -21,6 +21,8 @@ try{
   const route=d.cityPath(city),h=await render(route),local=d.SAO_PAULO_LOCALITIES[city.slug],meta=d.getRouteMeta(route);
   assert.ok(h.includes('<title>'+meta.title+'</title>'),route);
   assert.ok(h.includes('id="localidades"')&&h.includes('id="capacidades"'),route);
+  assert.ok(h.includes('id="atendimento-municipal"')&&h.includes('Consultar locação por 7 dias'));
+  for(const name of d.saoPauloNeighborhoodNames(city.slug)) assert.ok(h.includes(name.replaceAll('&','&amp;').replaceAll("'",'&#x27;').replaceAll('"','&quot;')),route+' neighborhood '+name);
   assert.ok(h.includes('Consultar 3 m³')&&h.includes('Consultar 4 m³')&&h.includes('Consultar 5 m³'));
   assert.ok(h.includes(local.immediate)&&h.includes(local.intermediate));
   for(const district of local.districts)assert.ok(h.includes(district.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll("'",'&#x27;'))||h.includes(district),route+' district '+district);
@@ -34,13 +36,15 @@ try{
  assert.equal(signatures.size,624,'geographic sections must differ beyond city-name substitution');
  const state=await render('/aluguel-de-cacamba/sp/');
  for(const c of towns)assert.ok(state.includes('href="'+d.cityPath(c)+'"'),'state links '+c.name);
+ const capital=await render('/aluguel-de-cacamba/sp/sao-paulo/');assert.ok(capital.includes('id="atendimento-municipal"')&&capital.includes('Consultar locação por 7 dias'));
  for(const slug of d.SAO_PAULO_PRESERVED){const h=await render('/aluguel-de-cacamba/sp/'+slug+'/');assert.ok(!h.includes('id="capacidades"'),'preserved '+slug);}
  const sitemap=await (await worker.fetch(new Request(origin+'/sitemaps/sp.xml'),{ASSETS:assets})).text();
- for(const route of paths){assert.ok(sitemap.includes('<loc>'+origin+route+'</loc><lastmod>2026-10-26</lastmod>'));assert.ok(d.getRouteMeta(route));}
+ for(const route of paths){assert.ok(sitemap.includes('<loc>'+origin+route+'</loc><lastmod>2026-10-29</lastmod>'));assert.ok(d.getRouteMeta(route));}
  assert.equal(d.getAllRoutes().length,6049);
  assert.equal((await worker.fetch(new Request(origin+'/aluguel-de-cacamba/sp/cidade-inventada/'),{ASSETS:assets})).status,404);
- const result={date:'2026-10-26',updatedCities:624,preservedCities:21,statePages:1,municipalities:645,districts:1042,intermediateRegions:11,immediateRegions:53,totalRoutes:6049,geographicSignatures:signatures.size,paths};
- await fs.writeFile('../verificacao-sao-paulo-local.json',JSON.stringify(result,null,2));console.log('PASS SP: '+JSON.stringify({...result,paths:undefined}));
+ paths.push('/aluguel-de-cacamba/sp/sao-paulo/');
+ const result={date:'2026-10-29',updatedCities:625,preservedCities:20,censusMunicipalities:Object.keys(d.SAO_PAULO_NEIGHBORHOODS).length,censusNames:Object.values(d.SAO_PAULO_NEIGHBORHOODS).flat().length,statePages:1,municipalities:645,districts:1042,intermediateRegions:11,immediateRegions:53,totalRoutes:6049,geographicSignatures:signatures.size,paths};
+ await fs.writeFile('../verificacao-sp-cobertura-local.json',JSON.stringify(result,null,2));console.log('PASS SP: '+JSON.stringify({...result,paths:undefined}));
 }finally{await fs.unlink(temp).catch(()=>{});}
 
 
