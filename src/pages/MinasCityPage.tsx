@@ -6,7 +6,8 @@ import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { getWhatsAppLink, getCanonicalUrl } from '../config/siteConfig';
 import { NotFoundPage } from './NotFoundPage';
-import { LocalSearchAnswers } from '../components/LocalSearchAnswers';
+import { MinasRentalOptions, MinasNeighborhoodCoverage } from '../components/MinasMunicipalCoverage';
+import { getLocalSearchProfile } from '../data/localSearchImprovements';
 
 export function MinasCityPage({ slug }: { slug: string }) {
   const city = MUNICIPALITIES.find(item => item.uf === 'MG' && item.slug === slug);
@@ -20,7 +21,9 @@ export function MinasCityPage({ slug }: { slug: string }) {
   const contact = getWhatsAppLink(`Olá! Gostaria de solicitar um orçamento de caçamba de entulho em ${city.name} — MG.`);
   const cta = (label = 'Pedir orçamento da minha obra') => <a href={contact} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-xl bg-[#25D366] px-5 sm:px-6 py-4 font-bold text-[#082c1b] hover:bg-[#53df88] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-amber-400"><MessageCircle size={20} aria-hidden="true"/>{label}<ArrowRight size={18} aria-hidden="true"/></a>;
   const districtRequest = districts.length ? `Se sua obra estiver em ${districts.slice(0, 3).join(', ')}, informe o nome do distrito junto de ${city.name}. O ponto de entrega precisa ser confirmado para aquela localidade, e não apenas para a sede.` : `Na base consultada, o distrito cadastrado corresponde a ${city.name}. Isso não substitui o bairro, o nome da rua e a referência do imóvel: esses detalhes continuam necessários para avaliar o atendimento.`;
+  const searchProfile=getLocalSearchProfile('MG',slug);
   const faq = [
+    ...(searchProfile ? [{q:searchProfile.question,a:searchProfile.answer}] : []),
     { q: `Quanto custa alugar uma caçamba em ${city.name}?`, a: `O orçamento considera o endereço em ${city.name}, o material, a capacidade, o acesso e o período. Confirme o valor total de entrega e retirada e as condições de troca ou prorrogação. Não há uma tarifa única confirmada para todos os endereços do município.` },
     { q: `Como solicitar para ${districts.length ? `um distrito de ${city.name}` : `um bairro de ${city.name}`}?`, a: districtRequest },
     { q: guide.question, a: guide.answer },
@@ -36,7 +39,8 @@ export function MinasCityPage({ slug }: { slug: string }) {
       <figure><img src={image} srcSet={`${image.replace('.webp', '-640.webp')} 640w, ${image} 1280w`} sizes="(min-width: 1024px) 48vw, 100vw" width={1280} height={853} fetchPriority="high" alt="Ilustração de caçamba de entulho para planejamento de obras e reformas" className="w-full aspect-[3/2] object-cover rounded-3xl shadow-xl"/><figcaption className="text-xs text-slate-300 mt-3">Imagem ilustrativa. Operação e disponibilidade confirmadas para o endereço.</figcaption><div className="mt-5 rounded-2xl border border-slate-600 p-5 bg-[#1A3856]"><p className="text-xs text-[#FFC52D] font-bold uppercase tracking-widest">Antes de começar</p><p className="font-bold mt-2">{note?.focus || guide.title}</p></div></figure>
     </div></section>
 
-    <LocalSearchAnswers uf="MG" slug={slug}/>
+    <MinasRentalOptions city={city}/>
+    <MinasNeighborhoodCoverage city={city}/>
     <section className="max-w-7xl mx-auto px-5 sm:px-6 py-14 lg:py-20"><div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10"><div><p className="text-amber-700 text-xs font-bold uppercase tracking-widest">Planejamento local</p><h2 className="text-3xl sm:text-4xl font-black mt-3">Locação de caçamba de entulho em {city.name}: do pedido à retirada.</h2><p className="mt-5 leading-relaxed text-slate-600">{note?.text || `${city.name} integra a região geográfica imediata de ${locality.immediate}, na região intermediária de ${locality.intermediate}. Para solicitar uma caçamba, identifique o município da obra antes de informar bairro ou distrito. Cidades que compartilham a mesma região não têm necessariamente a mesma condição de transporte, prazo ou preço.`}</p><p className="mt-5 leading-relaxed text-slate-600">A Fortera recebe sua solicitação e consulta a operação por rede de parceiros e afiliados. O orçamento confirma o atendimento para o endereço e o material informado. O envio da mensagem não representa reserva automática, nem indica existência de filial ou frota própria no município.</p></div><aside className="bg-white border border-slate-200 rounded-3xl p-7"><MapPin className="text-amber-700" aria-hidden="true"/><h3 className="text-xl font-bold mt-5">O que informar para a entrega</h3><p className="text-slate-600 leading-relaxed mt-4">{note?.tip || districtRequest}</p><ul className="mt-5 space-y-3">{guide.checklist.map(item => <li key={item} className="flex gap-2 text-sm"><Check size={18} className="text-emerald-700 shrink-0" aria-hidden="true"/>{item}</li>)}</ul></aside></div>
       <div className="grid md:grid-cols-3 gap-5 mt-10">{[{ Icon: Ruler, title: 'Capacidade e peso', text: 'Consulte 3, 4 e 5 m³ conforme a operação. A carga deve respeitar o limite de peso e permanecer dentro da borda.' }, { Icon: CalendarDays, title: 'Período combinado', text: 'Planeje dias ou período maior conforme a etapa. Confirme datas e condições de troca, retirada ou prorrogação.' }, { Icon: Truck, title: 'Acesso do caminhão', text: 'Descreva portão, vaga, piso e obstáculos. Mantenha a área livre até a retirada do equipamento.' }].map(({ Icon, title, text }) => <article key={title} className="bg-white border border-slate-200 p-7 rounded-2xl"><Icon className="text-amber-700" aria-hidden="true"/><h3 className="font-bold text-xl mt-4">{title}</h3><p className="text-slate-600 leading-relaxed mt-3">{text}</p></article>)}</div>
     </section>
