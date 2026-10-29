@@ -1,3 +1,4 @@
+import { minasCityMeta } from './minasSeo';
 import { LOCAL_SEO_PAGES, localCityPath } from './campinasLocalPages';
 import { RMC_COVERAGE } from './rmcCoverage';
 
@@ -43,6 +44,7 @@ export const LOCAL_SEARCH_META: Record<string,{title:string;description:string}>
   title:`Aluguel de Caçamba em ${p.name} ${p.uf} | Orçamento Fortera`,
   description:`Locação de caçamba de entulho em ${p.name}: consulte 3, 4 e 5 m³, preço e período de uso. Envie o bairro pelo WhatsApp e combine entrega e retirada.`,
 }]));
+for(const profile of LOCAL_SEARCH_PROFILES.filter(p=>p.uf==='MG')) LOCAL_SEARCH_META[localSearchPath(profile)].description=minasCityMeta(profile).description;
 export const RMC_LOCAL_LINKS=LOCAL_SEO_PAGES.filter(city=>city.slug!=='sao-paulo').map(city=>({name:city.name,path:localCityPath(city.slug)}));
 for (const city of LOCAL_SEO_PAGES) {
   const coverage=RMC_COVERAGE[city.slug];

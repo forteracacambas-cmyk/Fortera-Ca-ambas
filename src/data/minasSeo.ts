@@ -1,5 +1,27 @@
 import localities from './minasLocalities.json';
-export const MINAS_CONTENT_UPDATED = '2026-10-25';
+import neighborhoods from './minasNeighborhoods.json';
+export const MINAS_CONTENT_UPDATED = '2026-10-29';
+export const MINAS_NEIGHBORHOOD_SOURCE = 'https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2022/bairros/shp/UF/MG_bairros_CD2022.zip';
+export const MINAS_NEIGHBORHOODS: Record<string,string[]> = neighborhoods;
+export const MINAS_EXTRA_PLACES: Record<string,{names:string[];source:string}> = {
+  contagem:{names:['Eldorado','Industrial','Nacional','Novo Eldorado','Água Branca'],source:'https://portal.contagem.mg.gov.br/portal/paginas-dinamicas-categoria/7/regionais'},
+  'santa-luzia':{names:['Palmital','Cristina','Londrina','São Benedito'],source:'https://www.agenciarmbh.mg.gov.br/wp-content/uploads/2023/04/PRODUTO_03_SANTA_LUZIA-DIAG.TECNICO-TERRITORIAL.pdf'},
+};
+const MINAS_FEATURED_NEIGHBORHOODS: Record<string,string[]> = {
+  'belo-horizonte':['Centro','Savassi','Lourdes','Funcionários','Cidade Nova','Santa Mônica'],
+  uberlandia:['Centro','Santa Mônica','Tibery','Jardim Canaã','Jardim Ipanema'],
+  'juiz-de-fora':['Centro','São Mateus','Benfica','Nossa Senhora de Lourdes'],
+  betim:['Centro','Angola','Jardim Alterosas 1 Seção','Jardim Alterosas 2 Seção'],
+  uberaba:['Centro','Abadia','Fabrício','Lourdes'],
+  'governador-valadares':['Centro','Cidade Nova','Lourdes','Vila Parque Ibituruna'],
+  ipatinga:['Centro','Canaã','Parque Ipanema','Vila Ipanema'],
+};
+export const minasNeighborhoodNames=(slug:string)=>{
+  const names=MINAS_NEIGHBORHOODS[slug] || MINAS_EXTRA_PLACES[slug]?.names || [];
+  const featured=(MINAS_FEATURED_NEIGHBORHOODS[slug] || ['Centro']).filter(name=>names.includes(name));
+  return [...featured,...names.filter(name=>!featured.includes(name))];
+};
+export const minasNeighborhoodSource=(slug:string)=>MINAS_EXTRA_PLACES[slug]?.source || MINAS_NEIGHBORHOOD_SOURCE;
 
 export const MINAS_LOCALITIES: Record<string, { id: number; immediate: string; intermediate: string; districts: string[] }> = localities;
 export const minasRegionId = (name: string) => 'mg-' + name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -136,11 +158,14 @@ export const MINAS_CITY_NOTES: Record<string, { focus: string; text: string; tip
 export function minasCityMeta(city: { name: string; slug: string }) {
   const locality = MINAS_LOCALITIES[city.slug];
   const note = MINAS_CITY_NOTES[city.slug];
+  const places=minasNeighborhoodNames(city.slug);
   return {
     title: `Aluguel de Caçamba em ${city.name} MG | Fortera`,
-    description: note
+    description: places.length
+      ? `Aluguel de caçamba em ${city.name}: ${places.slice(0,2).join(', ')} e outros bairros. Consulte 3, 4 e 5 m³, preço, entrega e retirada para sua obra.`
+      : note
       ? `Locação de caçamba de entulho em ${city.name}: ${note.focus.toLowerCase()}. Consulte tamanho, entrega e retirada. Orçamento direto.`
-      : `Aluguel de caçamba de entulho em ${city.name}, região de ${locality.immediate}. Veja distritos, tamanhos e cuidados de entrega. Peça orçamento para sua obra.`,
+      : `Aluguel de caçamba em ${city.name}, região de ${locality.immediate}. Consulte 3, 4 e 5 m³, preço e atendimento no seu bairro ou distrito. Orçamento direto.`,
   };
 }
 
