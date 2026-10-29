@@ -1,3 +1,5 @@
+import { CampinasAreaPage } from './pages/CampinasAreaPage';
+import { CAMPINAS_AREA_PATH_INDEX } from './data/campinasAreas';
 import { CapitalAreaPage } from './pages/CapitalAreaPage';
 import { CAPITAL_AREAS, capitalAreaPath } from './data/saoPauloAreas';
 import { LocalSeoPage } from './pages/LocalSeoPage';
@@ -106,6 +108,8 @@ export default function App({ initialUrl }: AppProps) {
 
   // Roteador de Páginas
   const renderPage = () => {
+    const campinasArea = CAMPINAS_AREA_PATH_INDEX.get(normalizedPath);
+    if (campinasArea) return <CampinasAreaPage key={campinasArea.slug} area={campinasArea}/>;
     const bahiaArea = BAHIA_NEIGHBORHOOD_PAGES.find(area => bahiaNeighborhoodPath(area) === normalizedPath);
     if (bahiaArea) return <BahiaNeighborhoodPage key={normalizedPath} area={bahiaArea}/>;
     const capitalArea = CAPITAL_AREAS.find(area => capitalAreaPath(area.slug) === normalizedPath);
