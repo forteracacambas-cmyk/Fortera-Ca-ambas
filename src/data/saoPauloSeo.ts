@@ -1,9 +1,18 @@
+import { RMC_COVERAGE } from './rmcCoverage';
+import neighborhoods from './saoPauloNeighborhoods.json';
 import localities from './saoPauloLocalities.json';
 import { LOCAL_SEO_PAGES } from './campinasLocalPages';
 
-export const SAO_PAULO_CONTENT_UPDATED = '2026-10-26';
+export const SAO_PAULO_CONTENT_UPDATED = '2026-10-29';
 export const SAO_PAULO_LOCALITIES: Record<string, {id:number; immediate:string; intermediate:string; districts:string[]}> = localities;
 export const SAO_PAULO_PRESERVED = new Set(LOCAL_SEO_PAGES.map(city => city.slug));
+export const SAO_PAULO_NEIGHBORHOODS:Record<string,string[]>=neighborhoods;
+export const SAO_PAULO_NEIGHBORHOOD_SOURCE='https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2022/bairros/shp/UF/SP_bairros_CD2022.zip';
+export const saoPauloNeighborhoodNames=(slug:string)=>{
+ const names=(SAO_PAULO_NEIGHBORHOODS[slug] || RMC_COVERAGE[slug]?.places || []).filter(name=>!/^(sub)?setor\b/i.test(name));
+ return [...names.filter(n=>n==='Centro'),...names.filter(n=>n!=='Centro')];
+};
+export const saoPauloNeighborhoodSource=()=>SAO_PAULO_NEIGHBORHOOD_SOURCE;
 export const saoPauloRegionId = (name:string) => 'sp-' + name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-');
 export const SAO_PAULO_SOURCES = {municipalities:'https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/municipios?orderBy=nome', districts:'https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/distritos?orderBy=nome', date:'26/10/2026'};
 type Guide={title:string; planning:string; question:string; answer:string; checklist:string[]; image:number};
@@ -48,7 +57,8 @@ export const SAO_PAULO_CITY_NOTES:Record<string,Note>={
 export function saoPauloCityMeta(city:{name:string;slug:string}){
  const locality=SAO_PAULO_LOCALITIES[city.slug];
  const where=locality.districts.filter(name=>name!==city.name);
- const detail=where.length ? `sede e ${where.length} ${where.length===1?'distrito':'distritos'}` : `região de ${locality.immediate}`;
+ const places=saoPauloNeighborhoodNames(city.slug);
+ const detail=places.length ? `${places.slice(0,2).join(', ')} e outras localidades` : where.length ? `sede e ${where.length} ${where.length===1?'distrito':'distritos'}` : `região de ${locality.immediate}`;
  return {title:`Aluguel de Caçamba em ${city.name} SP | Orçamento Fortera`,description:`Locação de caçamba de entulho em ${city.name}: ${detail}. Consulte tamanhos, preço, prazo, entrega e retirada. Peça orçamento direto.`};
 }
 export function saoPauloCityImage(slug:string){
