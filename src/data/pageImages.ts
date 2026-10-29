@@ -1,3 +1,4 @@
+import { CAMPINAS_AREA_PATH_INDEX, campinasAreaImage } from './campinasAreas';
 import { SAO_PAULO_LOCALITIES, SAO_PAULO_PRESERVED, saoPauloCityImage } from './saoPauloSeo';
 import { SITE_IMAGES } from '../config/siteConfig';
 import { CAPITAL_AREAS, capitalAreaPath } from './saoPauloAreas';
@@ -14,6 +15,8 @@ import { BAHIA_NEIGHBORHOOD_PAGES, bahiaNeighborhoodPath, bahiaNeighborhoodImage
 // Select service images actually displayed in the page content.
 export function getPageImages(path: string): string[] {
   const route = path === '/' ? '/' : path.split('?')[0].replace(/\/$/, '') + '/';
+  const campinasArea = CAMPINAS_AREA_PATH_INDEX.get(route);
+  if(campinasArea)return [campinasAreaImage(campinasArea)];
   const bahiaArea = BAHIA_NEIGHBORHOOD_PAGES.find(area => bahiaNeighborhoodPath(area) === route);
   if (bahiaArea) return [bahiaNeighborhoodImage(bahiaArea)];
   const bahia = route.match(/^\/aluguel-de-cacamba\/ba\/([^/]+)\/$/)?.[1];

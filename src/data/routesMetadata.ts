@@ -1,3 +1,4 @@
+import { CAMPINAS_AREAS, campinasAreaPath, campinasAreaMeta } from './campinasAreas';
 import { CAPITAL_AREAS, capitalAreaPath, capitalAreaTitle, capitalAreaDescription } from './saoPauloAreas';
 import { LOCAL_SEO_PAGES, localCityPath } from './campinasLocalPages';
 import { MUNICIPALITIES, NATIONAL_STATES, cityPath, statePath } from './nationalCoverage';
@@ -155,6 +156,7 @@ export function getAllRoutes(): RouteMeta[] {
     const existing = unique.get(path);
     if (existing) unique.set(path, { ...existing, ...meta });
   }
+  CAMPINAS_AREAS.forEach(area => unique.set(campinasAreaPath(area),{path:campinasAreaPath(area),...campinasAreaMeta(area),changefreq:'monthly',priority:0.7}));
   return [...unique.values()];
 }
 
