@@ -1,4 +1,5 @@
 import { LOCAL_SEO_PAGES, localCityPath } from './campinasLocalPages';
+import { RMC_COVERAGE } from './rmcCoverage';
 
 export const LOCAL_SEARCH_UPDATED = '2026-10-26';
 export type LocalSearchProfile = { name: string; uf: string; slug: string; question: string; answer: string; preparation: string };
@@ -43,6 +44,10 @@ export const LOCAL_SEARCH_META: Record<string,{title:string;description:string}>
   description:`Locação de caçamba de entulho em ${p.name}: consulte 3, 4 e 5 m³, preço e período de uso. Envie o bairro pelo WhatsApp e combine entrega e retirada.`,
 }]));
 export const RMC_LOCAL_LINKS=LOCAL_SEO_PAGES.filter(city=>city.slug!=='sao-paulo').map(city=>({name:city.name,path:localCityPath(city.slug)}));
+for (const city of LOCAL_SEO_PAGES) {
+  const coverage=RMC_COVERAGE[city.slug];
+  if(coverage) LOCAL_SEARCH_META[localCityPath(city.slug)].description=`Aluguel de caçamba em ${city.name}: ${coverage.places.slice(0,2).join(', ')} e outros bairros. Consulte tamanho, preço, entrega e retirada para sua obra.`;
+}
 LOCAL_SEARCH_META['/tamanhos-de-cacamba/']={title:'Caçamba de 3, 4 ou 5 m³: Qual Tamanho Escolher? | Fortera',description:'Compare tamanhos de caçamba de entulho, medidas de referência e cuidados com volume e peso. Veja como escolher 3, 4 ou 5 m³ e peça orientação para sua obra.'};
 LOCAL_SEARCH_META['/regioes/campinas-e-regiao/']={title:'Caçamba na Região de Campinas | Encontre Sua Cidade — Fortera',description:'Escolha entre os 20 municípios da Região Metropolitana de Campinas. Veja a orientação da sua cidade e solicite orçamento de caçamba de entulho para o endereço.'};
 export const LOCAL_SEARCH_UPDATED_PATHS = new Set([...LOCAL_SEARCH_PROFILES.map(localSearchPath),'/tamanhos-de-cacamba/']);
