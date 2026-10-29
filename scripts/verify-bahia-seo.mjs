@@ -37,7 +37,7 @@ try {
  }
  assert.equal(titles.size,441);assert.equal(descs.size,441);
  assert.equal((await render('/aluguel-de-cacamba/ba/nao-existe/')).status,404);assert.equal((await render('/aluguel-de-cacamba/ba/salvador/bairro-inexistente/')).status,404);
- const routes=data.getAllRoutes();assert.equal(routes.length,5664);assert.equal(new Set(routes.map(r=>r.path)).size,routes.length);
+ const routes=data.getAllRoutes();assert.equal(routes.length,6049);assert.equal(new Set(routes.map(r=>r.path)).size,routes.length);
  const result={date:'2026-10-26',municipalPages:417,neighborhoodPages:24,statePages:1,intermediateRegions:10,immediateRegions:34,districts:Object.values(data.BAHIA_LOCALITIES).reduce((sum,c)=>sum+c.districts.length,0),uniqueTitles:titles.size,uniqueDescriptions:descs.size,stateMunicipalLinks:cityLinks.size,sitemapBA:442,totalCanonicalUrls:routes.length,checks:'All BA city and neighborhood SSR responses, H1, canonical, robots, Service, images, sitemaps, unique editorial neighborhood fields, district records, direct WhatsApp and invalid routes 404. No contact test events sent.'};
  await fs.writeFile('../verificacao-bahia-local.json',JSON.stringify(result,null,2));console.log('PASS: '+JSON.stringify(result));
 }finally{await fs.unlink(temp).catch(()=>{});}

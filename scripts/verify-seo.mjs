@@ -25,7 +25,7 @@ for (const child of children) {
     const route = new URL(block[1].match(/<loc>(.*?)<\/loc>/)[1]).pathname;
     const city = route.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/([^/]+)\/$/);
     const edited = route === '/aluguel-de-cacamba/sp/' || route.startsWith('/regioes/') || route === '/tamanhos-de-cacamba/' || city && ((city[1] === 'sp' && city[2] !== 'sao-paulo') || (city[1] === 'pr' && updatedPR.has(city[2])) || (city[1] === 'mg' && ['uberaba','curvelo'].includes(city[2])));
-    const expected = edited || route.startsWith('/aluguel-de-cacamba/ba/') ? '2026-10-26' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-25' : undefined;
+    const expected = route.startsWith('/aluguel-de-cacamba/sp/campinas/') ? '2026-10-28' : edited || route.startsWith('/aluguel-de-cacamba/ba/') ? '2026-10-26' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-25' : undefined;
     assert.equal(block[1].match(/<lastmod>(.*?)<\/lastmod>/)?.[1], expected, route + ': factual release dates only');
   }
   urls.push(...[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]));
@@ -56,7 +56,7 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
     }
   }
 }
-assert.equal(urls.length, 5664, '13 capital areas added; existing city, service and state URLs preserved');
+assert.equal(urls.length, 6049, '385 Campinas locality pages added; existing city, service and state URLs preserved');
 const rentalPaths = ['/locacao-de-cacamba/', '/alugar-cacamba-de-entulho/', '/cacamba-de-entulho/'];
 const landingBodies = [];
 for (const pathname of rentalPaths) {
@@ -120,3 +120,4 @@ try {
 } finally { await unlink(temp).catch(() => {}); }
 console.log(JSON.stringify({ sitemapFiles: children.length, uniqueCanonicalUrls: urls.length, checks: 'SSR, all states, redirects, 404, structured data, consent and tracking payload: passed' }));
 process.exit(0);
+

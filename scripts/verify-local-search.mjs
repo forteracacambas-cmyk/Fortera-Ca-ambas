@@ -30,8 +30,8 @@ try{
   checked.push(route);
  }
  const sizes=await render('/tamanhos-de-cacamba/');assert.ok(sizes.includes('Quero ajuda para escolher o tamanho'));assert.ok(sizes.includes('href="/aluguel-de-cacamba/sp/campinas/"'));checked.push('/tamanhos-de-cacamba/');
- assert.equal(d.getAllRoutes().length,5664,'no duplicate keyword routes introduced');
- const result={date:'2026-10-26',localPages:27,regionPages:d.SERVICE_AREAS.length,guidePages:1,totalUpdatedPages:checked.length,regionalCityLinks,sitemapTotal:5664,paths:checked,checks:'SSR, canonical, H1, revised metadata, locality-specific questions, capacity/period contact messages, all regional city destinations, Campinas locality coverage and 404 regression handled by general verifier. No production GA contact tests.'};
+ assert.equal(d.getAllRoutes().length,6049,'no duplicate keyword routes introduced');
+ const result={date:'2026-10-26',localPages:27,regionPages:d.SERVICE_AREAS.length,guidePages:1,totalUpdatedPages:checked.length,regionalCityLinks,sitemapTotal:6049,paths:checked,checks:'SSR, canonical, H1, revised metadata, locality-specific questions, capacity/period contact messages, all regional city destinations, Campinas locality coverage and 404 regression handled by general verifier. No production GA contact tests.'};
  await fs.writeFile('../verificacao-campinas-melhorias-local.json',JSON.stringify(result,null,2));console.log('PASS: '+JSON.stringify({...result,paths:undefined}));
 }finally{await fs.unlink(temp).catch(()=>{});}
 process.exit(0);

@@ -37,9 +37,9 @@ try{
  for(const slug of d.SAO_PAULO_PRESERVED){const h=await render('/aluguel-de-cacamba/sp/'+slug+'/');assert.ok(!h.includes('id="capacidades"'),'preserved '+slug);}
  const sitemap=await (await worker.fetch(new Request(origin+'/sitemaps/sp.xml'),{ASSETS:assets})).text();
  for(const route of paths){assert.ok(sitemap.includes('<loc>'+origin+route+'</loc><lastmod>2026-10-26</lastmod>'));assert.ok(d.getRouteMeta(route));}
- assert.equal(d.getAllRoutes().length,5664);
+ assert.equal(d.getAllRoutes().length,6049);
  assert.equal((await worker.fetch(new Request(origin+'/aluguel-de-cacamba/sp/cidade-inventada/'),{ASSETS:assets})).status,404);
- const result={date:'2026-10-26',updatedCities:624,preservedCities:21,statePages:1,municipalities:645,districts:1042,intermediateRegions:11,immediateRegions:53,totalRoutes:5664,geographicSignatures:signatures.size,paths};
+ const result={date:'2026-10-26',updatedCities:624,preservedCities:21,statePages:1,municipalities:645,districts:1042,intermediateRegions:11,immediateRegions:53,totalRoutes:6049,geographicSignatures:signatures.size,paths};
  await fs.writeFile('../verificacao-sao-paulo-local.json',JSON.stringify(result,null,2));console.log('PASS SP: '+JSON.stringify({...result,paths:undefined}));
 }finally{await fs.unlink(temp).catch(()=>{});}
 
