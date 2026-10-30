@@ -1,3 +1,4 @@
+import { ParanaStateIntro, ParanaStateCoverage } from './ParanaStateCoverage';
 import { RioStateIntro, RioStateCoverage } from './RioStateCoverage';
 import React, { useState } from 'react';
 import type { StateInfo } from '../data/regionsAndStates';
@@ -31,6 +32,7 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     {state.uf === 'BA' && <BahiaStateIntro />}
     {state.uf === 'MG' && <MinasStateIntro />}
     {state.uf === 'RJ' && <RioStateIntro />}
+    {state.uf === 'PR' && <ParanaStateIntro />}
     <section className="max-w-7xl mx-auto px-6 py-12" aria-labelledby="state-coverage-title">
       <h2 id="state-coverage-title" className="text-3xl font-black">Locação de caçamba de entulho {stateLocation(state)}</h2>
       <p className="mt-4 text-slate-600 leading-relaxed">A Fortera recebe pedidos de aluguel e locação de caçamba de entulho {stateLocation(state)} para obras, reformas e pequenas demolições. Fale diretamente com a equipe para escolher capacidade e período e combinar entrega, retirada e condições para o endereço da obra.</p>
@@ -52,6 +54,7 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     {state.uf === 'SP' && <SaoPauloStateCoverage />}
     {state.uf === 'MG' && <MinasStateCoverage />}
     {state.uf === 'RJ' && <RioStateCoverage />}
+    {state.uf === 'PR' && <ParanaStateCoverage />}
     {state.uf === 'BA' && <BahiaStateCoverage />}
   </>;
 }
