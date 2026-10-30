@@ -1,3 +1,4 @@
+import { rioCityMeta } from './rioSeo';
 import { CAMPINAS_AREAS, campinasAreaPath, campinasAreaMeta } from './campinasAreas';
 import { CAPITAL_AREAS, capitalAreaPath, capitalAreaTitle, capitalAreaDescription } from './saoPauloAreas';
 import { LOCAL_SEO_PAGES, localCityPath } from './campinasLocalPages';
@@ -148,6 +149,7 @@ export function getAllRoutes(): RouteMeta[] {
   // Use the same MG metadata for SSR and client-side navigation, including legacy cities.
   MUNICIPALITIES.filter(city => city.uf === 'MG').forEach(city => unique.set(cityPath(city), { path: cityPath(city), ...minasCityMeta(city), changefreq: 'monthly', priority: 0.8 }));
   MUNICIPALITIES.filter(city => city.uf === 'BA').forEach(city => unique.set(cityPath(city), { path: cityPath(city), ...bahiaCityMeta(city), changefreq: 'monthly', priority: 0.8 }));
+  MUNICIPALITIES.filter(city => city.uf === 'RJ').forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...rioCityMeta(city), changefreq:'monthly',priority:0.8}));
   BAHIA_NEIGHBORHOOD_PAGES.forEach(area => unique.set(bahiaNeighborhoodPath(area), {path: bahiaNeighborhoodPath(area), ...bahiaNeighborhoodMeta(area), changefreq:'monthly',priority:0.8}));
   MUNICIPALITIES.filter(city => city.uf === 'SP' && !SAO_PAULO_PRESERVED.has(city.slug)).forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...saoPauloCityMeta(city), changefreq:'monthly',priority:0.8}));
   for (const [path, meta] of Object.entries(LOCAL_SEARCH_META)) {
