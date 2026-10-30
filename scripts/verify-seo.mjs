@@ -26,7 +26,7 @@ for (const child of children) {
     const city = route.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/([^/]+)\/$/);
     const edited = route === '/aluguel-de-cacamba/sp/' || route.startsWith('/regioes/') || route === '/tamanhos-de-cacamba/' || city && ((city[1] === 'sp' && city[2] !== 'sao-paulo') || (city[1] === 'pr' && updatedPR.has(city[2])) || (city[1] === 'mg' && ['uberaba','curvelo'].includes(city[2])));
     const spNew = route === '/aluguel-de-cacamba/sp/' || city && city[1] === 'sp' && !new Set('campinas americana artur-nogueira cosmopolis engenheiro-coelho holambra hortolandia indaiatuba itatiba jaguariuna monte-mor morungaba nova-odessa paulinia pedreira santa-barbara-d-oeste santo-antonio-de-posse sumare valinhos vinhedo'.split(' ')).has(city[2]);
-    const expected = route.startsWith('/aluguel-de-cacamba/rj/') ? '2026-10-29' : spNew ? '2026-10-29' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-29' : route.startsWith('/aluguel-de-cacamba/sp/campinas/') || route === '/regioes/campinas-e-regiao/' || city && city[1] === 'sp' && updatedSP.has(city[2]) && city[2] !== 'mairipora' ? '2026-10-28' : edited || route.startsWith('/aluguel-de-cacamba/ba/') ? '2026-10-26' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-25' : undefined;
+    const expected = route.startsWith('/aluguel-de-cacamba/pr/') ? '2026-10-29' : route.startsWith('/aluguel-de-cacamba/rj/') ? '2026-10-29' : spNew ? '2026-10-29' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-29' : route.startsWith('/aluguel-de-cacamba/sp/campinas/') || route === '/regioes/campinas-e-regiao/' || city && city[1] === 'sp' && updatedSP.has(city[2]) && city[2] !== 'mairipora' ? '2026-10-28' : edited || route.startsWith('/aluguel-de-cacamba/ba/') ? '2026-10-26' : route.startsWith('/aluguel-de-cacamba/mg/') ? '2026-10-25' : undefined;
     assert.equal(block[1].match(/<lastmod>(.*?)<\/lastmod>/)?.[1], expected, route + ': factual release dates only');
   }
   urls.push(...[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]));
@@ -43,13 +43,13 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
   const stateMatch = pathname.match(/^\/aluguel-de-cacamba\/([a-z]{2})\/$/);
   if (stateMatch) {
     const uf = stateMatch[1].toUpperCase();
-    assert.ok(uf === 'RJ' ? html.includes('92 Municípios — Fortera') : uf === 'BA' ? html.includes('417 Municípios — Fortera') : uf === 'MG' ? html.includes('853 Municípios — Fortera') : html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
+    assert.ok(uf === 'PR' ? html.includes('399 Municípios — Fortera') : uf === 'RJ' ? html.includes('92 Municípios — Fortera') : uf === 'BA' ? html.includes('417 Municípios — Fortera') : uf === 'MG' ? html.includes('853 Municípios — Fortera') : html.includes(`(${uf}) | Fortera`), uf + ': state-specific title');
     assert.ok(html.includes('state-coverage-title'), uf + ': visible service information');
-    assert.equal(html.includes('id="municipios-atendidos"'), ['SP', 'MG', 'BA', 'RJ'].includes(uf), uf + ': city directory in SP and MG');
+    assert.equal(html.includes('id="municipios-atendidos"'), ['SP', 'MG', 'BA', 'RJ', 'PR'].includes(uf), uf + ': city directory in SP and MG');
     assert.ok(html.includes('id="orcamento-local"'), uf + ': accessible CEP consultation');
     assert.ok(html.includes('id="duvidas-locacao"'), uf + ': rental questions');
     assert.ok(html.includes('srcSet="/images/estados/') || html.includes('srcset="/images/estados/'), uf + ': responsive illustration');
-    for (const city of municipalities.filter(item => item.uf === uf && ['SP', 'MG', 'BA', 'RJ'].includes(uf))) {
+    for (const city of municipalities.filter(item => item.uf === uf && ['SP', 'MG', 'BA', 'RJ', 'PR'].includes(uf))) {
       assert.ok(html.includes(`href="/aluguel-de-cacamba/${uf.toLowerCase()}/${city.slug}/"`), uf + ': city preserved: ' + city.name);
     }
     for (const guide of ['/preco-aluguel-cacamba/', '/tamanhos-de-cacamba/', '/guias/o-que-pode-colocar-na-cacamba/']) {
@@ -121,4 +121,5 @@ try {
 } finally { await unlink(temp).catch(() => {}); }
 console.log(JSON.stringify({ sitemapFiles: children.length, uniqueCanonicalUrls: urls.length, checks: 'SSR, all states, redirects, 404, structured data, consent and tracking payload: passed' }));
 process.exit(0);
+
 
