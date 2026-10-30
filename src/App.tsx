@@ -1,3 +1,4 @@
+import { RioCityPage } from './pages/RioCityPage';
 import { CampinasAreaPage } from './pages/CampinasAreaPage';
 import { CAMPINAS_AREA_PATH_INDEX } from './data/campinasAreas';
 import { CapitalAreaPage } from './pages/CapitalAreaPage';
@@ -192,6 +193,7 @@ export default function App({ initialUrl }: AppProps) {
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
+      if (uf === 'RJ') return <RioCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'BA') return <BahiaCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'MG') return <MinasCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'SP' && LOCAL_SEO_PAGES.some(city => city.slug === citySlug)) return <LocalSeoPage key={citySlug} slug={citySlug}/>;
