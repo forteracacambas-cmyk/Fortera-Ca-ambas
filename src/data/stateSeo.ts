@@ -10,6 +10,7 @@ const STATE_PREPOSITIONS: Record<string, string> = {
 export const stateLocation = (state: StateInfo) => `${STATE_PREPOSITIONS[state.uf] || 'em'} ${state.name}`;
 
 export function stateSeo(state: StateInfo) {
+  if (state.uf === 'PR') return {title:'Aluguel de Caçamba no Paraná | 399 Municípios — Fortera',description:'Locação de caçamba de entulho no Paraná. Encontre seu município, consulte capacidades, preço, prazo, entrega e retirada. Orçamento para sua obra sem formulário.'};
   if (state.uf === 'RJ') return {title:'Aluguel de Caçamba no Rio de Janeiro | 92 Municípios — Fortera',description:'Locação de caçamba de entulho no estado do Rio de Janeiro. Encontre sua cidade entre os 92 municípios, consulte tamanho, preço, entrega e retirada e peça orçamento direto.'};
   if (state.uf === 'BA') return {
     title: 'Aluguel de Caçamba na Bahia | 417 Municípios — Fortera',
