@@ -1,3 +1,4 @@
+import { RioStateIntro, RioStateCoverage } from './RioStateCoverage';
 import React, { useState } from 'react';
 import type { StateInfo } from '../data/regionsAndStates';
 import { MUNICIPALITIES, cityPath, normalizeSearch } from '../data/nationalCoverage';
@@ -29,6 +30,7 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     {state.uf === 'SP' && <SaoPauloStateIntro />}
     {state.uf === 'BA' && <BahiaStateIntro />}
     {state.uf === 'MG' && <MinasStateIntro />}
+    {state.uf === 'RJ' && <RioStateIntro />}
     <section className="max-w-7xl mx-auto px-6 py-12" aria-labelledby="state-coverage-title">
       <h2 id="state-coverage-title" className="text-3xl font-black">Locação de caçamba de entulho {stateLocation(state)}</h2>
       <p className="mt-4 text-slate-600 leading-relaxed">A Fortera recebe pedidos de aluguel e locação de caçamba de entulho {stateLocation(state)} para obras, reformas e pequenas demolições. Fale diretamente com a equipe para escolher capacidade e período e combinar entrega, retirada e condições para o endereço da obra.</p>
@@ -49,6 +51,7 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     {areas.length > 0 && <section className="max-w-7xl mx-auto px-6 pb-12"><h2 className="text-2xl font-black">Orientações para regiões de {state.name}</h2><div className="flex flex-wrap gap-3 mt-5">{areas.map(area => <a href={`/regioes/${area.slug}/`} key={area.slug} className="rounded-lg border p-3 font-bold">{area.name} →</a>)}</div></section>}
     {state.uf === 'SP' && <SaoPauloStateCoverage />}
     {state.uf === 'MG' && <MinasStateCoverage />}
+    {state.uf === 'RJ' && <RioStateCoverage />}
     {state.uf === 'BA' && <BahiaStateCoverage />}
   </>;
 }
