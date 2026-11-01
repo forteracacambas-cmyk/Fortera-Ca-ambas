@@ -30,7 +30,7 @@ try {
     assert.ok(html.includes('https://wa.me/5511957596840'));
     assert.ok(capital.includes('href="'+p+'"'),'capital discovers child');
     assert.ok(sitemap.includes('<loc>'+origin+p+'</loc>'),'listed in sitemap');
-    const image='/images/locais/ilustracao-'+String(area.image).padStart(2,'0')+'.webp';
+    const image='/images/obras/ilustracao-'+String(area.image).padStart(2,'0')+'.webp';
     assert.ok(html.includes(image)); await fs.access('cloudflare-dist'+image);
     const schemas=[...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m=>JSON.parse(m[1]));
     assert.ok(schemas.some(s=>s['@type']==='Service'&&s.areaServed['@type']==='Place'));

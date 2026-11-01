@@ -49,7 +49,7 @@ for (const pathname of ['/', '/orcamento/', '/tamanhos-de-cacamba/', '/preco-alu
     assert.equal(html.includes('id="municipios-atendidos"'), ['SP', 'MG', 'BA', 'RJ', 'PR', 'SC', 'RS', 'ES', 'GO', 'MT', 'MS', 'AL', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE', 'AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO'].includes(uf), uf + ': city directory in SP and MG');
     assert.ok(html.includes('id="orcamento-local"'), uf + ': accessible CEP consultation');
     assert.ok(html.includes('id="duvidas-locacao"'), uf + ': rental questions');
-    assert.ok(html.includes('srcSet="/images/estados/') || html.includes('srcset="/images/estados/'), uf + ': responsive illustration');
+    assert.ok(html.includes('srcSet="/images/obras/') || html.includes('srcset="/images/obras/'), uf + ': responsive illustration');
     for (const city of municipalities.filter(item => item.uf === uf && ['SP', 'MG', 'BA', 'RJ', 'PR', 'SC', 'RS', 'ES', 'GO', 'MT', 'MS', 'AL', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE', 'AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO'].includes(uf))) {
       assert.ok(html.includes(`href="/aluguel-de-cacamba/${uf.toLowerCase()}/${city.slug}/"`), uf + ': city preserved: ' + city.name);
     }
@@ -69,7 +69,7 @@ for (const pathname of rentalPaths) {
   assert.equal([...html.matchAll(/<h1[ >]/g)].length, 1, 'one landing H1');
   assert.ok(!html.includes('ViaCEP') && !html.includes('<form'), 'no CEP or quote form');
   assert.ok(html.includes('https://wa.me/5511957596840'), 'WhatsApp destination');
-  assert.ok(html.includes('srcSet="/images/contratacao/') || html.includes('srcset="/images/contratacao/'), 'responsive hero');
+  assert.ok(html.includes('srcSet="/images/obras/') || html.includes('srcset="/images/obras/'), 'responsive hero');
   assert.ok(html.includes('&quot;@type&quot;:&quot;Service&quot;') || html.includes('"@type":"Service"'), 'service structured data');
   assert.ok(!html.includes('noindex'));
   for (const script of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)) JSON.parse(script[1]);
@@ -82,14 +82,14 @@ for (const source of ['/', '/servicos/']) {
 }
 for (const image of ['locacao-cacamba-obra', 'alugar-cacamba-reforma', 'cacamba-entulho-materiais']) {
   for (const suffix of ['', '-640']) {
-    const asset = await fetchPage(`/images/contratacao/${image}${suffix}.webp`);
+    const asset = await fetchPage(`/images/obras/${image}${suffix}.webp`);
     assert.equal(asset.status, 200); const bytes = new Uint8Array(await asset.arrayBuffer());
     assert.ok(bytes.length < 250000); assert.equal(new TextDecoder().decode(bytes.slice(8, 12)), 'WEBP');
   }
 }
 for (const scene of ['sudeste', 'sul', 'nordeste', 'norte', 'centro-oeste']) {
   for (const suffix of ['', '-640']) {
-    const asset = await fetchPage(`/images/estados/cacamba-${scene}${suffix}.webp`);
+    const asset = await fetchPage(`/images/obras/cacamba-${scene}${suffix}.webp`);
     assert.equal(asset.status, 200, 'state image must exist');
     const bytes = new Uint8Array(await asset.arrayBuffer());
     assert.ok(bytes.length < 250000, 'optimized image under 250 KB');
