@@ -1,3 +1,4 @@
+import { RioGrandeSulCityPage } from './pages/RioGrandeSulCityPage';
 import { SantaCatarinaCityPage } from './pages/SantaCatarinaCityPage';
 import { ParanaCityPage } from './pages/ParanaCityPage';
 import { RioCityPage } from './pages/RioCityPage';
@@ -195,6 +196,7 @@ export default function App({ initialUrl }: AppProps) {
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
+      if (uf === 'RS') return <RioGrandeSulCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'SC') return <SantaCatarinaCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'PR') return <ParanaCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'RJ') return <RioCityPage key={citySlug} slug={citySlug}/>;
