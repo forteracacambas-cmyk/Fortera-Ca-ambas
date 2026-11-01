@@ -1,3 +1,5 @@
+import { EnhancedStateCoverage } from './EnhancedStateCoverage';
+import { DistritoFederalCoverage } from './DistritoFederalCoverage';
 import { RioGrandeSulStateIntro, RioGrandeSulStateCoverage } from './RioGrandeSulStateCoverage';
 import { SantaCatarinaStateIntro, SantaCatarinaStateCoverage } from './SantaCatarinaStateCoverage';
 import { ParanaStateIntro, ParanaStateCoverage } from './ParanaStateCoverage';
@@ -61,6 +63,8 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     {state.uf === 'PR' && <ParanaStateCoverage />}
     {state.uf === 'SC' && <SantaCatarinaStateCoverage />}
     {state.uf === 'RS' && <RioGrandeSulStateCoverage />}
+    {(state.uf === 'ES'||state.uf === 'GO'||state.uf === 'MT'||state.uf === 'MS') && <EnhancedStateCoverage uf={state.uf}/>}
+    {state.uf === 'DF' && <DistritoFederalCoverage/>}
     {state.uf === 'BA' && <BahiaStateCoverage />}
   </>;
 }
