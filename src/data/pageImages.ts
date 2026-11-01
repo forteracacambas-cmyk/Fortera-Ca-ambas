@@ -1,3 +1,4 @@
+import { RIO_GRANDE_SUL_LOCALITIES, rioGrandeSulCityImage } from './rioGrandeSulSeo';
 import { SANTA_CATARINA_LOCALITIES, santaCatarinaCityImage } from './santaCatarinaSeo';
 import { PARANA_LOCALITIES, paranaCityImage } from './paranaSeo';
 import { RIO_LOCALITIES, rioCityImage } from './rioSeo';
@@ -28,6 +29,8 @@ export function getPageImages(path: string): string[] {
   if (parana && PARANA_LOCALITIES[parana]) return [paranaCityImage(parana)];
   const santaCatarina = route.match(/^\/aluguel-de-cacamba\/sc\/([^/]+)\/$/)?.[1];
   if (santaCatarina && SANTA_CATARINA_LOCALITIES[santaCatarina]) return [santaCatarinaCityImage(santaCatarina)];
+  const rioGrandeSul = route.match(/^\/aluguel-de-cacamba\/rs\/([^/]+)\/$/)?.[1];
+  if (rioGrandeSul && RIO_GRANDE_SUL_LOCALITIES[rioGrandeSul]) return [rioGrandeSulCityImage(rioGrandeSul)];
   const bahia = route.match(/^\/aluguel-de-cacamba\/ba\/([^/]+)\/$/)?.[1];
   if (bahia && BAHIA_LOCALITIES[bahia]) return [bahiaCityImage(bahia)];
   const minas = route.match(/^\/aluguel-de-cacamba\/mg\/([^/]+)\/$/)?.[1];
