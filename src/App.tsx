@@ -201,7 +201,7 @@ export default function App({ initialUrl }: AppProps) {
       const citySlug = cityMatch[2].toLowerCase();
       if (uf === 'PE' && citySlug === 'fernando-de-noronha') return <FernandoNoronhaPage/>;
       if (uf === 'DF') return <DistritoFederalPage/>;
-      if (uf === 'ES'||uf === 'GO'||uf === 'MT'||uf === 'MS'||uf === 'AL'||uf === 'CE'||uf === 'MA'||uf === 'PB'||uf === 'PE'||uf === 'PI'||uf === 'RN'||uf === 'SE') return <EnhancedCityPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
+      if (uf === 'ES'||uf === 'GO'||uf === 'MT'||uf === 'MS'||uf === 'AL'||uf === 'CE'||uf === 'MA'||uf === 'PB'||uf === 'PE'||uf === 'PI'||uf === 'RN'||uf === 'SE'||uf === 'AC'||uf === 'AP'||uf === 'AM'||uf === 'PA'||uf === 'RO'||uf === 'RR'||uf === 'TO') return <EnhancedCityPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
       if (uf === 'RS') return <RioGrandeSulCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'SC') return <SantaCatarinaCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'PR') return <ParanaCityPage key={citySlug} slug={citySlug}/>;
