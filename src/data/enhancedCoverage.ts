@@ -1,17 +1,22 @@
+import northStates from './northStates.json';
+import northNotes from './northNotes.json';
 import northeastStates from './northeastStates.json';
 import northeastNotes from './northeastNotes.json';
 import localities from './enhancedLocalities.json';
 import neighborhoods from './enhancedNeighborhoods.json';
 import administrativeRegions from './dfAdministrativeRegions.json';
-export type EnhancedUF='ES'|'GO'|'MT'|'MS'|'DF'|'AL'|'CE'|'MA'|'PB'|'PE'|'PI'|'RN'|'SE';
+export const NORTH_UPDATED='2026-11-01';
+export const NORTH_UFS=['AC','AP','AM','PA','RO','RR','TO'];
+export type EnhancedUF='ES'|'GO'|'MT'|'MS'|'DF'|'AL'|'CE'|'MA'|'PB'|'PE'|'PI'|'RN'|'SE'|'AC'|'AP'|'AM'|'PA'|'RO'|'RR'|'TO';
 export const ENHANCED_UPDATED='2026-10-31';
-export const ENHANCED_UFS:EnhancedUF[]=['ES','GO','MT','MS','DF','AL','CE','MA','PB','PE','PI','RN','SE'];
+export const ENHANCED_UFS:EnhancedUF[]=['ES','GO','MT','MS','DF','AL','CE','MA','PB','PE','PI','RN','SE','AC','AP','AM','PA','RO','RR','TO'];
 export const ENHANCED_LOCALITIES=localities as Record<EnhancedUF,Record<string,{id:number;immediate:string;intermediate:string;districts:string[]}>>;
 export const ENHANCED_NEIGHBORHOODS=neighborhoods as Record<EnhancedUF,Record<string,string[]>>;
 export const DF_REGIONS=administrativeRegions;
 export const DF_SOURCE='https://www.geoservicos.ide.df.gov.br/arcgis/rest/services/Publico/LIMITES/FeatureServer/1';
 export const ENHANCED_STATES:Record<EnhancedUF,{name:string;location:string;id:number;count:number;intro:string;planning:string;featured:string[];image:number}>={
  ...northeastStates,
+ ...northStates,
  ES:{name:'Espírito Santo',location:'no Espírito Santo',id:32,count:78,image:2,featured:['vitoria','vila-velha','serra','cariacica','cachoeiro-de-itapemirim','linhares','colatina','guarapari'],intro:'Da reforma em apartamento à construção em lote, comece identificando o município e a entrada da obra. O diretório separa Vitória, Vila Velha, Serra, Cariacica e as demais cidades, evitando confundir bairros com municípios da mesma região.',planning:'Descreva as camadas que serão removidas, a capacidade pretendida e o espaço para o caminhão. Se o imóvel tiver portaria, rampa ou passagem compartilhada, apresente essas condições antes de reservar. Endereços diferentes exigem avaliação própria de transporte e colocação.'},
  GO:{name:'Goiás',location:'em Goiás',id:52,count:246,image:6,featured:['goiania','aparecida-de-goiania','anapolis','rio-verde','luziania','aguas-lindas-de-goias','valparaiso-de-goias','formosa'],intro:'Identifique a cidade da intervenção junto do bairro ou distrito. Goiânia, Aparecida de Goiânia e os municípios do Entorno têm páginas separadas: proximidade regional não significa a mesma operação, tarifa ou disponibilidade.',planning:'Em imóvel residencial ou estabelecimento de trabalho, diferencie entulho civil dos materiais da atividade. Informe portão, responsável por receber e previsão de enchimento. Para localidade fora da sede, acrescente referência da entrada e condições do trecho final.'},
  MT:{name:'Mato Grosso',location:'em Mato Grosso',id:51,count:142,image:11,featured:['cuiaba','varzea-grande','rondonopolis','sinop','sorriso','tangara-da-serra','lucas-do-rio-verde','caceres'],intro:'Encontre a página do município antes de consultar tamanho e preço. O diretório inclui as cidades da base atual do IBGE, incluindo Boa Esperança do Norte, preservando a identificação municipal e as ligações com a respectiva região.',planning:'Sede, distrito e entrada real devem constar no pedido. Se houver porteira, piso sem pavimentação, portão limitado ou pouco espaço de retorno, envie fotos na conversa. O orçamento considera o ponto efetivo de entrega e retirada, sem presumir condições iguais em toda a região.'},
@@ -21,7 +26,7 @@ export const ENHANCED_STATES:Record<EnhancedUF,{name:string;location:string;id:n
 export const enhancedRegionId=(name:string)=>'regiao-'+name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-');
 export const enhancedNeighborhoodNames=(uf:EnhancedUF,slug:string)=>(ENHANCED_NEIGHBORHOODS[uf][slug]||[]).filter(n=>!/^(sub)?setor\b/i.test(n));
 export const enhancedNeighborhoodSource=(uf:EnhancedUF)=>`https://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2022/bairros/shp/UF/${uf}_bairros_CD2022.zip`;
-export const enhancedSources=(uf:EnhancedUF)=>({municipalities:`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ENHANCED_STATES[uf].id}/municipios?orderBy=nome`,districts:`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ENHANCED_STATES[uf].id}/distritos?orderBy=nome`,date:'31/10/2026'});
+export const enhancedSources=(uf:EnhancedUF)=>({municipalities:`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ENHANCED_STATES[uf].id}/municipios?orderBy=nome`,districts:`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ENHANCED_STATES[uf].id}/distritos?orderBy=nome`,date:NORTH_UFS.includes(uf)?'01/11/2026':'31/10/2026'});
 type Guide={title:string;planning:string;question:string;answer:string;checklist:string[];image:number};
 const GUIDES:Guide[]=[
  {title:'Ponto de coleta e circulação do imóvel planejados antes da demolição',planning:'Em apartamento, organize a saída dos resíduos da unidade até o recipiente e combine horários com a administração. Em casa ou comércio, mostre a vaga pretendida sem bloquear garagem ou passagem. A posição deve permitir a operação do caminhão também na saída carregada.',question:'O que combinar antes de receber a caçamba?',answer:'Confirme ponto de colocação, responsável pelo recebimento, acesso e período. Apresente regras do imóvel e verifique autorizações aplicáveis. Esclareça se a proposta inclui somente o recipiente ou apoio de carregamento.',checklist:['Entrada e ponto de coleta','Regras de portaria quando houver','Circulação e manobra até a retirada'],image:2},
@@ -36,6 +41,7 @@ export function enhancedCityMeta(uf:EnhancedUF,city:{name:string;slug:string}) {
 export function enhancedStateMeta(uf:EnhancedUF){const state=ENHANCED_STATES[uf];return {title:uf==='PE'?'Aluguel de Caçamba em Pernambuco | 184 Municípios e Noronha — Fortera':uf==='DF'?'Aluguel de Caçamba no Distrito Federal | Regiões e Orçamento — Fortera':`Aluguel de Caçamba ${state.location} | ${state.count} Municípios — Fortera`,description:uf==='DF'?'Caçamba de entulho no Distrito Federal. Informe região administrativa, setor ou quadra e consulte tamanho, preço, entrega e retirada. Orçamento direto.':`Locação de caçamba de entulho ${state.location}. Encontre sua cidade entre ${state.count} municípios e consulte tamanho, preço, entrega e retirada.`};}
 export const ENHANCED_NOTES:Record<string,{focus:string;text:string;tip:string}>={
  ...northeastNotes,
+ ...northNotes,
  'ES/vitoria':{focus:'Reforma em apartamento com recebimento combinado',text:'Em Vitória, identifique bairro e entrada do imóvel. Se a intervenção ocorrer em apartamento, combine o transporte interno dos resíduos e apresente os horários da portaria antes de escolher a posição e o período.',tip:'Confirme quem levará o material da unidade até o recipiente.'},
  'ES/vila-velha':{focus:'Município e bairro sem confusão na consulta',text:'Para Vila Velha, informe o município junto do bairro e do ponto de colocação. Uma proposta da mesma região precisa ser confirmada para o endereço real, incluindo transporte e retirada.',tip:'Inclua portão, responsável e data desejada na conversa.'},
  'ES/serra':{focus:'Material da intervenção separado da atividade do imóvel',text:'Na Serra, descreva a origem de cada material. Em estabelecimento em funcionamento, diferencie entulho de piso e parede de resíduos da atividade e informe os requisitos de entrada.',tip:'Não misture resíduos não informados antes de confirmar aceitação.'},

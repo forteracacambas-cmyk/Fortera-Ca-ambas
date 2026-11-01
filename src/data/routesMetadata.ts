@@ -164,7 +164,7 @@ export function getAllRoutes(): RouteMeta[] {
     if (/^\/aluguel-de-cacamba\/pr\/[^/]+\/$/.test(path)) continue;
     if (/^\/aluguel-de-cacamba\/sc\/[^/]+\/$/.test(path)) continue;
     if (/^\/aluguel-de-cacamba\/rs\/[^/]+\/$/.test(path)) continue;
-    if (/^\/aluguel-de-cacamba\/(es|go|mt|ms|df|al|ce|ma|pb|pe|pi|rn|se)\/[^/]+\/$/.test(path)) continue;
+    if (/^\/aluguel-de-cacamba\/(es|go|mt|ms|df|al|ce|ma|pb|pe|pi|rn|se|ac|ap|am|pa|ro|rr|to)\/[^/]+\/$/.test(path)) continue;
     const spSlug = path.match(/^\/aluguel-de-cacamba\/sp\/([^/]+)\/$/)?.[1];
     if (spSlug && !SAO_PAULO_PRESERVED.has(spSlug)) continue;
     const existing = unique.get(path);
