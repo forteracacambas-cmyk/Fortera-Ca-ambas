@@ -23,6 +23,10 @@ for uf in ['ES','GO','MT','MS','DF']:
    if obj['NM_BAIRRO']:names[existing[int(obj['CD_MUN'])]['slug']].add(obj['NM_BAIRRO'])
  neighborhoods[uf]={k:sorted(v) for k,v in names.items()};stats[uf]={'pages':len(ms),'districts':len(ds),'neighborhoodCities':len(names),'neighborhoodNames':sum(map(len,names.values())),'intermediate':len(set(m['intermediate'] for m in profiles[uf].values())),'immediate':len(set(m['immediate'] for m in profiles[uf].values()))}
 ras=json.loads((source/'DF-regioes-administrativas.json').read_text(encoding='utf-8'))['features'];ras=sorted([{'code':x['attributes']['ra_codigo'],'name':x['attributes']['ra_nome']} for x in ras],key=lambda x:x['name'])
-for file,data in [('enhancedLocalities.json',profiles),('enhancedNeighborhoods.json',neighborhoods),('dfAdministrativeRegions.json',ras)]: (r/'site/src/data'/file).write_text(json.dumps(data,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+for file,data in [('enhancedLocalities.json',profiles),('enhancedNeighborhoods.json',neighborhoods),('dfAdministrativeRegions.json',ras)]:
+ p=r/'site/src/data'/file
+ if file!='dfAdministrativeRegions.json' and p.exists():
+  merged=json.loads(p.read_text(encoding='utf-8'));merged.update(data);data=merged
+ p.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
 (source/'importacao-resumo.json').write_text(json.dumps(stats,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(stats,ensure_ascii=False))
 
