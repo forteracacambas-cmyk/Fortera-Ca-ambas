@@ -1,3 +1,4 @@
+import { DumpsterSizeGallery } from '../components/DumpsterSizeGallery';
 import React from 'react';
 import { ArrowDown, ArrowRight, Check, MessageCircle, MapPin, CalendarDays, Truck, Ruler } from 'lucide-react';
 import { SeoHead } from '../components/SeoHead';
@@ -38,6 +39,8 @@ export function RentalLandingPage({ page }: { page: RentalLanding }) {
         </figure>
       </div>
     </section>
+<section className="max-w-7xl mx-auto px-5 sm:px-6 py-12"><h2 className="text-3xl font-black">Compare os tamanhos de caçamba para sua obra</h2><DumpsterSizeGallery location={undefined}/></section>
+
 
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
       <div className="max-w-3xl"><p className="uppercase text-xs font-bold tracking-widest text-amber-700">Escolha com clareza</p><h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">{page.sectionTitle}</h2><p className="mt-4 text-slate-600 leading-relaxed">{page.sectionIntro}</p></div>

@@ -1,3 +1,4 @@
+import { DumpsterSizeGallery } from '../components/DumpsterSizeGallery';
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -57,6 +58,7 @@ export const PrecoPage: React.FC = () => {
           </div>
         </div>
       </section>
+<section className="max-w-7xl mx-auto px-5 sm:px-6 py-12"><h2 className="text-3xl font-black">Escolha o tamanho da caçamba</h2><DumpsterSizeGallery/></section>
 
       {/* Esclarecimento de Transparência */}
       <section className="py-12 bg-amber-50 border-b border-amber-200">

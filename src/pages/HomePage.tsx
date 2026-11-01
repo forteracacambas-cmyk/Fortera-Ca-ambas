@@ -221,18 +221,17 @@ export const HomePage: React.FC = () => {
                 className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden flex flex-col hover:border-[#FFC52D] hover:shadow-xl transition-all group"
               >
                 {/* Foto da Caçamba */}
-                <div className="relative aspect-4/3 overflow-hidden bg-slate-900">
+                <div className="relative aspect-square overflow-hidden bg-slate-100">
                   <img
                     src={size.image.src}
+                    srcSet={size.image.srcSet}
+                    sizes="(min-width: 768px) 30vw, 90vw"
                     alt={size.image.alt}
                     width={size.image.width}
                     height={size.image.height}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain"
                   />
-                  <div className="absolute top-3 left-3 bg-[#10263D]/90 text-[#FFC52D] text-xs font-black px-2.5 py-1 rounded backdrop-blur-sm">
-                    {size.volume} Nominal
-                  </div>
                 </div>
 
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-6">
@@ -495,14 +494,14 @@ export const HomePage: React.FC = () => {
                 className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#FFC52D] transition-all flex flex-col justify-between group"
               >
                 <div>
-                  <div className="relative aspect-4/3 overflow-hidden bg-slate-900">
+                  <div className="relative aspect-square overflow-hidden bg-slate-100">
                     <img
                       src={srv.image.src}
                       alt={srv.image.alt}
                       width={srv.image.width}
                       height={srv.image.height}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain"
                     />
                     <div className="absolute top-3 left-3 bg-[#10263D]/90 text-[#FFC52D] text-xs font-black px-2.5 py-1 rounded backdrop-blur-sm">
                       {srv.shortTitle}
@@ -580,7 +579,7 @@ export const HomePage: React.FC = () => {
                       width={guide.image.width}
                       height={guide.image.height}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain"
                     />
                     <div className="absolute top-2 left-2 bg-[#10263D]/90 text-[#FFC52D] text-[10px] font-bold px-2 py-0.5 rounded">
                       {guide.category}

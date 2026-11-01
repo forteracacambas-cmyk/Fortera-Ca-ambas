@@ -1,3 +1,4 @@
+import { DumpsterSizeGallery } from '../components/DumpsterSizeGallery';
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -60,7 +61,7 @@ export const TamanhosPage: React.FC = () => {
                 <img
                   src={SITE_CONFIG.detailImage}
                   alt="Caçamba estacionária metálica Fortera para recolhimento de entulho em reforma"
-                  className="w-full h-auto object-cover aspect-4/3"
+                  className="w-full h-auto object-contain aspect-square"
                   width="1536"
                   height="1024"
                   loading="lazy"
@@ -90,14 +91,7 @@ export const TamanhosPage: React.FC = () => {
 
           {/* Imagem do Comparativo Real Fortera */}
           <div className="rounded-2xl overflow-hidden border-2 border-slate-300 shadow-lg bg-slate-50">
-            <img
-              src={SITE_CONFIG.comparativeImage}
-              alt="Comparativo de tamanhos de caçambas estacionárias Fortera: 3 m³, 4 m³, 5 m³, 7 m³ e 10 m³"
-              width="1536"
-              height="1024"
-              loading="lazy"
-              className="w-full h-auto object-contain"
-            />
+            <DumpsterSizeGallery showContact={false}/>
           </div>
 
           {/* Tabela HTML Acessível de Medidas */}
@@ -274,11 +268,13 @@ export const TamanhosPage: React.FC = () => {
                     <div className="rounded-xl overflow-hidden shadow-md border-2 border-slate-300 bg-white group">
                       <img
                         src={size.image.src}
+                        srcSet={size.image.srcSet}
+                        sizes="(min-width: 1024px) 360px, 90vw"
                         alt={size.image.alt}
                         width={size.image.width}
                         height={size.image.height}
                         loading="lazy"
-                        className="w-full h-auto object-cover aspect-4/3"
+                        className="w-full h-auto object-contain aspect-square"
                       />
                     </div>
                   </div>

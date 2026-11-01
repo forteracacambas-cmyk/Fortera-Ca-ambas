@@ -1,3 +1,4 @@
+import { DumpsterSizeGallery } from '../components/DumpsterSizeGallery';
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -84,6 +85,7 @@ export const GuiaDetailPage: React.FC<GuiaDetailPageProps> = ({ slug }) => {
             </p>
           </header>
 
+          {slug === "como-escolher-tamanho-de-cacamba" && <section className="my-10"><h2 className="text-3xl font-black">Compare os cinco tamanhos de caçamba</h2><DumpsterSizeGallery/></section>}
           {/* Seções de Conteúdo */}
           <div className="space-y-12 text-slate-800 leading-relaxed text-base sm:text-lg">
             {guide.sections.map((section, idx) => (

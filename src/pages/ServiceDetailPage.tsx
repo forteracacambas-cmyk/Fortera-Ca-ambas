@@ -1,3 +1,4 @@
+import { DumpsterSizeGallery } from '../components/DumpsterSizeGallery';
 import React from 'react';
 import { SeoHead } from '../components/SeoHead';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -106,6 +107,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ slug }) =>
           </div>
         </div>
       </section>
+<section className="max-w-7xl mx-auto px-5 sm:px-6 py-12"><h2 className="text-3xl font-black">Escolha o tamanho da caçamba</h2><DumpsterSizeGallery/></section>
 
       {/* Pontos Críticos de Atenção */}
       <section className="py-16 bg-slate-50 border-b border-slate-200">
