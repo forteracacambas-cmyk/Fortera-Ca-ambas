@@ -10,7 +10,7 @@ try{
  const base='https://forteracacambas.com',assets={fetch:async()=>new Response('',{status:404})},render=async p=>{const r=await worker.fetch(new Request(base+p),{ASSETS:assets});assert.equal(r.status,200,p);return r.text();};
  const esc=s=>s.replaceAll('&','&amp;').replaceAll("'",'&#x27;').replaceAll('"','&quot;');const stats={};
  for(const uf of d.ENHANCED_UFS){const state=d.ENHANCED_STATES[uf],cities=d.MUNICIPALITIES.filter(c=>c.uf===uf),p='/aluguel-de-cacamba/'+uf.toLowerCase()+'/',html=await render(p),xml=d.getSitemapXml('/sitemaps/'+uf.toLowerCase()+'.xml');
-  assert.equal(cities.length,state.count);assert.equal((xml.match(/<url>/g)||[]).length,state.count+1);assert.equal((xml.match(/<lastmod>2026-10-31<\/lastmod>/g)||[]).length,state.count+1);
+  assert.equal(cities.length,state.count);assert.equal((xml.match(/<url>/g)||[]).length,state.count+1);assert.equal((xml.match(new RegExp('<lastmod>'+ (d.NORTH_UFS.includes(uf)?d.NORTH_UPDATED:d.ENHANCED_UPDATED) +'</lastmod>','g'))||[]).length,state.count+1);
   for(const c of cities)assert.ok(html.includes('href="'+d.cityPath(c)+'"'),uf+' state city link '+c.name);
   assert.equal((html.match(/<h1[ >]/g)||[]).length,1);assert.ok(html.includes(esc(d.enhancedStateMeta(uf).title)));
   const titles=new Set(),descriptions=new Set();
@@ -23,7 +23,7 @@ try{
   assert.equal(titles.size,state.count);assert.equal(descriptions.size,state.count);stats[uf]={municipalOrBrasiliaPages:cities.length,statePages:1,sitemapUrls:state.count+1,neighborhoodCities:Object.keys(d.ENHANCED_NEIGHBORHOODS[uf]).length,neighborhoodNames:Object.values(d.ENHANCED_NEIGHBORHOODS[uf]).flat().length};
  }
  assert.equal(d.getAllRoutes().length,6049);const invalid=await worker.fetch(new Request(base+'/aluguel-de-cacamba/go/cidade-inexistente/'),{ASSETS:assets});assert.equal(invalid.status,404);
- const report={date:'2026-10-31',stats,totalUpdatedPages:d.ENHANCED_UFS.filter(uf=>['AL','CE','MA','PB','PE','PI','RN','SE'].includes(uf)).reduce((n,uf)=>n+d.ENHANCED_STATES[uf].count+1,0),newRoutes:0,totalCanonicalRoutes:6049,dfAdministrativeReferences:d.DF_REGIONS.length,checks:'All enhanced local SSR pages, state pages and special territories, canonical, H1, actual unique titles, schemas, image, districts, sourced locality names, direct contact messages, sitemap and 404; no production contact events emitted'};await fs.writeFile('../verificacao-nordeste-local.json',JSON.stringify(report,null,2));console.log('PASS',JSON.stringify(report));
+ const report={date:'2026-11-01',stats,totalUpdatedPages:d.ENHANCED_UFS.filter(uf=>d.NORTH_UFS.includes(uf)).reduce((n,uf)=>n+d.ENHANCED_STATES[uf].count+1,0),newRoutes:0,totalCanonicalRoutes:6049,dfAdministrativeReferences:d.DF_REGIONS.length,checks:'All enhanced local SSR pages, state pages and special territories, canonical, H1, actual unique titles, schemas, image, districts, sourced locality names, direct contact messages, sitemap and 404; no production contact events emitted'};await fs.writeFile('../verificacao-norte-local.json',JSON.stringify(report,null,2));console.log('PASS',JSON.stringify(report));
 }finally{await fs.unlink(temp).catch(()=>{});}
 process.exit(0);
 
