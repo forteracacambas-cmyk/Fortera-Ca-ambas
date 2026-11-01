@@ -79,4 +79,4 @@ export function rioCityMeta(city:{name:string;slug:string}){
  const local=RIO_LOCALITIES[city.slug],places=rioNeighborhoodNames(city.slug);
  return {title:`Aluguel de Caçamba ${rioCityLocation(city.name)} RJ | Orçamento Fortera`,description:places.length?`Locação de caçamba ${rioCityLocation(city.name)}: ${places.slice(0,2).join(', ')} e outras localidades. Consulte 3, 4 e 5 m³, preço, prazo, entrega e retirada.`:`Aluguel de caçamba ${rioCityLocation(city.name)}, região de ${local.immediate}. Consulte tamanho, preço, prazo e atendimento no seu bairro ou distrito. Orçamento direto.`};
 }
-export const rioCityImage=(slug:string)=>`/images/locais/ilustracao-${String(RIO_REGIONAL_GUIDES[RIO_LOCALITIES[slug].intermediate].image).padStart(2,'0')}.webp`;
+export const rioCityImage=(slug:string)=>`/images/obras/ilustracao-${String(RIO_REGIONAL_GUIDES[RIO_LOCALITIES[slug].intermediate].image).padStart(2,'0')}.webp`;

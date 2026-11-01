@@ -63,5 +63,5 @@ export function saoPauloCityMeta(city:{name:string;slug:string}){
 }
 export function saoPauloCityImage(slug:string){
  const locality=SAO_PAULO_LOCALITIES[slug];
- return `/images/locais/ilustracao-${String(SAO_PAULO_REGIONAL_GUIDES[locality.intermediate].image).padStart(2,'0')}.webp`;
+ return `/images/obras/ilustracao-${String(SAO_PAULO_REGIONAL_GUIDES[locality.intermediate].image).padStart(2,'0')}.webp`;
 }

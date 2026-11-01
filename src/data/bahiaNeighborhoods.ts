@@ -39,4 +39,4 @@ export const BAHIA_NEIGHBORHOOD_PAGES: BahiaNeighborhood[] = [
 ];
 export const bahiaNeighborhoodPath = (area: BahiaNeighborhood) => `/aluguel-de-cacamba/ba/${area.city}/${area.slug}/`;
 export const bahiaNeighborhoodMeta = (area: BahiaNeighborhood) => ({title: `Aluguel de Caçamba em ${area.name}, ${area.cityName} | Fortera`, description: `Caçamba de entulho em ${area.name}, ${area.cityName}: ${area.focus.toLowerCase()}. Peça orçamento direto para o seu endereço.`});
-export const bahiaNeighborhoodImage = (area: BahiaNeighborhood) => `/images/locais/ilustracao-${String(area.image).padStart(2, '0')}.webp`;
+export const bahiaNeighborhoodImage = (area: BahiaNeighborhood) => `/images/obras/ilustracao-${String(area.image).padStart(2, '0')}.webp`;

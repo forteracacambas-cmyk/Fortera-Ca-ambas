@@ -40,7 +40,7 @@ export function getPageImages(path: string): string[] {
   const minas = route.match(/^\/aluguel-de-cacamba\/mg\/([^/]+)\/$/)?.[1];
   if (minas && MINAS_LOCALITIES[minas]) return [minasCityImage(minas)];
   const area = CAPITAL_AREAS.find(area => capitalAreaPath(area.slug) === route);
-  if (area) return [`/images/locais/ilustracao-${String(area.image).padStart(2, '0')}.webp`];
+  if (area) return [`/images/obras/ilustracao-${String(area.image).padStart(2, '0')}.webp`];
   const local = route.match(/^\/aluguel-de-cacamba\/sp\/([^/]+)\/$/)?.[1];
   if (local && SAO_PAULO_LOCALITIES[local] && !SAO_PAULO_PRESERVED.has(local)) return [saoPauloCityImage(local)];
   if (local && LOCAL_IMAGES[local]) return [LOCAL_IMAGES[local]];
@@ -49,7 +49,7 @@ export function getPageImages(path: string): string[] {
   if (state) return [STATE_SCENES[state.region].src];
   if (route.startsWith('/aluguel-de-cacamba/') || route.startsWith('/regioes/')) return [SITE_IMAGES.hero.src];
   const landing = RENTAL_LANDINGS.find(page => page.path === route);
-  if (landing) return [`/images/contratacao/${landing.image}.webp`];
+  if (landing) return [`/images/obras/${landing.image}.webp`];
   const service = SERVICES_DATA.find(item => route === `/servicos/${item.slug}/`);
   if (service) return [service.image.src];
   const guide = PRACTICAL_GUIDES.find(item => route === `/guias/${item.slug}/`);

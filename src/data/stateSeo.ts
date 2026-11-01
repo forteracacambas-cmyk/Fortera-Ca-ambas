@@ -31,11 +31,11 @@ export function stateSeo(state: StateInfo) {
 }
 
 export const STATE_SCENES: Record<StateInfo['region'], { src: string; alt: string }> = {
-  Sudeste: { src: '/images/estados/cacamba-sudeste.webp', alt: 'Cena ilustrativa de caçamba amarela em reforma residencial urbana' },
-  Sul: { src: '/images/estados/cacamba-sul.webp', alt: 'Cena ilustrativa de caçamba de entulho em reforma de casa com jardim' },
-  Nordeste: { src: '/images/estados/cacamba-nordeste.webp', alt: 'Cena ilustrativa de caçamba para retirada de entulho de reforma comercial' },
-  Norte: { src: '/images/estados/cacamba-norte.webp', alt: 'Cena ilustrativa de caçamba posicionada em acesso pavimentado de uma obra' },
-  'Centro-Oeste': { src: '/images/estados/cacamba-centro-oeste.webp', alt: 'Cena ilustrativa de caçamba em canteiro de obra de alvenaria' },
+  Sudeste: { src: '/images/obras/cacamba-sudeste.webp', alt: 'Caçamba amarela com entulho em frente a uma obra' },
+  Sul: { src: '/images/obras/cacamba-sul.webp', alt: 'Caçamba amarela com entulho em frente a uma obra' },
+  Nordeste: { src: '/images/obras/cacamba-nordeste.webp', alt: 'Caçamba amarela com entulho em frente a uma obra' },
+  Norte: { src: '/images/obras/cacamba-norte.webp', alt: 'Caçamba amarela com entulho em frente a uma obra' },
+  'Centro-Oeste': { src: '/images/obras/cacamba-centro-oeste.webp', alt: 'Caçamba amarela com entulho em frente a uma obra' },
 };
 
 // City names are checked against the municipality data before being displayed.

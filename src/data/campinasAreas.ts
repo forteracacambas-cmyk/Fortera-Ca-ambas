@@ -61,5 +61,5 @@ export function campinasAreaPlanning(area:CampinasArea):Planning{
  return plans[index];
 }
 export const campinasAreaMeta=(area:CampinasArea)=>({title:`Aluguel de Caçamba em ${area.name}, Campinas | Fortera`,description:`Locação de caçamba de entulho em ${area.name}, Campinas: preço, tamanhos, materiais e entrega. Informe seu endereço e solicite orçamento direto.`});
-export const campinasAreaImage=(area:CampinasArea)=>`/images/locais/ilustracao-${String((Math.max(0,area.groups[0]?.startsWith('AR ')?Number(area.groups[0].slice(3))-1:CAMPINAS_DISTRICTS.findIndex(d=>d.slug===area.slug))%15)+1).padStart(2,'0')}.webp`;
+export const campinasAreaImage=(area:CampinasArea)=>`/images/obras/ilustracao-${String((Math.max(0,area.groups[0]?.startsWith('AR ')?Number(area.groups[0].slice(3))-1:CAMPINAS_DISTRICTS.findIndex(d=>d.slug===area.slug))%15)+1).padStart(2,'0')}.webp`;
 export function campinasRelatedAreas(area:CampinasArea){return CAMPINAS_NEIGHBORHOODS.filter(other=>other.slug!==area.slug&&area.groups.some(g=>other.groups.includes(g)));}

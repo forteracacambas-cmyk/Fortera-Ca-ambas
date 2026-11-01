@@ -115,4 +115,4 @@ export function bahiaCityMeta(city: { name: string; slug: string }) {
   const locality = BAHIA_LOCALITIES[city.slug], note = BAHIA_CITY_NOTES[city.slug];
   return { title: `Aluguel de Caçamba em ${city.name} BA | Fortera`, description: note ? `Locação de caçamba de entulho em ${city.name}: ${note.focus.toLowerCase()}. Consulte entrega, retirada e tamanho. Orçamento direto.` : `Aluguel de caçamba de entulho em ${city.name}, região de ${locality.immediate}. Veja distritos, materiais e preparação da entrega. Peça orçamento para sua obra.` };
 }
-export function bahiaCityImage(slug: string) { return `/images/locais/ilustracao-${String(BAHIA_REGIONAL_GUIDES[BAHIA_LOCALITIES[slug].intermediate].image).padStart(2, '0')}.webp`; }
+export function bahiaCityImage(slug: string) { return `/images/obras/ilustracao-${String(BAHIA_REGIONAL_GUIDES[BAHIA_LOCALITIES[slug].intermediate].image).padStart(2, '0')}.webp`; }

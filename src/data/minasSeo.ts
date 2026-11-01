@@ -171,5 +171,5 @@ export function minasCityMeta(city: { name: string; slug: string }) {
 
 export function minasCityImage(slug: string) {
   const guide = MINAS_REGIONAL_GUIDES[MINAS_LOCALITIES[slug].intermediate];
-  return `/images/locais/ilustracao-${String(guide.image).padStart(2, '0')}.webp`;
+  return `/images/obras/ilustracao-${String(guide.image).padStart(2, '0')}.webp`;
 }
