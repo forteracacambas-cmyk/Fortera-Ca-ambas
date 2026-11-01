@@ -1,3 +1,4 @@
+import { dumpsterSizeImage } from './dumpsterSizeImages';
 import { SITE_IMAGES } from '../config/siteConfig';
 
 export interface DumpsterDimension {
@@ -17,6 +18,7 @@ export interface DumpsterSize {
   dimensions: DumpsterDimension;
   image: {
     src: string;
+    srcSet?: string;
     alt: string;
     width: number;
     height: number;
@@ -47,7 +49,7 @@ export const DUMPSTER_SIZES: DumpsterSize[] = [
       altura: 1.115,
       formatted: '2,131 m × 1,790 m × 1,115 m (C × L × A)',
     },
-    image: SITE_IMAGES.dumpsterProduct,
+    image: dumpsterSizeImage(3),
     recommendedFor: [
       'Reformas pontuais de banheiro, lavabo ou cozinha sob avaliação',
       'Troca de pisos e revestimentos cerâmicos em áreas compactas',
@@ -71,7 +73,7 @@ export const DUMPSTER_SIZES: DumpsterSize[] = [
       altura: 1.208,
       formatted: '2,568 m × 1,890 m × 1,208 m (C × L × A)',
     },
-    image: SITE_IMAGES.dumpsterProduct,
+    image: dumpsterSizeImage(4),
     recommendedFor: [
       'Reformas residenciais e comerciais de porte médio',
       'Remoção de revestimentos, contrapiso e alvenaria não estrutural',
@@ -95,7 +97,7 @@ export const DUMPSTER_SIZES: DumpsterSize[] = [
       altura: 1.407,
       formatted: '2,714 m × 1,835 m × 1,407 m (C × L × A)',
     },
-    image: SITE_IMAGES.dumpsterProduct,
+    image: dumpsterSizeImage(5),
     recommendedFor: [
       'Reformas mais amplas com resíduos de maior cubagem',
       'Descarte de materiais volumosos de média densidade',
@@ -119,7 +121,7 @@ export const DUMPSTER_SIZES: DumpsterSize[] = [
       altura: 1.500,
       formatted: '3,369 m × 1,853 m × 1,500 m (C × L × A)',
     },
-    image: SITE_IMAGES.dumpsterProduct,
+    image: dumpsterSizeImage(7),
     recommendedFor: [
       'Grandes reformas com descarte de materiais leves a médios sob consulta',
       'Limpezas gerais de galpões e canteiros com resíduos volumosos',
@@ -142,7 +144,7 @@ export const DUMPSTER_SIZES: DumpsterSize[] = [
       altura: 1.948,
       formatted: '3,741 m × 1,933 m × 1,948 m (C × L × A)',
     },
-    image: SITE_IMAGES.dumpsterProduct,
+    image: dumpsterSizeImage(10),
     recommendedFor: [
       'Canteiros de grande porte com resíduos volumosos e leves sob avaliação',
       'Descarte sob demanda industrial ou comercial com plano de carga',

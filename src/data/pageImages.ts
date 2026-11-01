@@ -1,3 +1,4 @@
+import { SIZE_CAPACITIES, dumpsterSizeImage } from './dumpsterSizeImages';
 import { ENHANCED_LOCALITIES, enhancedCityImage, type EnhancedUF } from './enhancedCoverage';
 import { RIO_GRANDE_SUL_LOCALITIES, rioGrandeSulCityImage } from './rioGrandeSulSeo';
 import { SANTA_CATARINA_LOCALITIES, santaCatarinaCityImage } from './santaCatarinaSeo';
@@ -53,9 +54,9 @@ export function getPageImages(path: string): string[] {
   if (service) return [service.image.src];
   const guide = PRACTICAL_GUIDES.find(item => route === `/guias/${item.slug}/`);
   if (guide) return [guide.image.src];
-  if (route === '/') return [SITE_IMAGES.hero.src, SITE_IMAGES.dumpsterProduct.src, SITE_IMAGES.delivery.src];
+  if (route === '/') return [SITE_IMAGES.hero.src, ...SIZE_CAPACITIES.map(size => dumpsterSizeImage(size).src), SITE_IMAGES.delivery.src];
   if (route === '/como-funciona/') return [SITE_IMAGES.delivery.src];
-  if (route === '/tamanhos-de-cacamba/') return [SITE_IMAGES.comparative.src, SITE_IMAGES.dumpsterProduct.src];
+  if (route === '/tamanhos-de-cacamba/') return SIZE_CAPACITIES.map(size => dumpsterSizeImage(size).src);
   if (route === '/servicos/') return [...new Set(SERVICES_DATA.map(item => item.image.src))];
   if (route === '/guias/') return [...new Set(PRACTICAL_GUIDES.map(item => item.image.src))];
   return [];
