@@ -32,7 +32,7 @@ export function getPageImages(path: string): string[] {
   if (santaCatarina && SANTA_CATARINA_LOCALITIES[santaCatarina]) return [santaCatarinaCityImage(santaCatarina)];
   const rioGrandeSul = route.match(/^\/aluguel-de-cacamba\/rs\/([^/]+)\/$/)?.[1];
   if (rioGrandeSul && RIO_GRANDE_SUL_LOCALITIES[rioGrandeSul]) return [rioGrandeSulCityImage(rioGrandeSul)];
-  const enhanced = route.match(/^\/aluguel-de-cacamba\/(es|go|mt|ms|df)\/([^/]+)\/$/);
+  const enhanced = route.match(/^\/aluguel-de-cacamba\/(es|go|mt|ms|df|al|ce|ma|pb|pe|pi|rn|se)\/([^/]+)\/$/);
   if (enhanced && ENHANCED_LOCALITIES[enhanced[1].toUpperCase() as EnhancedUF]?.[enhanced[2]]) return [enhancedCityImage(enhanced[1].toUpperCase() as EnhancedUF,enhanced[2])];
   const bahia = route.match(/^\/aluguel-de-cacamba\/ba\/([^/]+)\/$/)?.[1];
   if (bahia && BAHIA_LOCALITIES[bahia]) return [bahiaCityImage(bahia)];
