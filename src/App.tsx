@@ -1,3 +1,5 @@
+import { EnhancedCityPage } from './pages/EnhancedCityPage';
+import { DistritoFederalPage } from './pages/DistritoFederalPage';
 import { RioGrandeSulCityPage } from './pages/RioGrandeSulCityPage';
 import { SantaCatarinaCityPage } from './pages/SantaCatarinaCityPage';
 import { ParanaCityPage } from './pages/ParanaCityPage';
@@ -196,6 +198,8 @@ export default function App({ initialUrl }: AppProps) {
     if (cityMatch) {
       const uf = cityMatch[1].toUpperCase();
       const citySlug = cityMatch[2].toLowerCase();
+      if (uf === 'DF') return <DistritoFederalPage/>;
+      if (uf === 'ES'||uf === 'GO'||uf === 'MT'||uf === 'MS') return <EnhancedCityPage key={uf+citySlug} uf={uf} slug={citySlug}/>;
       if (uf === 'RS') return <RioGrandeSulCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'SC') return <SantaCatarinaCityPage key={citySlug} slug={citySlug}/>;
       if (uf === 'PR') return <ParanaCityPage key={citySlug} slug={citySlug}/>;
