@@ -10,7 +10,7 @@ import { getCanonicalUrl, getWhatsAppLink } from '../config/siteConfig';
 
 export function RentalLandingPage({ page }: { page: RentalLanding }) {
   const whatsapp = getWhatsAppLink(page.message);
-  const picture = '/images/contratacao/' + page.image;
+  const picture = '/images/obras/' + page.image;
   const icons = [CalendarDays, Truck, Ruler];
   const cta = (label: string, dark = false) => <a href={whatsapp} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition-colors focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-amber-400 ${dark ? 'bg-[#10263D] text-white hover:bg-[#24445f]' : 'bg-[#25D366] text-[#082c1b] hover:bg-[#53df88]'}`}><MessageCircle size={20} aria-hidden="true"/>{label}<ArrowRight size={18} aria-hidden="true"/></a>;
   return <div className="bg-[#F6F5F1] text-[#10263D]">
@@ -33,8 +33,8 @@ export function RentalLandingPage({ page }: { page: RentalLanding }) {
         </div>
         <figure className="relative">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#FFC52D] rounded-3xl" aria-hidden="true"/>
-          <img src={picture + '.webp'} srcSet={`${picture}-640.webp 640w, ${picture}.webp 1280w`} sizes="(min-width: 1024px) 48vw, 100vw" alt={page.imageAlt} width={1536} height={1024} fetchPriority="high" className="relative rounded-3xl w-full aspect-[3/2] object-cover shadow-xl"/>
-          <figcaption className="text-xs text-slate-300 mt-3">Imagem ilustrativa. Capacidade e atendimento confirmados na proposta.</figcaption>
+          <img src={picture + '.webp'} srcSet={`${picture}-640.webp 640w, ${picture}.webp 1280w`} sizes="(min-width: 1024px) 48vw, 100vw" alt={page.imageAlt} width={1536} height={1024} fetchPriority="high" className="relative rounded-3xl w-full aspect-square object-cover shadow-xl"/>
+          <figcaption className="text-xs text-slate-300 mt-3">Imagem de referência. Capacidade e atendimento confirmados na proposta.</figcaption>
           <div className="mt-5 rounded-2xl border border-slate-600 bg-[#1A3856] p-5 flex items-center justify-between gap-4"><div><p className="text-xs uppercase tracking-wider text-slate-300">Do pedido ao agendamento</p><p className="font-bold mt-1">Sua obra. Seu endereço. Sua proposta.</p></div><MessageCircle size={28} className="text-[#FFC52D] shrink-0" aria-hidden="true"/></div>
         </figure>
       </div>
