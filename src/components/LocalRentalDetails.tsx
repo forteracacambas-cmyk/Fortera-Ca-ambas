@@ -1,10 +1,11 @@
+import { DumpsterSizeGallery } from './DumpsterSizeGallery';
 import React from 'react';
 import { SITE_IMAGES, RENTAL_PERIODS, getWhatsAppLink } from '../config/siteConfig';
 
 export const LocalRentalDetails = ({ location }: { location: string }) => (
   <>
     <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-10">
         <div>
           <p className="text-xs font-black uppercase text-slate-500">Escolha com orientação</p>
           <h2 className="text-3xl font-black mt-2">Qual caçamba escolher para sua obra em {location}?</h2>
@@ -16,7 +17,7 @@ export const LocalRentalDetails = ({ location }: { location: string }) => (
           </ul>
           <a href="/tamanhos-de-cacamba/" className="inline-block mt-6 font-bold underline">Ver dimensões e comparativo completo →</a>
         </div>
-        <img src={SITE_IMAGES.comparative.src} alt="Três caçambas estacionárias amarelas Fortera em tamanhos diferentes" width={1536} height={1024} loading="lazy" className="w-full h-auto rounded-2xl border border-slate-200" />
+        <DumpsterSizeGallery location={location}/>
       </div>
     </section>
     <section className="py-16 bg-slate-50">
