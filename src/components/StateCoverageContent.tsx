@@ -63,7 +63,7 @@ export function StateCoverageContent({ state }: { state: StateInfo }) {
     {state.uf === 'PR' && <ParanaStateCoverage />}
     {state.uf === 'SC' && <SantaCatarinaStateCoverage />}
     {state.uf === 'RS' && <RioGrandeSulStateCoverage />}
-    {(state.uf === 'ES'||state.uf === 'GO'||state.uf === 'MT'||state.uf === 'MS') && <EnhancedStateCoverage uf={state.uf}/>}
+    {(state.uf === 'ES'||state.uf === 'GO'||state.uf === 'MT'||state.uf === 'MS'||state.uf === 'AL'||state.uf === 'CE'||state.uf === 'MA'||state.uf === 'PB'||state.uf === 'PE'||state.uf === 'PI'||state.uf === 'RN'||state.uf === 'SE') && <EnhancedStateCoverage uf={state.uf}/>}
     {state.uf === 'DF' && <DistritoFederalCoverage/>}
     {state.uf === 'BA' && <BahiaStateCoverage />}
   </>;
