@@ -1,3 +1,4 @@
+import { ENHANCED_UFS, enhancedStateMeta, type EnhancedUF } from './enhancedCoverage';
 import type { StateInfo } from './regionsAndStates';
 
 const STATE_PREPOSITIONS: Record<string, string> = {
@@ -10,6 +11,7 @@ const STATE_PREPOSITIONS: Record<string, string> = {
 export const stateLocation = (state: StateInfo) => `${STATE_PREPOSITIONS[state.uf] || 'em'} ${state.name}`;
 
 export function stateSeo(state: StateInfo) {
+  if (ENHANCED_UFS.includes(state.uf as EnhancedUF)) return enhancedStateMeta(state.uf as EnhancedUF);
   if (state.uf === 'RS') return {title:'Aluguel de Caçamba no Rio Grande do Sul | 497 Municípios — Fortera',description:'Locação de caçamba de entulho no Rio Grande do Sul. Encontre sua cidade e consulte tamanho, preço, entrega e retirada. Orçamento para o endereço da sua obra.'};
   if (state.uf === 'SC') return {title:'Aluguel de Caçamba em Santa Catarina | 295 Municípios — Fortera',description:'Locação de caçamba de entulho em Santa Catarina. Encontre seu município e consulte tamanho, preço, entrega e retirada. Orçamento direto para o endereço da obra.'};
   if (state.uf === 'PR') return {title:'Aluguel de Caçamba no Paraná | 399 Municípios — Fortera',description:'Locação de caçamba de entulho no Paraná. Encontre seu município, consulte capacidades, preço, prazo, entrega e retirada. Orçamento para sua obra sem formulário.'};

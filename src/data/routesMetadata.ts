@@ -1,3 +1,4 @@
+import { ENHANCED_UFS, enhancedCityMeta, type EnhancedUF } from './enhancedCoverage';
 import { rioGrandeSulCityMeta } from './rioGrandeSulSeo';
 import { santaCatarinaCityMeta } from './santaCatarinaSeo';
 import { paranaCityMeta } from './paranaSeo';
@@ -156,12 +157,14 @@ export function getAllRoutes(): RouteMeta[] {
   MUNICIPALITIES.filter(city => city.uf === 'PR').forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...paranaCityMeta(city), changefreq:'monthly',priority:0.8}));
   MUNICIPALITIES.filter(city => city.uf === 'SC').forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...santaCatarinaCityMeta(city), changefreq:'monthly',priority:0.8}));
   MUNICIPALITIES.filter(city => city.uf === 'RS').forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...rioGrandeSulCityMeta(city), changefreq:'monthly',priority:0.8}));
+  MUNICIPALITIES.filter(city => ENHANCED_UFS.includes(city.uf as EnhancedUF)).forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...enhancedCityMeta(city.uf as EnhancedUF,city), changefreq:'monthly',priority:0.8}));
   BAHIA_NEIGHBORHOOD_PAGES.forEach(area => unique.set(bahiaNeighborhoodPath(area), {path: bahiaNeighborhoodPath(area), ...bahiaNeighborhoodMeta(area), changefreq:'monthly',priority:0.8}));
   MUNICIPALITIES.filter(city => city.uf === 'SP' && !SAO_PAULO_PRESERVED.has(city.slug)).forEach(city => unique.set(cityPath(city), {path:cityPath(city), ...saoPauloCityMeta(city), changefreq:'monthly',priority:0.8}));
   for (const [path, meta] of Object.entries(LOCAL_SEARCH_META)) {
     if (/^\/aluguel-de-cacamba\/pr\/[^/]+\/$/.test(path)) continue;
     if (/^\/aluguel-de-cacamba\/sc\/[^/]+\/$/.test(path)) continue;
     if (/^\/aluguel-de-cacamba\/rs\/[^/]+\/$/.test(path)) continue;
+    if (/^\/aluguel-de-cacamba\/(es|go|mt|ms|df)\/[^/]+\/$/.test(path)) continue;
     const spSlug = path.match(/^\/aluguel-de-cacamba\/sp\/([^/]+)\/$/)?.[1];
     if (spSlug && !SAO_PAULO_PRESERVED.has(spSlug)) continue;
     const existing = unique.get(path);
